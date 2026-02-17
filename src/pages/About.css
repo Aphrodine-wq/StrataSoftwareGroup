@@ -1,94 +1,155 @@
+/* ═══════════════════════════════════════════════════════════
+   ABOUT PAGE
+   ═══════════════════════════════════════════════════════════ */
+
 .about {
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 0 auto;
-  padding: 2rem;
-}
-
-.about-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.about-header h1 {
-  font-size: 2.5rem;
-  color: var(--text-primary);
-  margin-bottom: 0.5rem;
-}
-
-.about-header p {
-  font-size: 1.2rem;
-  color: var(--text-secondary);
+  padding: 6rem 2rem 4rem;
 }
 
 .about-content {
-  background: var(--bg-elev-2);
-  border-radius: 8px;
-  padding: 3rem;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border-subtle);
+  max-width: var(--max-width-narrow);
+  margin: 0 auto;
 }
 
-.about-content section {
-  margin-bottom: 3rem;
+/* ── Sections ── */
+
+.about-section {
+  margin-bottom: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-.about-content section:last-child {
+.about-section:last-child {
   margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
-.about-content h2 {
-  font-size: 2rem;
+/* Section Label with number + line + tag */
+.about-section-label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.about-section-number {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.about-section-line {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+.about-section-tag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.about-section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 3px solid var(--accent);
-  display: inline-block;
+  letter-spacing: -0.02em;
 }
 
-.about-content p {
+.about-section>p {
   color: var(--text-secondary);
   line-height: 1.8;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
 }
+
+/* ── Values Grid ── */
 
 .values-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
   margin-top: 2rem;
 }
 
 .value-item {
-  padding: 1.5rem;
-  background: var(--bg-elev-3);
-  border-radius: 8px;
+  padding: 2rem;
+  background: var(--bg-elev-2);
+  border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition: transform var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
 }
 
 .value-item:hover {
   transform: translateY(-3px);
   border-color: var(--border-strong);
+  box-shadow: var(--shadow);
+}
+
+.value-icon-container {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(180, 138, 74, 0.1);
+  border: 1px solid rgba(180, 138, 74, 0.2);
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.25rem;
+  transition: background var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.value-item:hover .value-icon-container {
+  background: rgba(180, 138, 74, 0.15);
+  border-color: rgba(180, 138, 74, 0.35);
+}
+
+.value-icon-container svg {
+  width: 20px;
+  height: 20px;
+  color: var(--accent-soft);
 }
 
 .value-item h3 {
-  font-size: 1.3rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
 }
 
 .value-item p {
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.6;
 }
 
+/* ── Responsive ── */
+
 @media (max-width: 768px) {
-  .about-content {
-    padding: 2rem;
+  .about {
+    padding: 5rem 1.5rem 3rem;
   }
-  
+
   .values-grid {
     grid-template-columns: 1fr;
+  }
+
+  .about-section {
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
   }
 }
