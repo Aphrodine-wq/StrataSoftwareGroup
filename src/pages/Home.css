@@ -35,80 +35,53 @@
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
-  filter: blur(60px);
+  filter: blur(70px);
   opacity: 0;
-  animation: depthFloat 1.2s ease forwards;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hero-depth-1 {
-  width: 350px;
-  height: 350px;
+  width: 380px;
+  height: 380px;
   top: 12%;
   right: -5%;
-  background: radial-gradient(circle, rgba(180, 138, 74, 0.06) 0%, transparent 70%);
-  animation-delay: 0.5s;
+  background: radial-gradient(circle, rgba(180, 138, 74, 0.08) 0%, transparent 65%);
+  animation: depthFloat 1.5s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards,
+             ambientDrift1 22s ease-in-out infinite 1.8s;
 }
 
 .hero-depth-2 {
-  width: 250px;
-  height: 250px;
+  width: 280px;
+  height: 280px;
   bottom: 20%;
   left: -3%;
-  background: radial-gradient(circle, rgba(224, 195, 140, 0.04) 0%, transparent 70%);
-  animation-delay: 0.8s;
+  background: radial-gradient(circle, rgba(224, 195, 140, 0.05) 0%, transparent 65%);
+  animation: depthFloat 1.5s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards,
+             ambientDrift2 28s ease-in-out infinite 2.2s;
 }
 
 @keyframes depthFloat {
   0% {
     opacity: 0;
-    transform: translateZ(-100px) scale(0.8);
+    transform: translateZ(-80px) scale(0.85);
   }
-
   100% {
     opacity: 1;
     transform: translateZ(0) scale(1);
   }
 }
 
-/* Slow, ambient drift for depth layers */
-.hero-depth-1 {
-  animation: depthFloat 1.2s ease forwards, ambientDrift1 20s ease-in-out infinite 1.2s;
-}
-
-.hero-depth-2 {
-  animation: depthFloat 1.2s ease 0.8s forwards, ambientDrift2 25s ease-in-out infinite 2s;
-}
-
 @keyframes ambientDrift1 {
-
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-
-  33% {
-    transform: translate(15px, -20px);
-  }
-
-  66% {
-    transform: translate(-10px, 10px);
-  }
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(12px, -18px) scale(1.02); }
+  50% { transform: translate(-8px, 12px) scale(0.98); }
+  75% { transform: translate(-15px, -10px) scale(1.01); }
 }
 
 @keyframes ambientDrift2 {
-
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-
-  40% {
-    transform: translate(-12px, 15px);
-  }
-
-  80% {
-    transform: translate(18px, -8px);
-  }
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-14px, 16px) scale(1.02); }
+  66% { transform: translate(16px, -12px) scale(0.99); }
 }
 
 .hero-content {
@@ -288,11 +261,14 @@
   border-radius: inherit;
   pointer-events: none;
   z-index: 5;
-  background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%),
-      rgba(255, 255, 255, 0.06) 0%,
-      transparent 60%);
+  background: radial-gradient(
+      ellipse 120% 80% at var(--glare-x, 50%) var(--glare-y, 50%),
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(224, 195, 140, 0.04) 35%,
+      transparent 65%
+  );
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .tilt-3d:hover .tilt-3d-glare {

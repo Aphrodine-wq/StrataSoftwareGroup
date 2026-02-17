@@ -78,50 +78,61 @@ const FRAGMENT_SHADER = `
     return fbm(p + 4.0 * r);
   }
 
+  // Subtle film grain (hash-based)
+  float grain(vec2 uv, float t) {
+    return fract(sin(dot(uv * 1.5 + t * 0.1, vec2(12.9898, 78.233))) * 43758.5453);
+  }
+
   void main() {
     vec2 uv = gl_FragCoord.xy / u_resolution.xy;
     float aspect = u_resolution.x / u_resolution.y;
     vec2 p = uv * vec2(aspect, 1.0) * 2.0;
 
-    // Mouse influence — subtle displacement
+    // Smooth mouse influence — parallax displacement
     vec2 mouseNorm = u_mouse / u_resolution;
-    p += (mouseNorm - 0.5) * 0.15;
+    p += (mouseNorm - 0.5) * 0.22;
 
-    float t = u_time * 0.3;
+    float t = u_time * 0.35;
 
     // Layer 1: Deep warped noise
     float n1 = warpedNoise(p * 0.8, t);
 
     // Layer 2: Finer detail
-    float n2 = snoise(p * 3.0 + t * 0.5) * 0.15;
+    float n2 = snoise(p * 3.0 + t * 0.5) * 0.18;
 
     // Layer 3: Slow large undulations
-    float n3 = snoise(p * 0.3 - t * 0.1) * 0.3;
+    float n3 = snoise(p * 0.3 - t * 0.1) * 0.35;
 
-    float n = n1 + n2 + n3;
+    // Subtle horizontal "strata" bands — gentle layering
+    float strata = sin(uv.y * 3.14159 * 4.0 + t * 0.2) * 0.5 + 0.5;
+    strata = smoothstep(0.35, 0.65, strata) * 0.06;
+
+    float n = n1 + n2 + n3 + strata;
 
     // Color grading — Strata bronze/charcoal palette
     vec3 deepBg   = vec3(0.051, 0.067, 0.090);   // #0D1117
-    vec3 bronze    = vec3(0.706, 0.541, 0.290);   // #B48A4A
-    vec3 softGold  = vec3(0.878, 0.765, 0.549);   // #E0C38C
-    vec3 ashGrey   = vec3(0.165, 0.212, 0.263);   // #2A3643
+    vec3 bronze   = vec3(0.706, 0.541, 0.290);   // #B48A4A
+    vec3 softGold = vec3(0.878, 0.765, 0.549);   // #E0C38C
+    vec3 ashGrey  = vec3(0.165, 0.212, 0.263);   // #2A3643
 
-    // Map noise to color
     float t1 = smoothstep(-0.6, 0.3, n);
     float t2 = smoothstep(0.2, 0.8, n);
     float t3 = smoothstep(0.5, 1.0, n);
 
-    vec3 color = mix(deepBg, ashGrey, t1 * 0.6);
-    color = mix(color, bronze, t2 * 0.08);
-    color = mix(color, softGold, t3 * 0.04);
+    vec3 color = mix(deepBg, ashGrey, t1 * 0.65);
+    color = mix(color, bronze, t2 * 0.12);
+    color = mix(color, softGold, t3 * 0.06);
 
-    // Vignette — darken edges strongly
-    float vignette = 1.0 - length((uv - 0.5) * 1.3);
-    vignette = smoothstep(0.0, 0.7, vignette);
+    // Soft vignette
+    float vignette = 1.0 - length((uv - 0.5) * 1.25);
+    vignette = smoothstep(0.0, 0.75, vignette);
     color *= vignette;
 
-    // Keep it subtle — very dark overall
-    color *= 0.7;
+    // Subtle film grain
+    float g = grain(gl_FragCoord.xy, t * 10.0) * 0.03;
+    color += g - 0.015;
+
+    color *= 0.72;
 
     gl_FragColor = vec4(color, 1.0);
   }
@@ -134,10 +145,12 @@ function WebGLBackground({ className = '' }) {
     const rafRef = useRef(null);
     const startTimeRef = useRef(Date.now());
     const mouseRef = useRef({ x: 0, y: 0 });
+    const targetMouseRef = useRef({ x: 0, y: 0 });
+    const MOUSE_LERP = 0.06;
 
     const handleMouseMove = useCallback((e) => {
-        mouseRef.current.x = e.clientX;
-        mouseRef.current.y = e.clientY;
+        targetMouseRef.current.x = e.clientX;
+        targetMouseRef.current.y = e.clientY;
     }, []);
 
     useEffect(() => {
@@ -215,12 +228,17 @@ function WebGLBackground({ className = '' }) {
         window.addEventListener('resize', resize);
         window.addEventListener('mousemove', handleMouseMove);
 
-        // Render loop
+        // Render loop — smooth mouse lerp for fluid parallax
         function render() {
+            const m = mouseRef.current;
+            const t = targetMouseRef.current;
+            m.x += (t.x - m.x) * MOUSE_LERP;
+            m.y += (t.y - m.y) * MOUSE_LERP;
+
             const elapsed = (Date.now() - startTimeRef.current) / 1000;
             gl.uniform1f(uTime, elapsed);
             gl.uniform2f(uRes, canvas.width, canvas.height);
-            gl.uniform2f(uMouse, mouseRef.current.x, mouseRef.current.y);
+            gl.uniform2f(uMouse, m.x, m.y);
             gl.drawArrays(gl.TRIANGLES, 0, 6);
             rafRef.current = requestAnimationFrame(render);
         }

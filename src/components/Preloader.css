@@ -29,7 +29,7 @@
     position: relative;
 }
 
-/* Pulsing ring */
+/* Pulsing ring — breathe + slow rotate */
 .preloader-logo-ring {
     position: absolute;
     width: 100px;
@@ -40,22 +40,29 @@
     margin-left: -50px;
     border-radius: 50%;
     border: 2px solid rgba(180, 138, 74, 0.2);
-    animation: preloaderPulse 1.5s ease-in-out infinite;
+    animation: preloaderRing 6s ease-in-out infinite;
 }
 
-@keyframes preloaderPulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-        border-color: rgba(180, 138, 74, 0.15);
-        box-shadow: 0 0 0 0 rgba(180, 138, 74, 0.1);
+@keyframes preloaderRing {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+        border-color: rgba(180, 138, 74, 0.2);
+        box-shadow: 0 0 0 0 rgba(180, 138, 74, 0.08);
     }
-
-    50% {
-        transform: scale(1.15);
+    25% {
+        transform: scale(1.1) rotate(90deg);
         border-color: rgba(180, 138, 74, 0.4);
-        box-shadow: 0 0 30px 10px rgba(180, 138, 74, 0.08);
+        box-shadow: 0 0 35px 10px rgba(180, 138, 74, 0.06);
+    }
+    50% {
+        transform: scale(1.12) rotate(180deg);
+        border-color: rgba(180, 138, 74, 0.45);
+        box-shadow: 0 0 40px 12px rgba(180, 138, 74, 0.07);
+    }
+    75% {
+        transform: scale(1.1) rotate(270deg);
+        border-color: rgba(180, 138, 74, 0.4);
+        box-shadow: 0 0 35px 10px rgba(180, 138, 74, 0.06);
     }
 }
 
@@ -64,35 +71,90 @@
     height: auto;
     mix-blend-mode: lighten;
     filter: brightness(1.15) contrast(1.05);
-    animation: preloaderFadeIn 0.8s ease forwards;
+    animation: preloaderLogoIn 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     opacity: 0;
+    transform: scale(0.92);
 }
 
-@keyframes preloaderFadeIn {
+@keyframes preloaderLogoIn {
     to {
         opacity: 1;
+        transform: scale(1);
     }
 }
 
-/* Progress bar */
+/* Progress bar with shimmer */
 .preloader-bar {
-    width: 120px;
-    height: 3px;
+    width: 140px;
+    height: 4px;
     background: var(--border-subtle);
-    border-radius: 2px;
+    border-radius: 3px;
     overflow: hidden;
+    position: relative;
 }
 
 .preloader-bar-fill {
     width: 0;
     height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent-soft));
-    border-radius: 2px;
-    animation: preloaderProgress 1.4s ease-out forwards;
+    background: linear-gradient(
+        90deg,
+        var(--accent) 0%,
+        var(--accent-soft) 50%,
+        var(--accent) 100%
+    );
+    background-size: 200% 100%;
+    border-radius: 3px;
+    animation: preloaderProgress 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+               preloaderBarShimmer 1.2s ease-in-out 0.3s;
+    position: relative;
+}
+
+.preloader-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.15) 50%,
+        transparent 100%
+    );
+    background-size: 60% 100%;
+    animation: preloaderShimmer 0.8s ease-in-out 0.5s;
+    border-radius: inherit;
 }
 
 @keyframes preloaderProgress {
-    to {
-        width: 100%;
+    to { width: 100%; }
+}
+
+@keyframes preloaderBarShimmer {
+    0%, 100% { background-position: 0% 0; }
+    50% { background-position: 100% 0; }
+}
+
+@keyframes preloaderShimmer {
+    0% { opacity: 0; transform: translateX(-20%); }
+    50% { opacity: 1; }
+    100% { opacity: 0; transform: translateX(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .preloader-logo-ring {
+        animation: preloaderPulseOnly 2s ease-in-out infinite;
+    }
+}
+
+@keyframes preloaderPulseOnly {
+    0%, 100% {
+        transform: scale(1);
+        border-color: rgba(180, 138, 74, 0.2);
+    }
+    50% {
+        transform: scale(1.1);
+        border-color: rgba(180, 138, 74, 0.4);
     }
 }

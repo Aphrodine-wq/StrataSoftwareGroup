@@ -57,25 +57,47 @@ function About() {
 
   const team = [
     {
-      name: 'Alex Rivera',
-      role: 'Lead Engineer',
-      bio: 'Full-stack architect with 12+ years building scalable platforms.',
-      initials: 'AR',
-      gradient: 'linear-gradient(135deg, #B48A4A, #7E5E33)',
-    },
-    {
-      name: 'Maya Chen',
-      role: 'Design Director',
-      bio: 'Award-winning UX designer passionate about human-centered interfaces.',
-      initials: 'MC',
+      name: 'Hannah White',
+      role: 'Chief Growth Officer (CGO) & Co-Founder',
+      bio: 'Drives growth and advertising strategy, paid media, funnel optimization, and go-to-market.',
+      initials: 'HW',
       gradient: 'linear-gradient(135deg, #E0C38C, #B48A4A)',
+      scope: [
+        'Growth & advertising strategy',
+        'Paid media oversight',
+        'Funnel & conversion strategy',
+        'Analytics & performance',
+        'Go-to-market strategy',
+        'Client growth conversations',
+      ],
     },
     {
-      name: 'Jordan Park',
-      role: 'DevOps Lead',
-      bio: 'Cloud infrastructure specialist, ensuring 99.99% uptime at scale.',
-      initials: 'JP',
+      name: 'Walt Burge',
+      role: 'Chief Experience Officer (CXO) & Co-Founder',
+      bio: 'Leads UX/UI strategy, product design systems, and conversion-focused design across web and apps.',
+      initials: 'WB',
+      gradient: 'linear-gradient(135deg, #B48A4A, #7E5E33)',
+      scope: [
+        'UX/UI strategy',
+        'Product design systems',
+        'User flows & accessibility',
+        'Conversion-focused design',
+        'Design leadership across web & apps',
+      ],
+    },
+    {
+      name: 'Mason Glen',
+      role: 'Chief Technology Officer (CTO) & Co-Founder',
+      bio: 'Owns architecture, engineering standards, app & web development, and dev team leadership.',
+      initials: 'MG',
       gradient: 'linear-gradient(135deg, #9E763E, #B48A4A)',
+      scope: [
+        'Architecture & infrastructure',
+        'Engineering standards',
+        'App & web development',
+        'Security & scalability',
+        'Dev team leadership',
+      ],
     },
   ];
 
@@ -168,10 +190,10 @@ function About() {
             <span className="about-section-line"></span>
             <span className="about-section-tag">Our Team</span>
           </div>
-          <h2>Passionate Problem Solvers</h2>
+          <h2>Leadership & Co-Founders</h2>
           <p>
-            Our team consists of experienced developers, designers, and project managers
-            who are passionate about technology and committed to delivering exceptional results.
+            Strata is led by three co-founders who bring together growth, experience, and technology
+            to deliver exceptional results for every client.
           </p>
           <div className="team-grid">
             {team.map((member, index) => (
@@ -185,6 +207,13 @@ function About() {
                 <h3 className="team-card-name">{member.name}</h3>
                 <span className="team-card-role">{member.role}</span>
                 <p className="team-card-bio">{member.bio}</p>
+                {member.scope && member.scope.length > 0 && (
+                  <ul className="team-card-scope" aria-label="Scope">
+                    {member.scope.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
             ))}
           </div>

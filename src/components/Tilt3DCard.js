@@ -22,7 +22,7 @@ function Tilt3DCard({ children, className = '', maxTilt = 8, scale = 1.02, speed
         const percentY = (y / rect.height) * 100;
 
         el.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${scale}, ${scale}, ${scale})`;
-        el.style.transition = 'transform 80ms ease';
+        el.style.transition = 'transform 120ms cubic-bezier(0.22, 1, 0.36, 1)';
         el.style.setProperty('--glare-x', `${percentX}%`);
         el.style.setProperty('--glare-y', `${percentY}%`);
     }, [maxTilt, scale]);
@@ -31,7 +31,7 @@ function Tilt3DCard({ children, className = '', maxTilt = 8, scale = 1.02, speed
         const el = cardRef.current;
         if (!el) return;
         el.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-        el.style.transition = `transform ${speed}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+        el.style.transition = `transform ${speed}ms cubic-bezier(0.34, 1.56, 0.64, 1)`;
         el.style.setProperty('--glare-x', '50%');
         el.style.setProperty('--glare-y', '50%');
     }, [speed]);

@@ -260,6 +260,33 @@
   line-height: 1.6;
 }
 
+.team-card-scope {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  text-align: left;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.team-card-scope li {
+  position: relative;
+  padding-left: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.team-card-scope li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 4px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
 /* ═══════════════════════════════════════════════════════════
    MILESTONES TIMELINE
    ═══════════════════════════════════════════════════════════ */
