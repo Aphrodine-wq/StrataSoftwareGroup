@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
-import CustomCursor from './components/CustomCursor';
+
 import Preloader from './components/Preloader';
 import PageTransition from './components/PageTransition';
 import Home from './pages/Home';
@@ -20,7 +20,7 @@ function App() {
     <Router>
       <div className="App">
         <Preloader />
-        <CustomCursor />
+        
         <Navigation />
         <PageTransition />
         <main className="main-content page-entered">
