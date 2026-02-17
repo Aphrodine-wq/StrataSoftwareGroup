@@ -1,10 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navigation.css';
 
 function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Close menu on route change
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -15,47 +29,52 @@ function Navigation() {
   };
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="nav-container">
         <Link to="/" className="nav-logo">
-          Strata Software Group
+          <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="Strata Software Group" className="nav-logo-img" />
         </Link>
-        
-        <button className="nav-toggle" onClick={toggleMenu}>
+
+        <button
+          className={`nav-toggle ${isOpen ? 'nav-toggle--active' : ''}`}
+          onClick={toggleMenu}
+          aria-label="Toggle navigation menu"
+          aria-expanded={isOpen}
+        >
           <span></span>
           <span></span>
           <span></span>
         </button>
-        
+
         <ul className={`nav-menu ${isOpen ? 'active' : ''}`}>
           <li className="nav-item">
-            <Link to="/" className={`nav-link ${isActive('/')}`} onClick={() => setIsOpen(false)}>
+            <Link to="/" className={`nav-link ${isActive('/')}`}>
               Home
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/products" className={`nav-link ${isActive('/products')}`} onClick={() => setIsOpen(false)}>
+            <Link to="/products" className={`nav-link ${isActive('/products')}`}>
               Products
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/services" className={`nav-link ${isActive('/services')}`} onClick={() => setIsOpen(false)}>
+            <Link to="/services" className={`nav-link ${isActive('/services')}`}>
               Services
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/portfolio" className={`nav-link ${isActive('/portfolio')}`} onClick={() => setIsOpen(false)}>
+            <Link to="/portfolio" className={`nav-link ${isActive('/portfolio')}`}>
               Portfolio
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/about" className={`nav-link ${isActive('/about')}`} onClick={() => setIsOpen(false)}>
+            <Link to="/about" className={`nav-link ${isActive('/about')}`}>
               About
             </Link>
           </li>
-          <li className="nav-item">
-            <Link to="/contact" className={`nav-link nav-contact-btn ${isActive('/contact')}`} onClick={() => setIsOpen(false)}>
-              Contact
+          <li className="nav-item nav-item--cta">
+            <Link to="/contact" className={`nav-link nav-contact-btn ${isActive('/contact')}`}>
+              Contact Us
             </Link>
           </li>
         </ul>
