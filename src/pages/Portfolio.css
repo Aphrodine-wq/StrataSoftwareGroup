@@ -1,0 +1,107 @@
+.portfolio {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.portfolio-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.portfolio-header h1 {
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.portfolio-header p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.portfolio-card {
+  background: var(--bg-elev-2);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-subtle);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  background: var(--bg-elev-3);
+  border-color: var(--border-strong);
+}
+
+.portfolio-card .card-content {
+  padding: 2rem;
+  flex: 1;
+}
+
+.portfolio-card h3 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.project-description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.technologies {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.tech-label {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.tech-stack {
+  color: var(--accent-soft);
+  font-size: 0.9rem;
+}
+
+.portfolio-card .card-footer {
+  padding: 1rem 2rem;
+  background: var(--bg-elev-1);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.view-project {
+  color: var(--link);
+  font-weight: 600;
+  display: inline-block;
+}
+
+.portfolio-card:hover .view-project {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+}
