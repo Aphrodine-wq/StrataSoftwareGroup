@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useScrollReveal from '../hooks/useScrollReveal';
+import WebGLBackground from '../components/WebGLBackground';
+import Tilt3DCard from '../components/Tilt3DCard';
+import AnimatedCounter from '../components/AnimatedCounter';
+import ProcessTimeline from '../components/ProcessTimeline';
+import Testimonials from '../components/Testimonials';
+import TechMarquee from '../components/TechMarquee';
 import './Home.css';
 
 function Home() {
@@ -8,20 +14,23 @@ function Home() {
 
   return (
     <div className="home">
-      {/* ── Hero Section ── */}
+      {/* ── Hero Section with WebGL Shader ── */}
       <section className="hero">
-        <div className="hero-bg-grid" aria-hidden="true"></div>
-        <div className="hero-glow" aria-hidden="true"></div>
+        <WebGLBackground className="hero-shader" />
+
+        {/* Layered depth elements */}
+        <div className="hero-depth-layer hero-depth-1" aria-hidden="true" />
+        <div className="hero-depth-layer hero-depth-2" aria-hidden="true" />
 
         <div className="hero-content">
           <p className="hero-label reveal">Software Engineering Studio</p>
           <h1 className="hero-title reveal reveal-delay-1">
-            Building Tomorrow's<br />
-            <span className="hero-title-accent">Solutions Today</span>
+            We craft digital<br />
+            <span className="hero-title-accent">experiences that matter.</span>
           </h1>
           <p className="hero-description reveal reveal-delay-2">
-            We deliver innovative software solutions, custom development services,
-            and cutting-edge products to help your business thrive in the digital age.
+            From concept to code — we build software that solves real problems,
+            scales with your ambition, and feels unmistakably premium.
           </p>
           <div className="hero-actions reveal reveal-delay-3">
             <Link to="/contact" className="btn-primary">
@@ -34,18 +43,22 @@ function Home() {
           </div>
         </div>
 
-        {/* Decorative metrics */}
+        {/* Stats with animated counters */}
         <div className="hero-stats reveal reveal-delay-4">
           <div className="hero-stat">
-            <span className="hero-stat-number">50+</span>
+            <span className="hero-stat-number">
+              <AnimatedCounter end={50} suffix="+" />
+            </span>
             <span className="hero-stat-label">Projects Delivered</span>
           </div>
-          <div className="hero-stat-divider"></div>
+          <div className="hero-stat-divider" />
           <div className="hero-stat">
-            <span className="hero-stat-number">99%</span>
+            <span className="hero-stat-number">
+              <AnimatedCounter end={99} suffix="%" />
+            </span>
             <span className="hero-stat-label">Client Satisfaction</span>
           </div>
-          <div className="hero-stat-divider"></div>
+          <div className="hero-stat-divider" />
           <div className="hero-stat">
             <span className="hero-stat-number">24/7</span>
             <span className="hero-stat-label">Support Available</span>
@@ -56,7 +69,7 @@ function Home() {
       {/* ── Section Divider ── */}
       <hr className="section-divider" />
 
-      {/* ── Features Section ── */}
+      {/* ── Features Section with 3D Cards ── */}
       <section className="features-section">
         <div className="features-header reveal">
           <h2>What We Do</h2>
@@ -64,7 +77,7 @@ function Home() {
         </div>
 
         <div className="features">
-          <div className="feature-card reveal reveal-delay-1">
+          <Tilt3DCard className="feature-card reveal reveal-delay-1">
             <div className="feature-icon-container">
               <svg className="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
@@ -78,9 +91,9 @@ function Home() {
             <Link to="/products" className="feature-link">
               Explore Products <span>→</span>
             </Link>
-          </div>
+          </Tilt3DCard>
 
-          <div className="feature-card reveal reveal-delay-2">
+          <Tilt3DCard className="feature-card reveal reveal-delay-2">
             <div className="feature-icon-container">
               <svg className="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
@@ -93,9 +106,9 @@ function Home() {
             <Link to="/services" className="feature-link">
               Our Services <span>→</span>
             </Link>
-          </div>
+          </Tilt3DCard>
 
-          <div className="feature-card reveal reveal-delay-3">
+          <Tilt3DCard className="feature-card reveal reveal-delay-3">
             <div className="feature-icon-container">
               <svg className="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
@@ -108,12 +121,23 @@ function Home() {
             <Link to="/portfolio" className="feature-link">
               View Portfolio <span>→</span>
             </Link>
-          </div>
+          </Tilt3DCard>
         </div>
       </section>
 
+      {/* ── Our Process ── */}
+      <hr className="section-divider" />
+      <ProcessTimeline />
+
+      {/* ── Tech Marquee ── */}
+      <TechMarquee />
+
+      {/* ── Testimonials ── */}
+      <Testimonials />
+
       {/* ── CTA Banner ── */}
       <section className="cta-banner reveal">
+        <div className="cta-glow" aria-hidden="true" />
         <div className="cta-banner-content">
           <h2>Ready to Build Something Great?</h2>
           <p>Let's discuss your next project and turn your vision into reality.</p>

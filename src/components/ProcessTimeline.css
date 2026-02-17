@@ -1,0 +1,140 @@
+/* ═══════════════════════════════════════════════════════════
+   PROCESS TIMELINE — 4-step horizontal flow
+   ═══════════════════════════════════════════════════════════ */
+
+.process-section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 5rem 2rem;
+}
+
+.process-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.process-header h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+}
+
+.process-header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+.process-timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    position: relative;
+}
+
+/* Connecting gradient line */
+.process-line {
+    position: absolute;
+    top: 72px;
+    left: 12%;
+    right: 12%;
+    height: 2px;
+    background: linear-gradient(90deg,
+            var(--accent) 0%,
+            var(--accent-soft) 50%,
+            var(--accent) 100%);
+    opacity: 0.3;
+    z-index: 0;
+}
+
+.process-step {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.process-step-number {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+}
+
+.process-step-icon-container {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-elev-2);
+    border: 2px solid var(--border-subtle);
+    border-radius: 50%;
+    transition: all var(--transition-base);
+    position: relative;
+}
+
+/* Glow ring on hover */
+.process-step:hover .process-step-icon-container {
+    border-color: var(--accent);
+    box-shadow: 0 0 30px rgba(180, 138, 74, 0.2),
+        0 0 60px rgba(180, 138, 74, 0.08);
+    transform: translateY(-4px);
+}
+
+.process-step-icon-container svg {
+    width: 24px;
+    height: 24px;
+    color: var(--accent-soft);
+    transition: color var(--transition-base);
+}
+
+.process-step:hover .process-step-icon-container svg {
+    color: var(--accent);
+}
+
+.process-step h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+}
+
+.process-step p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.65;
+    max-width: 240px;
+    margin: 0 auto;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 900px) {
+    .process-timeline {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem 2rem;
+    }
+
+    .process-line {
+        display: none;
+    }
+}
+
+@media (max-width: 520px) {
+    .process-section {
+        padding: 3rem 1.5rem;
+    }
+
+    .process-timeline {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}

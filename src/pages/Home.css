@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   HOME PAGE — Premium hero + features + CTA
+   HOME PAGE — 3D depth, WebGL shader hero, tilt cards
    ═══════════════════════════════════════════════════════════ */
 
 .home {
@@ -8,12 +8,12 @@
 }
 
 /* ═══════════════════════════════════════════════════════════
-   HERO
+   HERO — WebGL shader background with layered depth
    ═══════════════════════════════════════════════════════════ */
 
 .hero {
   position: relative;
-  min-height: 90vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,34 +21,94 @@
   text-align: center;
   padding: 8rem 2rem 4rem;
   overflow: hidden;
+  /* 3D context for depth layers */
+  perspective: 1200px;
 }
 
-/* Subtle dot-grid background */
-.hero-bg-grid {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle at 1px 1px,
-      rgba(42, 53, 67, 0.4) 1px,
-      transparent 0);
-  background-size: 40px 40px;
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 75%);
-  pointer-events: none;
+/* WebGL canvas sits at z-index 0 behind everything */
+.hero-shader {
+  z-index: 0;
 }
 
-/* Radial bronze glow */
-.hero-glow {
+/* Depth parallax layers — subtle floating shapes for dimension */
+.hero-depth-layer {
   position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 800px;
-  height: 500px;
-  background: radial-gradient(ellipse at center,
-      rgba(180, 138, 74, 0.08) 0%,
-      rgba(180, 138, 74, 0.03) 40%,
-      transparent 70%);
+  border-radius: 50%;
   pointer-events: none;
+  filter: blur(60px);
+  opacity: 0;
+  animation: depthFloat 1.2s ease forwards;
+}
+
+.hero-depth-1 {
+  width: 350px;
+  height: 350px;
+  top: 12%;
+  right: -5%;
+  background: radial-gradient(circle, rgba(180, 138, 74, 0.06) 0%, transparent 70%);
+  animation-delay: 0.5s;
+}
+
+.hero-depth-2 {
+  width: 250px;
+  height: 250px;
+  bottom: 20%;
+  left: -3%;
+  background: radial-gradient(circle, rgba(224, 195, 140, 0.04) 0%, transparent 70%);
+  animation-delay: 0.8s;
+}
+
+@keyframes depthFloat {
+  0% {
+    opacity: 0;
+    transform: translateZ(-100px) scale(0.8);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateZ(0) scale(1);
+  }
+}
+
+/* Slow, ambient drift for depth layers */
+.hero-depth-1 {
+  animation: depthFloat 1.2s ease forwards, ambientDrift1 20s ease-in-out infinite 1.2s;
+}
+
+.hero-depth-2 {
+  animation: depthFloat 1.2s ease 0.8s forwards, ambientDrift2 25s ease-in-out infinite 2s;
+}
+
+@keyframes ambientDrift1 {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  33% {
+    transform: translate(15px, -20px);
+  }
+
+  66% {
+    transform: translate(-10px, 10px);
+  }
+}
+
+@keyframes ambientDrift2 {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  40% {
+    transform: translate(-12px, 15px);
+  }
+
+  80% {
+    transform: translate(18px, -8px);
+  }
 }
 
 .hero-content {
@@ -76,10 +136,10 @@
   font-family: var(--font-display);
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.08;
   color: var(--text-primary);
   margin-bottom: 1.5rem;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 .hero-title-accent {
@@ -115,7 +175,7 @@
   transform: translateX(4px);
 }
 
-/* ── Stats Bar ── */
+/* ── Stats Bar — 3D glass panel ── */
 
 .hero-stats {
   display: flex;
@@ -124,12 +184,24 @@
   margin-top: 5rem;
   padding: 1.5rem 3rem;
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   position: relative;
   z-index: 2;
+  /* 3D lift */
+  transform: perspective(800px) rotateX(2deg);
+  transition: transform var(--transition-base);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+}
+
+.hero-stats:hover {
+  transform: perspective(800px) rotateX(0deg) translateY(-4px);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35),
+    0 0 40px rgba(180, 138, 74, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
 }
 
 .hero-stat {
@@ -162,7 +234,7 @@
 }
 
 /* ═══════════════════════════════════════════════════════════
-   FEATURES SECTION
+   FEATURES SECTION — 3D Tilt Cards
    ═══════════════════════════════════════════════════════════ */
 
 .features-section {
@@ -194,20 +266,53 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
+  /* Establish 3D context for children */
+  perspective: 1200px;
 }
 
+/* ── Tilt3DCard integration ── */
+
+.tilt-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Inner glare overlay — follows mouse via CSS vars */
+.tilt-3d-glare {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 5;
+  background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%),
+      rgba(255, 255, 255, 0.06) 0%,
+      transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tilt-3d:hover .tilt-3d-glare {
+  opacity: 1;
+}
+
+/* Feature card styling */
 .feature-card {
   background: var(--bg-elev-2);
   padding: 2.5rem 2rem;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
-  transition: transform var(--transition-base),
-    box-shadow var(--transition-base),
-    border-color var(--transition-base);
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  /* 3D initial state */
+  transform-style: preserve-3d;
+  transition: box-shadow var(--transition-base),
+    border-color var(--transition-base);
 }
 
 /* Subtle top accent line */
@@ -223,19 +328,21 @@
   transition: opacity var(--transition-base);
 }
 
+.tilt-3d:hover .feature-card,
 .feature-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(180, 138, 74, 0.1);
   border-color: var(--border-strong);
 }
 
+.tilt-3d:hover .feature-card::before,
 .feature-card:hover::before {
   opacity: 1;
 }
 
 .feature-icon-container {
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -244,17 +351,21 @@
   border-radius: var(--radius-sm);
   margin-bottom: 1.5rem;
   transition: background var(--transition-base),
-    border-color var(--transition-base);
+    border-color var(--transition-base),
+    transform var(--transition-base);
+  /* 3D lift effect on icon */
+  transform: translateZ(0);
 }
 
-.feature-card:hover .feature-icon-container {
-  background: rgba(180, 138, 74, 0.15);
-  border-color: rgba(180, 138, 74, 0.35);
+.tilt-3d:hover .feature-icon-container {
+  background: rgba(180, 138, 74, 0.18);
+  border-color: rgba(180, 138, 74, 0.4);
+  transform: translateZ(30px);
 }
 
 .feature-icon {
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   color: var(--accent-soft);
 }
 
@@ -265,6 +376,13 @@
   margin-bottom: 0.75rem;
   color: var(--text-primary);
   letter-spacing: -0.01em;
+  /* 3D text float */
+  transform: translateZ(0);
+  transition: transform var(--transition-base);
+}
+
+.tilt-3d:hover .feature-card h3 {
+  transform: translateZ(20px);
 }
 
 .feature-card p {
@@ -291,22 +409,44 @@
   gap: 0.75rem;
 }
 
+/* ── Section Divider ── */
+
+.section-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg,
+      transparent 5%,
+      var(--border-subtle) 50%,
+      transparent 95%);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
 /* ═══════════════════════════════════════════════════════════
    CTA BANNER
    ═══════════════════════════════════════════════════════════ */
 
 .cta-banner {
-  margin: 2rem 2rem 4rem;
   max-width: var(--max-width);
-  margin-left: auto;
-  margin-right: auto;
+  margin: 3rem auto 4rem;
   background: var(--bg-elev-2);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   position: relative;
   overflow: hidden;
+  /* 3D tilt on the whole banner */
+  transform: perspective(1000px) rotateX(1deg);
+  transition: transform var(--transition-base),
+    box-shadow var(--transition-base);
 }
 
+.cta-banner:hover {
+  transform: perspective(1000px) rotateX(0deg) translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 50px rgba(180, 138, 74, 0.08);
+}
+
+/* Animated gradient top border */
 .cta-banner::before {
   content: '';
   position: absolute;
@@ -314,7 +454,28 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-soft), var(--accent));
+  background: linear-gradient(90deg,
+      var(--accent) 0%,
+      var(--accent-soft) 25%,
+      var(--accent) 50%,
+      var(--accent-soft) 75%,
+      var(--accent) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Inner glow */
+.cta-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 300px;
+  background: radial-gradient(ellipse at center,
+      rgba(180, 138, 74, 0.04) 0%,
+      transparent 60%);
+  pointer-events: none;
 }
 
 .cta-banner-content {
@@ -351,24 +512,44 @@
     grid-template-columns: 1fr;
     max-width: 500px;
     margin: 0 auto;
+    perspective: none;
   }
 
   .hero-stats {
     flex-direction: column;
     gap: 1.25rem;
     padding: 2rem;
+    transform: none;
+  }
+
+  .hero-stats:hover {
+    transform: translateY(-4px);
   }
 
   .hero-stat-divider {
     width: 40px;
     height: 1px;
   }
+
+  /* Disable 3D tilt on touch devices */
+  .tilt-3d {
+    transform: none !important;
+  }
+
+  .tilt-3d-glare {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
   .hero {
-    min-height: auto;
+    min-height: 0;
     padding: 7rem 1.5rem 3rem;
+    perspective: none;
+  }
+
+  .hero-depth-layer {
+    display: none;
   }
 
   .hero-actions {
@@ -386,6 +567,11 @@
   .cta-banner {
     margin: 2rem 1rem 3rem;
     border-radius: var(--radius-md);
+    transform: none;
+  }
+
+  .cta-banner:hover {
+    transform: translateY(-4px);
   }
 
   .cta-banner-content {

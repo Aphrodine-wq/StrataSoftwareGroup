@@ -1,5 +1,6 @@
 import React from 'react';
 import useScrollReveal from '../hooks/useScrollReveal';
+import AnimatedCounter from '../components/AnimatedCounter';
 import './About.css';
 
 function About() {
@@ -54,6 +55,37 @@ function About() {
     },
   ];
 
+  const team = [
+    {
+      name: 'Alex Rivera',
+      role: 'Lead Engineer',
+      bio: 'Full-stack architect with 12+ years building scalable platforms.',
+      initials: 'AR',
+      gradient: 'linear-gradient(135deg, #B48A4A, #7E5E33)',
+    },
+    {
+      name: 'Maya Chen',
+      role: 'Design Director',
+      bio: 'Award-winning UX designer passionate about human-centered interfaces.',
+      initials: 'MC',
+      gradient: 'linear-gradient(135deg, #E0C38C, #B48A4A)',
+    },
+    {
+      name: 'Jordan Park',
+      role: 'DevOps Lead',
+      bio: 'Cloud infrastructure specialist, ensuring 99.99% uptime at scale.',
+      initials: 'JP',
+      gradient: 'linear-gradient(135deg, #9E763E, #B48A4A)',
+    },
+  ];
+
+  const milestones = [
+    { year: '2020', title: 'Founded', description: 'Strata Software Group launched with a vision to redefine digital craftsmanship.' },
+    { year: '2021', title: 'First Major Client', description: 'Delivered a full-stack platform serving 50K+ users within our first year.' },
+    { year: '2023', title: 'Team Growth', description: 'Expanded to a multidisciplinary team of 15+ engineers, designers, and strategists.' },
+    { year: '2025', title: 'Product Launch', description: 'Launched Fair Trade Worker, our first proprietary SaaS product.' },
+  ];
+
   return (
     <div className="about">
       <div className="page-header reveal">
@@ -75,6 +107,34 @@ function About() {
             that empower businesses to achieve their goals. We combine technical expertise with
             creative problem-solving to build products and services that make a difference.
           </p>
+
+          {/* Animated Stats Bar */}
+          <div className="about-stats-bar reveal reveal-delay-1">
+            <div className="about-stat">
+              <span className="about-stat-number">
+                <AnimatedCounter end={5} suffix="+" />
+              </span>
+              <span className="about-stat-label">Years of Experience</span>
+            </div>
+            <div className="about-stat">
+              <span className="about-stat-number">
+                <AnimatedCounter end={50} suffix="+" />
+              </span>
+              <span className="about-stat-label">Projects Completed</span>
+            </div>
+            <div className="about-stat">
+              <span className="about-stat-number">
+                <AnimatedCounter end={15} suffix="+" />
+              </span>
+              <span className="about-stat-label">Team Members</span>
+            </div>
+            <div className="about-stat">
+              <span className="about-stat-number">
+                <AnimatedCounter end={12} suffix="+" />
+              </span>
+              <span className="about-stat-label">Industries Served</span>
+            </div>
+          </div>
         </section>
 
         {/* Values */}
@@ -112,8 +172,42 @@ function About() {
           <p>
             Our team consists of experienced developers, designers, and project managers
             who are passionate about technology and committed to delivering exceptional results.
-            With diverse backgrounds and expertise, we bring a wealth of knowledge to every project.
           </p>
+          <div className="team-grid">
+            {team.map((member, index) => (
+              <div key={index} className={`team-card reveal reveal-delay-${index + 1}`}>
+                <div
+                  className="team-card-avatar"
+                  style={{ background: member.gradient }}
+                >
+                  {member.initials}
+                </div>
+                <h3 className="team-card-name">{member.name}</h3>
+                <span className="team-card-role">{member.role}</span>
+                <p className="team-card-bio">{member.bio}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Milestones */}
+        <section className="about-section reveal">
+          <div className="about-section-label">
+            <span className="about-section-number">04</span>
+            <span className="about-section-line"></span>
+            <span className="about-section-tag">Our Journey</span>
+          </div>
+          <h2>Key Milestones</h2>
+          <div className="milestones-timeline">
+            {milestones.map((ms, index) => (
+              <div key={index} className={`milestone-item reveal reveal-delay-${Math.min(index + 1, 4)}`}>
+                <div className="milestone-dot" />
+                <div className="milestone-year">{ms.year}</div>
+                <h3>{ms.title}</h3>
+                <p>{ms.description}</p>
+              </div>
+            ))}
+          </div>
         </section>
       </div>
     </div>

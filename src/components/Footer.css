@@ -54,10 +54,17 @@
 }
 
 .footer-logo-img {
-    height: 40px;
+    height: 50px;
     width: auto;
     object-fit: contain;
     display: block;
+    mix-blend-mode: lighten;
+    filter: brightness(1.1) contrast(1.05);
+    transition: filter var(--transition-fast);
+}
+
+.footer-logo:hover .footer-logo-img {
+    filter: brightness(1.25) contrast(1.1) drop-shadow(0 0 8px rgba(180, 138, 74, 0.25));
 }
 
 .footer-tagline {

@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Analytics } from "@vercel/analytics/react";
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
+import CustomCursor from './components/CustomCursor';
+import Preloader from './components/Preloader';
+import PageTransition from './components/PageTransition';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import Services from './pages/Services';
@@ -15,8 +19,11 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <Preloader />
+        <CustomCursor />
         <Navigation />
-        <main className="main-content">
+        <PageTransition />
+        <main className="main-content page-entered">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
@@ -26,6 +33,8 @@ function App() {
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
+        <Footer />
+        <ScrollToTop />
         <Analytics />
       </div>
     </Router>

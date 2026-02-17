@@ -1,0 +1,98 @@
+/* ═══════════════════════════════════════════════════════════
+   PRELOADER — Logo with animated ring + progress bar
+   ═══════════════════════════════════════════════════════════ */
+
+.preloader {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.preloader--done {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+}
+
+/* Pulsing ring */
+.preloader-logo-ring {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    margin-top: -70px;
+    margin-left: -50px;
+    border-radius: 50%;
+    border: 2px solid rgba(180, 138, 74, 0.2);
+    animation: preloaderPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes preloaderPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        border-color: rgba(180, 138, 74, 0.15);
+        box-shadow: 0 0 0 0 rgba(180, 138, 74, 0.1);
+    }
+
+    50% {
+        transform: scale(1.15);
+        border-color: rgba(180, 138, 74, 0.4);
+        box-shadow: 0 0 30px 10px rgba(180, 138, 74, 0.08);
+    }
+}
+
+.preloader-logo {
+    width: 80px;
+    height: auto;
+    mix-blend-mode: lighten;
+    filter: brightness(1.15) contrast(1.05);
+    animation: preloaderFadeIn 0.8s ease forwards;
+    opacity: 0;
+}
+
+@keyframes preloaderFadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Progress bar */
+.preloader-bar {
+    width: 120px;
+    height: 3px;
+    background: var(--border-subtle);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.preloader-bar-fill {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+    border-radius: 2px;
+    animation: preloaderProgress 1.4s ease-out forwards;
+}
+
+@keyframes preloaderProgress {
+    to {
+        width: 100%;
+    }
+}
