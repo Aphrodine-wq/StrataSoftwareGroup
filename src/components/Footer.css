@@ -58,6 +58,7 @@
     width: auto;
     object-fit: contain;
     display: block;
+    /* Transparent background: black areas blend with footer (replace with transparent PNG to remove) */
     mix-blend-mode: lighten;
     filter: brightness(1.1) contrast(1.05);
     transition: filter var(--transition-fast);
