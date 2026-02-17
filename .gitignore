@@ -1,0 +1,16 @@
+# This repository is currently rooted at C:\Users\Walt (home directory).
+# Ignore everything by default, then explicitly include the Schema Generator project.
+*
+
+!.gitignore
+
+# Keep the project on Desktop (allowing for spaces in folder name).
+!Desktop/
+Desktop/*
+!Desktop/Schema Generator (Cursor)/
+Desktop/Schema Generator (Cursor)/*
+!Desktop/Schema Generator (Cursor)/PRD_Schema_Generator.md
+!Desktop/Schema Generator (Cursor)/Launch.bat
+!Desktop/Schema Generator (Cursor)/schema-generator/
+!Desktop/Schema Generator (Cursor)/schema-generator/**
+
