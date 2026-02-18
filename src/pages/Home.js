@@ -25,22 +25,23 @@ function Home() {
         <div className="hero-depth-layer hero-depth-3" aria-hidden="true" />
 
         <div className="hero-content">
-          <p className="hero-label reveal">AI-Powered Business Solutions</p>
+          <p className="hero-label reveal">AI Agents · Websites · Marketing</p>
           <h1 className="hero-title reveal reveal-delay-1">
-            Never miss a<br />
-            <span className="hero-title-accent">client call again.</span>
+            Grow your business<br />
+            <span className="hero-title-accent">with AI-powered solutions.</span>
           </h1>
           <p className="hero-description reveal reveal-delay-2">
-            AI Receptionists built for law firms and insurance agencies — answer every call,
-            schedule consultations, and capture new clients 24/7, even after hours.
+            AI receptionists that answer every call, stunning websites that convert visitors
+            into clients, and marketing strategies that drive real growth — all built for
+            law firms, insurance agencies, and professional services.
           </p>
           <div className="hero-actions reveal reveal-delay-3">
             <Link to="/contact" className="btn-primary">
-              Get Your AI Receptionist
+              Get Started Today
               <span className="btn-arrow">→</span>
             </Link>
-            <Link to="/templates" className="btn-secondary">
-              Browse Templates
+            <Link to="/services" className="btn-secondary">
+              Explore Our Services
             </Link>
           </div>
         </div>

@@ -16,8 +16,9 @@ function Footer() {
                             <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="Strata Software Group" className="footer-logo-img" />
                         </Link>
                         <p className="footer-tagline">
-                            AI-powered receptionists and premium software for law firms,
-                            insurance agencies, and professional services.
+                            AI-powered agents and receptionists, custom website design,
+                            and digital marketing for law firms, insurance agencies,
+                            and professional services.
                         </p>
                     </div>
 
@@ -36,9 +37,10 @@ function Footer() {
                     <div className="footer-links-col">
                         <h4>Services</h4>
                         <ul>
-                            <li><Link to="/services">AI Receptionists</Link></li>
+                            <li><Link to="/services">AI Agents & Receptionists</Link></li>
                             <li><Link to="/services">After Hours AI</Link></li>
-                            <li><Link to="/services">Custom Development</Link></li>
+                            <li><Link to="/services">Website Design</Link></li>
+                            <li><Link to="/services">Digital Marketing & SEO</Link></li>
                             <li><Link to="/templates">Website Templates</Link></li>
                         </ul>
                     </div>
