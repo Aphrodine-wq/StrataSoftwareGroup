@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import './Navigation.css';
 
 function Navigation() {
-  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
@@ -15,108 +14,119 @@ function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close menu on route change
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location]);
-
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isOpen]);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
   const isActive = (path) => {
     return location.pathname === path ? 'active' : '';
   };
 
+  /* Main nav links shown in the top bar (desktop) */
+  const navLinks = [
+    { path: '/', label: 'Home' },
+    { path: '/products', label: 'Products' },
+    { path: '/services', label: 'Services' },
+    { path: '/portfolio', label: 'Portfolio' },
+    { path: '/templates', label: 'Templates' },
+    { path: '/about', label: 'About' },
+  ];
+
+  /* Bottom tab bar items (mobile) — keep to 5 core items */
+  const tabItems = [
+    {
+      path: '/',
+      label: 'Home',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+      ),
+    },
+    {
+      path: '/services',
+      label: 'Services',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <polygon points="12 2 2 7 12 12 22 7 12 2" />
+          <polyline points="2 17 12 22 22 17" />
+          <polyline points="2 12 12 17 22 12" />
+        </svg>
+      ),
+    },
+    {
+      path: '/portfolio',
+      label: 'Portfolio',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+          <line x1="8" y1="21" x2="16" y2="21" />
+          <line x1="12" y1="17" x2="12" y2="21" />
+        </svg>
+      ),
+    },
+    {
+      path: '/about',
+      label: 'About',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+      ),
+    },
+    {
+      path: '/contact',
+      label: 'Contact',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+          <polyline points="22,6 12,13 2,6" />
+        </svg>
+      ),
+    },
+  ];
+
   return (
-    <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
-      <div className="nav-container">
-        <Link to="/" className="nav-logo">
-          <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="Strata Software Group" className="nav-logo-img" />
-        </Link>
+    <>
+      {/* ── Top navigation bar ── */}
+      <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
+        <div className="nav-container">
+          <Link to="/" className="nav-logo">
+            <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="Strata Software Group" className="nav-logo-img" />
+          </Link>
 
-        <button
-          className={`nav-toggle ${isOpen ? 'nav-toggle--active' : ''}`}
-          onClick={toggleMenu}
-          aria-label="Toggle navigation menu"
-          aria-expanded={isOpen}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        {isOpen && (
-          <div
-            className="nav-backdrop"
-            onClick={() => setIsOpen(false)}
-            aria-hidden="true"
-          />
-        )}
-
-        <div className={`nav-menu ${isOpen ? 'active' : ''}`} aria-hidden={!isOpen}>
-          {/* Drawer header — logo + close button */}
-          <div className="nav-menu-header">
-            <Link to="/" className="nav-menu-logo" onClick={() => setIsOpen(false)}>
-              <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="Strata Software Group" className="nav-logo-img" />
-            </Link>
-            <button
-              className="nav-menu-close"
-              onClick={() => setIsOpen(false)}
-              aria-label="Close menu"
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Nav links */}
+          {/* Desktop nav items */}
           <ul className="nav-items">
-            <li className="nav-item">
-              <Link to="/" className={`nav-link ${isActive('/')}`}>Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/products" className={`nav-link ${isActive('/products')}`}>Products</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/services" className={`nav-link ${isActive('/services')}`}>Services</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/portfolio" className={`nav-link ${isActive('/portfolio')}`}>Portfolio</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/templates" className={`nav-link ${isActive('/templates')}`}>Templates</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/about" className={`nav-link ${isActive('/about')}`}>About</Link>
-            </li>
+            {navLinks.map((link) => (
+              <li key={link.path} className="nav-item">
+                <Link to={link.path} className={`nav-link ${isActive(link.path)}`}>
+                  {link.label}
+                </Link>
+              </li>
+            ))}
             <li className="nav-item nav-item--cta">
               <Link to="/contact" className={`nav-link nav-contact-btn ${isActive('/contact')}`}>
                 Contact Us
               </Link>
             </li>
           </ul>
-
-          {/* Drawer footer */}
-          <div className="nav-menu-footer">
-            <span className="nav-menu-tagline">Crafting Digital Excellence</span>
-          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      {/* ── Mobile bottom tab bar ── */}
+      <nav className="mobile-tab-bar" aria-label="Mobile navigation">
+        {tabItems.map((tab) => (
+          <Link
+            key={tab.path}
+            to={tab.path}
+            className={`mobile-tab ${isActive(tab.path)}`}
+          >
+            <span className="mobile-tab-icon">{tab.icon}</span>
+            <span className="mobile-tab-label">{tab.label}</span>
+          </Link>
+        ))}
+      </nav>
+    </>
   );
 }
 

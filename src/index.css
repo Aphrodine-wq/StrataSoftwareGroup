@@ -185,6 +185,7 @@ select:focus-visible {
   .reveal {
     filter: none;
   }
+
   .reveal.revealed {
     filter: none;
   }
@@ -237,12 +238,35 @@ select:focus-visible {
   height: 1px;
   background: linear-gradient(90deg,
       transparent,
-      var(--border-subtle) 20%,
+      var(--border-subtle) 15%,
       var(--accent) 50%,
-      var(--border-subtle) 80%,
+      var(--border-subtle) 85%,
       transparent);
+  background-size: 200% 100%;
   margin: 4rem 0;
   border: none;
+  animation: dividerShimmer 6s ease-in-out infinite;
+}
+
+@keyframes dividerShimmer {
+
+  0%,
+  100% {
+    background-position: -100% 0;
+  }
+
+  50% {
+    background-position: 100% 0;
+  }
+}
+
+/* ── Text gradient utility ── */
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -263,8 +287,9 @@ select:focus-visible {
 }
 
 .glass-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg),
+    0 0 40px rgba(180, 138, 74, 0.08);
   border-color: var(--border-strong);
 }
 
@@ -302,14 +327,15 @@ select:focus-visible {
   height: 100%;
   background: linear-gradient(90deg,
       transparent,
-      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.15),
       transparent);
   transition: left 0.5s ease;
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(180, 138, 74, 0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(180, 138, 74, 0.4),
+    0 0 40px rgba(180, 138, 74, 0.15);
   color: var(--bg);
 }
 
@@ -338,13 +364,15 @@ select:focus-visible {
   text-decoration: none;
   letter-spacing: 0.02em;
   transition: all var(--transition-base);
+  position: relative;
 }
 
 .btn-secondary:hover {
-  background: rgba(180, 138, 74, 0.1);
+  background: rgba(180, 138, 74, 0.12);
   border-color: var(--accent-soft);
   color: var(--accent-soft);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(180, 138, 74, 0.15);
 }
 
 /* ═══════════════════════════════════════════════════════════

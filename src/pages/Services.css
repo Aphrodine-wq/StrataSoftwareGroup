@@ -38,9 +38,10 @@
 }
 
 .service-row:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   border-color: var(--border-strong);
-  box-shadow: var(--shadow), var(--shadow-glow);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.35),
+    0 0 40px rgba(180, 138, 74, 0.08);
 }
 
 .service-accent {
@@ -74,8 +75,10 @@
 }
 
 .service-row:hover .service-icon-container {
-  background: rgba(180, 138, 74, 0.15);
-  border-color: rgba(180, 138, 74, 0.35);
+  background: rgba(180, 138, 74, 0.18);
+  border-color: rgba(180, 138, 74, 0.4);
+  box-shadow: 0 0 20px rgba(180, 138, 74, 0.15);
+  transform: translateY(-2px);
 }
 
 .service-icon-container svg {
@@ -173,8 +176,10 @@
 }
 
 .why-choose-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-5px);
   border-color: var(--border-strong);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(180, 138, 74, 0.06);
 }
 
 .why-choose-icon {

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import useScrollReveal from '../hooks/useScrollReveal';
 import WebGLBackground from '../components/WebGLBackground';
+import FloatingParticles from '../components/FloatingParticles';
 import Tilt3DCard from '../components/Tilt3DCard';
 import ProcessTimeline from '../components/ProcessTimeline';
 import Testimonials from '../components/Testimonials';
@@ -16,10 +17,12 @@ function Home() {
       {/* ── Hero Section with WebGL Shader ── */}
       <section className="hero">
         <WebGLBackground className="hero-shader" />
+        <FloatingParticles count={20} />
 
         {/* Layered depth elements */}
         <div className="hero-depth-layer hero-depth-1" aria-hidden="true" />
         <div className="hero-depth-layer hero-depth-2" aria-hidden="true" />
+        <div className="hero-depth-layer hero-depth-3" aria-hidden="true" />
 
         <div className="hero-content">
           <p className="hero-label reveal">Software Engineering Studio</p>
@@ -40,6 +43,11 @@ function Home() {
               View Our Work
             </Link>
           </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="hero-scroll-indicator reveal reveal-delay-4" aria-hidden="true">
+          <div className="scroll-line" />
         </div>
 
       </section>
@@ -116,6 +124,7 @@ function Home() {
       {/* ── CTA Banner ── */}
       <section className="cta-banner reveal">
         <div className="cta-glow" aria-hidden="true" />
+        <div className="cta-glow-ring" aria-hidden="true" />
         <div className="cta-banner-content">
           <h2>Ready to Build Something Great?</h2>
           <p>Let's discuss your next project and turn your vision into reality.</p>

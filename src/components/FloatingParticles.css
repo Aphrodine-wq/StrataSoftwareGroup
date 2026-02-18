@@ -1,0 +1,59 @@
+/* ═══════════════════════════════════════════════════════════
+   Floating Particles — ambient depth overlay
+   Pure CSS animation, no JS perf cost
+   ═══════════════════════════════════════════════════════════ */
+
+.floating-particles {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-particle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+            rgba(224, 195, 140, 0.9) 0%,
+            rgba(180, 138, 74, 0.5) 40%,
+            transparent 70%);
+    box-shadow: 0 0 6px rgba(224, 195, 140, 0.3);
+    animation: particleFloat var(--p-duration, 15s) ease-in-out var(--p-delay, 0s) infinite;
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: var(--p-opacity, 0.3);
+    }
+
+    50% {
+        transform: translateY(-50vh) translateX(var(--p-drift, 20px));
+    }
+
+    90% {
+        opacity: var(--p-opacity, 0.3);
+    }
+
+    100% {
+        transform: translateY(-110vh) translateX(calc(var(--p-drift, 20px) * -0.5));
+        opacity: 0;
+    }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .floating-particle {
+        animation: none;
+        opacity: 0.15 !important;
+        transform: none;
+    }
+}

@@ -57,10 +57,9 @@ function About() {
   const team = [
     {
       name: 'Hannah White',
+      initials: 'HW',
       role: 'Chief Growth Officer (CGO) & Co-Founder',
       bio: 'Drives growth and advertising strategy, paid media, funnel optimization, and go-to-market.',
-      initials: 'HW',
-      gradient: 'linear-gradient(135deg, #E0C38C, #B48A4A)',
       scope: [
         'Growth & advertising strategy',
         'Paid media oversight',
@@ -72,10 +71,9 @@ function About() {
     },
     {
       name: 'Walt Burge',
+      initials: 'WB',
       role: 'Chief Experience Officer (CXO) & Co-Founder',
       bio: 'Leads UX/UI strategy, product design systems, and conversion-focused design across web and apps.',
-      initials: 'WB',
-      gradient: 'linear-gradient(135deg, #B48A4A, #7E5E33)',
       scope: [
         'UX/UI strategy',
         'Product design systems',
@@ -86,10 +84,9 @@ function About() {
     },
     {
       name: 'Mason Glen',
+      initials: 'MG',
       role: 'Chief Technology Officer (CTO) & Co-Founder',
       bio: 'Owns architecture, engineering standards, app & web development, and dev team leadership.',
-      initials: 'MG',
-      gradient: 'linear-gradient(135deg, #9E763E, #B48A4A)',
       scope: [
         'Architecture & infrastructure',
         'Engineering standards',
@@ -170,11 +167,8 @@ function About() {
           <div className="team-grid">
             {team.map((member, index) => (
               <div key={index} className={`team-card reveal reveal-delay-${index + 1}`}>
-                <div
-                  className="team-card-avatar"
-                  style={{ background: member.gradient }}
-                >
-                  {member.initials}
+                <div className="team-card-avatar">
+                  <span className="team-card-initials">{member.initials}</span>
                 </div>
                 <h3 className="team-card-name">{member.name}</h3>
                 <span className="team-card-role">{member.role}</span>

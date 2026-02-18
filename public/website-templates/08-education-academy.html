@@ -1,0 +1,711 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduCademy - Online Learning Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FF6B35;
+            --secondary-color: #004E89;
+            --light-bg: #f8f9fa;
+            --dark-text: #333;
+            --light-text: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        .main-header {
+            background: var(--light-text);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 78, 137, 0.8), rgba(0, 78, 137, 0.8)), url('https://picsum.photos/1600/900') no-repeat center center/cover;
+            color: var(--light-text);
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 1rem;
+        }
+
+        .search-bar button {
+            padding: 1rem 2rem;
+            border: none;
+            background: var(--primary-color);
+            color: var(--light-text);
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background: #e05a2d;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            color: var(--secondary-color);
+        }
+
+        /* Course Cards */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: var(--light-text);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+        }
+
+        .course-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .course-card-content {
+            padding: 1.5rem;
+        }
+
+        .course-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background: #e0e0e0;
+            border-radius: 5px;
+            height: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .progress {
+            width: 60%;
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        .rating {
+            color: #f39c12;
+        }
+
+        /* Instructor Spotlights */
+        .instructors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .instructor-card {
+            background: var(--light-text);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .instructor-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .instructor-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 4px solid var(--primary-color);
+        }
+
+        .instructor-card h3 {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+        }
+
+        .instructor-card p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Categories */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .category-card {
+            background: var(--light-text);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            color: var(--primary-color);
+        }
+
+        .category-card span {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--secondary-color);
+            color: var(--light-text);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        /* Events Timeline */
+        .timeline {
+            list-style: none;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: #ddd;
+        }
+
+        .timeline li {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .timeline-content {
+            position: relative;
+            width: 45%;
+            padding: 20px;
+            background: var(--light-text);
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .timeline li:nth-child(odd) .timeline-content {
+            left: 55%;
+        }
+
+        .timeline li:nth-child(even) .timeline-content {
+            left: 0;
+        }
+
+        /* Learning Path */
+        .learning-path {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .path-item {
+            text-align: center;
+        }
+
+        .path-item span {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            border-radius: 50%;
+            background: #ddd;
+            color: var(--dark-text);
+            font-weight: 600;
+        }
+
+        .path-item.active span {
+            background: var(--primary-color);
+            color: var(--light-text);
+        }
+
+        .path-line {
+            flex-grow: 1;
+            height: 2px;
+            background: #ddd;
+            margin: 0 20px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--primary-color);
+            color: var(--light-text);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .cta-button {
+            background: var(--light-text);
+            color: var(--primary-color);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: var(--secondary-color);
+            color: var(--light-text);
+        }
+
+        /* Footer */
+        .main-footer {
+            background: var(--secondary-color);
+            color: var(--light-text);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .footer-content p {
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: var(--light-text);
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Scroll-to-top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: var(--light-text);
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 24px;
+            border-radius: 50%;
+            display: none;
+            z-index: 100;
+            transition: background 0.3s ease;
+        }
+
+        .scroll-to-top:hover {
+            background: var(--secondary-color);
+        }
+
+        /* Hamburger Menu */
+        .hamburger-menu {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .hamburger-menu span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background: var(--dark-text);
+            transition: all 0.3s ease-in-out;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background: var(--light-text);
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                text-align: center;
+                margin: 10px 0;
+            }
+
+            .hamburger-menu {
+                display: block;
+            }
+
+            .hamburger-menu.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger-menu.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger-menu.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="main-nav container">
+            <a href="#" class="logo">EduCademy</a>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#instructors">Instructors</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#paths">Learning Paths</a></li>
+            </ul>
+            <button class="hamburger-menu"><span></span><span></span><span></span></button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Find Your Passion, Start Your Journey</h1>
+                <p>The best online learning platform to achieve your goals.</p>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for courses...">
+                    <button>Search</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="courses" class="section">
+            <div class="container">
+                <h2 class="section-title">Featured Courses</h2>
+                <div class="courses-grid">
+                    <!-- Course Card 1 -->
+                    <div class="course-card">
+                        <img src="https://picsum.photos/400/200?random=1" alt="Course Image">
+                        <div class="course-card-content">
+                            <h3>Introduction to Web Development</h3>
+                            <div class="course-meta">
+                                <span>By John Doe</span>
+                                <span class="rating">4.5 ★★★★★</span>
+                            </div>
+                            <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
+                            <p>Start your journey into web development with this comprehensive introductory course.</p>
+                        </div>
+                    </div>
+                    <!-- Course Card 2 -->
+                    <div class="course-card">
+                        <img src="https://picsum.photos/400/200?random=2" alt="Course Image">
+                        <div class="course-card-content">
+                            <h3>Advanced Data Science with Python</h3>
+                            <div class="course-meta">
+                                <span>By Jane Smith</span>
+                                <span class="rating">4.8 ★★★★★</span>
+                            </div>
+                            <div class="progress-bar"><div class="progress" style="width: 40%;"></div></div>
+                            <p>Take your data science skills to the next level with advanced Python techniques.</p>
+                        </div>
+                    </div>
+                    <!-- Course Card 3 -->
+                    <div class="course-card">
+                        <img src="https://picsum.photos/400/200?random=3" alt="Course Image">
+                        <div class="course-card-content">
+                            <h3>Digital Marketing Masterclass</h3>
+                            <div class="course-meta">
+                                <span>By Emily White</span>
+                                <span class="rating">4.7 ★★★★★</span>
+                            </div>
+                            <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+                            <p>Become a digital marketing expert and grow your business online.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="instructors" class="section" style="background: #fff;">
+            <div class="container">
+                <h2 class="section-title">Meet Our Instructors</h2>
+                <div class="instructors-grid">
+                    <!-- Instructor 1 -->
+                    <div class="instructor-card">
+                        <img src="https://picsum.photos/200/200?random=4" alt="Instructor">
+                        <h3>John Doe</h3>
+                        <p>Web Development Expert</p>
+                    </div>
+                    <!-- Instructor 2 -->
+                    <div class="instructor-card">
+                        <img src="https://picsum.photos/200/200?random=5" alt="Instructor">
+                        <h3>Jane Smith</h3>
+                        <p>Data Scientist</p>
+                    </div>
+                    <!-- Instructor 3 -->
+                    <div class="instructor-card">
+                        <img src="https://picsum.photos/200/200?random=6" alt="Instructor">
+                        <h3>Emily White</h3>
+                        <p>Marketing Guru</p>
+                    </div>
+                     <!-- Instructor 4 -->
+                    <div class="instructor-card">
+                        <img src="https://picsum.photos/200/200?random=7" alt="Instructor">
+                        <h3>Michael Brown</h3>
+                        <p>UX/UI Designer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 EduCademy. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#">f</a>
+                <a href="#">t</a>
+                <a href="#">i</a>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="scroll-to-top">↑</a>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll-to-top button
+        const scrollToTopBtn = document.querySelector('.scroll-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.style.display = 'block';
+            } else {
+                scrollToTopBtn.style.display = 'none';
+            }
+        });
+
+        // Hamburger menu
+        const hamburger = document.querySelector('.hamburger-menu');
+        const navLinks = document.querySelector('.nav-links');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>
+
+        <section id="categories" class="section">
+            <div class="container">
+                <h2 class="section-title">Browse by Category</h2>
+                <div class="categories-grid">
+                    <div class="category-card"><span>💻</span><h3>Development</h3></div>
+                    <div class="category-card"><span>📈</span><h3>Business</h3></div>
+                    <div class="category-card"><span>🎨</span><h3>Design</h3></div>
+                    <div class="category-card"><span>📣</span><h3>Marketing</h3></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="stats" class="section stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item"><h3>10,000+</h3><p>Students Enrolled</p></div>
+                    <div class="stat-item"><h3>500+</h3><p>Courses Available</p></div>
+                    <div class="stat-item"><h3>200+</h3><p>Expert Instructors</p></div>
+                    <div class="stat-item"><h3>95%</h3><p>Completion Rate</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="events" class="section">
+            <div class="container">
+                <h2 class="section-title">Upcoming Events</h2>
+                <ul class="timeline">
+                    <li>
+                        <div class="timeline-content">
+                            <h4>Webinar: The Future of AI</h4>
+                            <p>Join us for an exciting discussion on the future of Artificial Intelligence. Hosted by Dr. Alan Turing.</p>
+                            <span>Feb 25, 2026</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="timeline-content">
+                            <h4>Workshop: React for Beginners</h4>
+                            <p>A hands-on workshop for those new to React. Limited spots available!</p>
+                            <span>Mar 10, 2026</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="paths" class="section" style="background: #fff;">
+            <div class="container">
+                <h2 class="section-title">Learning Paths</h2>
+                <div class="learning-path">
+                    <div class="path-item active"><span>1</span><p>Fundamentals</p></div>
+                    <div class="path-line"></div>
+                    <div class="path-item"><span>2</span><p>Advanced</p></div>
+                    <div class="path-line"></div>
+                    <div class="path-item"><span>3</span><p>Specialization</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Start Learning?</h2>
+                <p>Join thousands of students and take the next step in your career.</p>
+                <a href="#" class="cta-button">Enroll Now</a>
+            </div>
+        </section>

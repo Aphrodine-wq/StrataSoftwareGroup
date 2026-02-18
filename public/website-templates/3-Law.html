@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Henderson & Associates – experienced attorneys in personal injury, business, family, and criminal law. Free consultation. Fighting for your rights.">
+  <title>Henderson & Associates | Trusted Legal Advocates</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1a2332;
+      --navy-light: #2a3a4d;
+      --gold: #b8860b;
+      --gold-light: #c9a227;
+      --white: #ffffff;
+      --grey: #f7f8fa;
+      --grey-dark: #5a6575;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    .skip-link {
+      position: absolute;
+      top: -3rem;
+      left: 1rem;
+      padding: 0.6rem 1rem;
+      background: var(--navy);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 4px;
+      z-index: 1001;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 1rem; outline: 2px solid var(--gold); outline-offset: 2px; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+    body {
+      font-family: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+      color: #1a2332;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; }
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      color: var(--navy);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    .nav-logo { font-size: 1.25rem; font-weight: 700; color: var(--navy); }
+    .nav-logo span { color: var(--gold); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.5rem 1.25rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .nav-cta:hover { background: #c4a02a; transform: translateY(-1px); }
+    .hero {
+      position: relative;
+      background: linear-gradient(135deg, rgba(26,35,50,0.94) 0%, rgba(42,58,77,0.88) 100%),
+        url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1920&q=80') center/cover no-repeat;
+      color: var(--white);
+      padding: 12rem 2rem 6rem;
+      text-align: center;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.3);
+    }
+    .hero p {
+      font-size: 1.15rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+      max-width: 550px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .btn-primary:hover { transform: translateY(-2px); background: #e0b840; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid var(--white);
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+    .section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--grey-dark);
+      margin-bottom: 3rem;
+    }
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .about-text p { margin-bottom: 1rem; color: var(--grey-dark); }
+    .about-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .about-stat strong { display: block; font-size: 2rem; color: var(--gold); }
+    .practice-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .practice-card {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(26,35,50,0.06);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-top: 3px solid var(--gold);
+    }
+    .practice-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+    .practice-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .practice-icon svg { width: 36px; height: 36px; color: var(--gold); }
+    .practice-card h3 { margin-bottom: 0.5rem; }
+    .practice-card p { color: var(--grey-dark); font-size: 0.95rem; }
+    .results {
+      background: var(--grey);
+      padding: 5rem 2rem;
+    }
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .result-card {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--gold);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    .result-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .result-card .amount { font-size: 2rem; font-weight: 700; color: var(--gold); }
+    .result-card p { color: var(--grey-dark); margin-top: 0.5rem; }
+    .team {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .team-card {
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    .team-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .team-avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      overflow: hidden;
+      object-fit: cover;
+      border: 3px solid rgba(184,134,11,0.3);
+    }
+    .team-card h3 { margin-bottom: 0.25rem; }
+    .team-card .role { color: var(--gold); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .team-card p { color: var(--grey-dark); font-size: 0.9rem; }
+    .cta-section {
+      background: var(--navy);
+      color: var(--white);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .cta-section h2 { margin-bottom: 1rem; }
+    .cta-section p { opacity: 0.9; margin-bottom: 1.5rem; }
+    .footer {
+      background: #1a252f;
+      color: var(--white);
+      padding: 3rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+    .footer h4 { margin-bottom: 1rem; font-size: 1rem; color: var(--gold); }
+    .footer a, .footer span { color: rgba(255,255,255,0.85); text-decoration: none; display: block; margin-bottom: 0.5rem; }
+    .footer a:hover { color: var(--white); }
+    .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--navy); padding: 0.25rem; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      padding: 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      gap: 0;
+    }
+    .nav-links.open li { padding: 0.75rem 0; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open { display: flex; }
+      .mobile-menu-btn { display: block; }
+      .about { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 1.875rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <header>
+  <nav class="nav" role="navigation" aria-label="Main">
+    <div class="nav-logo">Henderson <span>&</span> Associates</div>
+    <ul class="nav-links" id="nav-menu">
+      <li><a href="#about">About</a></li>
+      <li><a href="#practice">Practice Areas</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#team">Our Team</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#consult" class="nav-cta">Free Consultation</a>
+    <button class="mobile-menu-btn" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">☰</button>
+  </nav>
+  </header>
+
+  <main id="main">
+  <section class="hero">
+    <h1>Expert Legal Advocacy When You Need It Most</h1>
+    <p>With over 40 years of combined experience, we fight for justice and fair outcomes for our clients. Personal injury and business matters: no fee unless we win.</p>
+    <p style="font-size:0.95rem; opacity:0.85; margin-top:-0.5rem; margin-bottom:1.5rem;">Free initial consultation. We don’t get paid until you do.</p>
+    <div class="hero-ctas">
+      <a href="#consult" class="btn btn-primary">Schedule Consultation</a>
+      <a href="#practice" class="btn btn-secondary">Practice Areas</a>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <h2 class="section-title">Our Mission</h2>
+    <p class="section-subtitle">Committed to excellence in legal representation—and to treating every client like they’re our only one.</p>
+    <div class="about">
+      <div class="about-text">
+        <p>Henderson & Associates was founded in 1986 on the principle that everyone deserves access to skilled, compassionate legal representation. Robert Henderson opened the firm after a decade as a prosecutor, with a focus on leveling the playing field for injury victims and families. Today we combine that courtroom experience with personalized attention so you always know where your case stands.</p>
+        <p>We handle complex cases across personal injury, business law, family law, and criminal defense—always putting our clients first. We don’t take every case; we take the cases we know we can fight for effectively.</p>
+        <div class="about-stats">
+          <div class="about-stat"><strong>40+</strong> Years Experience</div>
+          <div class="about-stat"><strong>2,500+</strong> Cases Won</div>
+          <div class="about-stat"><strong>98%</strong> Client Satisfaction</div>
+        </div>
+      </div>
+      <div class="about-text">
+        <p><strong>Our Values:</strong> Integrity, diligence, and unwavering commitment to our clients. We take pride in our track record of favorable verdicts and settlements while maintaining the highest ethical standards. When you hire us, you get a partner—not a case number.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="practice" class="section">
+    <h2 class="section-title">Practice Areas</h2>
+    <p class="section-subtitle">We offer full-service representation for individuals and businesses. Each practice area is led by attorneys who have tried cases in state and federal court.</p>
+    <div class="practice-cards">
+      <div class="practice-card">
+        <div class="practice-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3v18M3 9h18M3 15h18"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <h3>Personal Injury</h3>
+        <p>Auto accidents, trucking crashes, slip and fall, and medical malpractice. We recover maximum compensation for medical bills, lost wages, and pain and suffering. Example: we routinely handle commercial truck accident cases with seven-figure policy limits and catastrophic injury claims.</p>
+      </div>
+      <div class="practice-card">
+        <div class="practice-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <h3>Business Law</h3>
+        <p>Contract drafting and disputes, entity formation (LLC, corporation), partnership agreements, and breach of contract litigation. We advise small and midsize businesses on day-to-day risk and represent them in court when negotiations fail.</p>
+      </div>
+      <div class="practice-card">
+        <div class="practice-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Family Law</h3>
+        <p>Divorce, custody, child and spousal support, and adoption. We approach family matters with sensitivity while fighting for your interests—whether that’s shared custody, asset division, or enforcing a support order.</p>
+      </div>
+      <div class="practice-card">
+        <div class="practice-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Criminal Defense</h3>
+        <p>Misdemeanors to felonies: DUI, drug charges, assault, theft, and white-collar matters. We represent clients from arrest through trial and appeal. Early involvement often leads to reduced or dismissed charges; we respond 24/7 for arrests.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="results" class="results">
+    <h2 class="section-title">Recent Case Results</h2>
+    <p class="section-subtitle">Past results do not guarantee future outcomes, but they reflect our commitment to maximizing recovery for our clients.</p>
+    <div class="results-grid">
+      <div class="result-card">
+        <div class="amount">$2.4M</div>
+        <p>Personal injury verdict – commercial truck accident. Client suffered spinal injuries; defendant contested liability. Verdict after five-day trial.</p>
+      </div>
+      <div class="result-card">
+        <div class="amount">$1.8M</div>
+        <p>Medical malpractice settlement – wrong-site surgery and failure to obtain informed consent. Resolved before trial after discovery.</p>
+      </div>
+      <div class="result-card">
+        <div class="amount">$950K</div>
+        <p>Slip and fall – premises liability at a retail store. Inadequate floor maintenance; client sustained hip fracture and required surgery.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="team" class="section">
+    <h2 class="section-title">Our Team</h2>
+    <p class="section-subtitle">Every case is staffed by attorneys who have tried cases to verdict. You get senior attention, not a junior associate.</p>
+    <div class="team">
+      <div class="team-card">
+        <img class="team-avatar" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=280&h=280&fit=crop" alt="Robert Henderson">
+        <h3>Robert Henderson</h3>
+        <p class="role">Founding Partner</p>
+        <p>25+ years in personal injury and civil litigation. Former trial attorney at a national defense firm; now exclusively represents plaintiffs. AV Preeminent rated; multiple seven-figure verdicts and settlements.</p>
+      </div>
+      <div class="team-card">
+        <img class="team-avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=280&h=280&fit=crop" alt="Michelle Kim">
+        <h3>Michelle Kim</h3>
+        <p class="role">Partner</p>
+        <p>Leads our business law practice. Handles contract disputes, partnership breakups, and commercial litigation. Previously in-house counsel for a Fortune 500 company; understands both sides of the table.</p>
+      </div>
+      <div class="team-card">
+        <img class="team-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=280&h=280&fit=crop" alt="David Williams">
+        <h3>David Williams</h3>
+        <p class="role">Senior Associate</p>
+        <p>Family law and criminal defense specialist. Represents clients in divorce, custody, and support matters, and in criminal cases from DUI to felony charges. Known for clear communication and aggressive advocacy.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="consult" class="cta-section">
+    <h2>Schedule Your Free Consultation</h2>
+    <p>No fee unless we win. We work on contingency for personal injury matters—you pay nothing upfront and nothing if we don’t recover. Confidential assessment of your case.</p>
+    <a href="tel:1-800-555-0200" class="btn btn-primary">Call 1-800-555-0200</a>
+  </section>
+
+  <footer id="contact" class="footer">
+    <div class="footer-inner">
+      <div>
+        <h4>Henderson & Associates</h4>
+        <span>123 Legal Plaza, Suite 400</span>
+        <span>Metro City, MC 10001</span>
+        <span>No fee unless we win. Contingency representation for personal injury.</span>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="tel:1-800-555-0200">1-800-555-0200</a>
+        <a href="mailto:info@hendersonlaw.com">info@hendersonlaw.com</a>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <span>Mon–Fri: 8am–6pm</span>
+      </div>
+    </div>
+  </footer>
+  </main>
+
+  <script>
+    // Mobile menu
+    (function() {
+      const btn = document.querySelector('.mobile-menu-btn');
+      const menu = document.querySelector('.nav-links');
+      if (btn && menu) {
+        btn.addEventListener('click', function() {
+          const open = menu.classList.toggle('open');
+          btn.setAttribute('aria-expanded', open);
+        });
+        document.querySelectorAll('.nav-links a').forEach(function(a) {
+          a.addEventListener('click', function() { menu.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); });
+        });
+      }
+    })();
+    // Scroll-triggered animations
+    const observerOptions = { threshold: 0.2 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, observerOptions);
+    document.querySelectorAll('.result-card, .team-card').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

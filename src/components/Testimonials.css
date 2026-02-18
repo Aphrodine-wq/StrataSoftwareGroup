@@ -39,8 +39,16 @@
     text-align: center;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
-        0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+        0 0 40px rgba(180, 138, 74, 0.04);
+    transition: box-shadow var(--transition-base);
+}
+
+.testimonial-carousel:hover {
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+        0 0 60px rgba(180, 138, 74, 0.08);
 }
 
 .testimonial-glow {
@@ -48,10 +56,25 @@
     top: -40px;
     left: 50%;
     transform: translateX(-50%);
-    width: 300px;
-    height: 120px;
-    background: radial-gradient(ellipse, rgba(180, 138, 74, 0.06) 0%, transparent 70%);
+    width: 350px;
+    height: 150px;
+    background: radial-gradient(ellipse, rgba(180, 138, 74, 0.08) 0%, transparent 70%);
     pointer-events: none;
+    animation: testimonialGlowPulse 5s ease-in-out infinite;
+}
+
+@keyframes testimonialGlowPulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: translateX(-50%) scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.1);
+    }
 }
 
 .testimonial-quote-icon {
@@ -152,6 +175,19 @@
     background: var(--accent);
     box-shadow: 0 0 12px rgba(180, 138, 74, 0.4);
     transform: scale(1.2);
+    animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 12px rgba(180, 138, 74, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(180, 138, 74, 0.6);
+    }
 }
 
 /* ── Responsive ── */

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ProFix Solutions – licensed plumbing, electrical, HVAC, and general contracting. 24/7 emergency service. Get a free quote today.">
+  <title>ProFix Solutions | Licensed Contractors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #e85d04;
+      --orange-light: #f48c06;
+      --blue: #0d2137;
+      --blue-light: #1a3a52;
+      --white: #ffffff;
+      --grey: #f1f5f9;
+      --grey-dark: #475569;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    .skip-link {
+      position: absolute;
+      top: -3rem;
+      left: 1rem;
+      padding: 0.6rem 1rem;
+      background: var(--orange);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 6px;
+      z-index: 1001;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 1rem; outline: 2px solid var(--blue); outline-offset: 2px; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+    body {
+      font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+      color: #334155;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .nav-logo { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--blue); letter-spacing: -0.02em; }
+    .nav-logo span { color: var(--orange); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-phone {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--orange);
+      text-decoration: none;
+    }
+    .nav-cta {
+      background: var(--orange);
+      color: var(--white);
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.2s;
+    }
+    .nav-cta:hover { transform: scale(1.05); }
+    .hero {
+      position: relative;
+      background: linear-gradient(125deg, rgba(13,33,55,0.92) 0%, rgba(26,58,82,0.85) 100%),
+        url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80') center/cover no-repeat;
+      color: var(--white);
+      padding: 10rem 2rem 5rem;
+      text-align: center;
+      min-height: 460px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 2.75rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .hero p { font-size: 1.15rem; opacity: 0.9; margin-bottom: 1.5rem; }
+    .hero .emergency {
+      background: var(--orange);
+      color: var(--white);
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 0.5rem;
+      transition: transform 0.2s;
+    }
+    .hero .emergency:hover { transform: scale(1.05); }
+    .section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--blue);
+      letter-spacing: -0.02em;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--grey-dark);
+      margin-bottom: 3rem;
+    }
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .service-card {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(13,33,55,0.06);
+      text-align: center;
+      transition: transform 0.25s, box-shadow 0.25s;
+      border-top: 4px solid var(--orange);
+    }
+    .service-card:hover { transform: translateY(-5px); }
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+      border-radius: 14px;
+      color: white;
+    }
+    .service-icon svg { width: 28px; height: 28px; }
+    .service-card h3 { margin-bottom: 0.5rem; color: var(--blue); }
+    .sliders { margin: 3rem 0; }
+    .slider-container {
+      background: var(--grey);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    .slider-header {
+      padding: 1rem 1.5rem;
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 600;
+    }
+    .slider-wrap {
+      position: relative;
+      height: 300px;
+      overflow: hidden;
+    }
+    .slider-before, .slider-after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+    .slider-before { z-index: 1; }
+    .slider-after {
+      width: 50%;
+      z-index: 2;
+      clip-path: inset(0 0 0 0);
+    }
+    .slider-handle {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 4px;
+      height: 100%;
+      background: var(--white);
+      cursor: ew-resize;
+      z-index: 3;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    .slider-handle::before {
+      content: '⟷';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--orange);
+      color: white;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 1.25rem;
+      margin-left: -18px;
+    }
+    .testimonials { background: var(--grey); padding: 4rem 2rem; }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .testimonial-card {
+      background: var(--white);
+      padding: 1.75rem;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(13,33,55,0.06);
+      border: 1px solid rgba(13,33,55,0.06);
+    }
+    .testimonial-stars { color: #f59e0b; margin-bottom: 0.5rem; }
+    .testimonial-card p { font-style: italic; margin-bottom: 0.75rem; }
+    .testimonial-card .author { font-weight: 600; color: var(--blue); }
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      padding: 2rem 0;
+    }
+    .badge {
+      background: var(--white);
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    .badge-icon { font-size: 1.5rem; opacity: 0.9; }
+    .service-area {
+      background: var(--blue);
+      color: var(--white);
+      padding: 3rem 2rem;
+      border-radius: 12px;
+    }
+    .service-area h3 { margin-bottom: 1rem; }
+    .cities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+    }
+    .cities span {
+      background: rgba(255,255,255,0.2);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+    }
+    .contact-section { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .contact-form .form-group { margin-bottom: 1rem; }
+    .contact-form label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(232,93,4,0.15);
+    }
+    .btn {
+      background: var(--orange);
+      color: var(--white);
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .footer {
+      background: var(--blue);
+      color: var(--white);
+      padding: 3rem 2rem;
+      margin-top: 4rem;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+    .footer h4 { margin-bottom: 1rem; }
+    .footer a, .footer span { color: rgba(255,255,255,0.9); text-decoration: none; display: block; margin-bottom: 0.5rem; }
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--blue);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.25rem;
+    }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      padding: 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      gap: 0;
+    }
+    .nav-links.open li { padding: 0.75rem 0; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open { display: flex; }
+      .nav-phone { display: none; }
+      .mobile-menu-btn { display: block; }
+      .contact-section { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 1.75rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <header>
+  <nav class="nav" role="navigation" aria-label="Main">
+    <div class="nav-logo">ProFix <span>Solutions</span></div>
+    <ul class="nav-links" id="nav-menu">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#sliders">Work</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+    </ul>
+    <a href="tel:1-800-555-0300" class="nav-phone">1-800-555-0300</a>
+    <a href="#contact" class="nav-cta">Get a Quote</a>
+    <button class="mobile-menu-btn" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">☰</button>
+  </nav>
+  </header>
+
+  <main id="main">
+  <section class="hero">
+    <h1>Licensed Pros When You Need Them</h1>
+    <p>Plumbing, electrical, HVAC, and more. Fast, reliable, and fully insured. We guarantee same-day or next-day scheduling for non-emergency work—or your estimate is free.</p>
+    <p style="font-size:0.95rem; opacity:0.85; margin-top:-0.25rem;">Emergency? We aim for a 60-minute or less response window. Call now.</p>
+    <a href="tel:1-800-555-0300" class="emergency">🚨 24/7 Emergency Service</a>
+  </section>
+
+  <section id="services" class="section">
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-subtitle">One call for plumbing, electrical, HVAC, and remodeling. All work is warrantied and performed by licensed technicians—no subs for core trades.</p>
+    <div class="services">
+      <div class="service-card">
+        <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <h3>Plumbing</h3>
+        <p>Leaks, clogs, drain cleaning, water heaters (including tankless), and full repipes. We handle everything from a dripping faucet to a main-line replacement—with upfront pricing before we start.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <h3>Electrical</h3>
+        <p>Panel upgrades, new circuits, outlets, switches, and lighting. We’re qualified for 100–200 amp service upgrades and can troubleshoot flickering lights, tripped breakers, and dead outlets.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="4"/></svg></div>
+        <h3>HVAC</h3>
+        <p>Furnace and AC installation, repair, and maintenance. We service all major brands and offer annual tune-ups to keep your system running efficiently and under warranty.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <h3>General Contracting</h3>
+        <p>Room additions, whole-house remodels, and project management. We coordinate permits, subs (e.g. flooring, drywall), and timelines so you have one point of contact.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="9" y1="6" x2="9" y2="3"/><line x1="9" y1="15" x2="15" y2="15"/><line x1="12" y1="12" x2="12" y2="18"/></svg></div>
+        <h3>Bathroom Remodel</h3>
+        <p>Full bathroom renovation: tile, vanities, tub-to-shower conversions, and fixture upgrades. We handle layout changes and waterproofing so the job is done right.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3>Kitchen Remodel</h3>
+        <p>Custom cabinets, countertops (quartz, granite, laminate), and backsplash. From a simple refresh to a full gut—we’ll give you a detailed scope and quote.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sliders" class="section sliders">
+    <h2 class="section-title">Before & After</h2>
+    <p class="section-subtitle">See the quality of our work</p>
+    <div class="slider-container">
+      <div class="slider-header">Kitchen Remodel</div>
+      <div class="slider-wrap" id="slider1">
+        <div class="slider-before" style="background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80')"></div>
+        <div class="slider-after" style="background-image:url('https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=800&q=80')"></div>
+        <div class="slider-handle" data-target="slider1"></div>
+      </div>
+    </div>
+    <div class="slider-container">
+      <div class="slider-header">Bathroom Renovation</div>
+      <div class="slider-wrap" id="slider2">
+        <div class="slider-before" style="background-image:url('https://images.unsplash.com/photo-1564540586988-9338e8d2d179?w=800&q=80')"></div>
+        <div class="slider-after" style="background-image:url('https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80')"></div>
+        <div class="slider-handle" data-target="slider2"></div>
+      </div>
+    </div>
+    <div class="slider-container">
+      <div class="slider-header">Outdoor Plumbing</div>
+      <div class="slider-wrap" id="slider3">
+        <div class="slider-before" style="background-image:url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80')"></div>
+        <div class="slider-after" style="background-image:url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80')"></div>
+        <div class="slider-handle" data-target="slider3"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonials">
+    <h2 class="section-title">What Customers Say</h2>
+    <p class="section-subtitle">Rated 4.9/5 by over 2,000 homeowners. Here’s what they’re saying about response time, quality, and price.</p>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"Our pipe burst in the wall at 11 p.m. I called ProFix and they had a tech here in 45 minutes. He located the leak, shut off the water, and gave us a clear quote for the repair. We had water back by noon the next day. Professional, fair pricing, and no upselling."</p>
+        <span class="author">— Mike T., Phoenix</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"We’ve used three other companies for HVAC over the years. ProFix was the first to show up on time, explain the options (we went with a two-stage furnace), and leave the house clean. The system has run perfectly for two years. Best HVAC install we’ve had."</p>
+        <span class="author">— Sarah L., Denver</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"Kitchen remodel exceeded expectations. They handled the demo, electrical, plumbing, and cabinets—one crew, one schedule. Highly recommend."</p>
+        <span class="author">— David K., Austin</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"Emergency call at 2am – they were here in 30 minutes. No panic, just fixed it."</p>
+        <span class="author">— Jennifer M., Tampa</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"Licensed, insured, and on time. Everything you want in a contractor."</p>
+        <span class="author">— Robert P., Seattle</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Trust & Credentials</h2>
+    <p class="section-subtitle">We carry full licensing, insurance, and bonding so you’re protected. Verification available on request.</p>
+    <div class="badges">
+      <div class="badge"><span class="badge-icon">✓</span> State Licensed · ROC #284751 (plumbing, electrical, HVAC)</div>
+      <div class="badge"><span class="badge-icon">🛡</span> Fully Insured · $2M liability, workers’ comp</div>
+      <div class="badge"><span class="badge-icon">✓</span> Bonded · Contract bond available for large projects</div>
+      <div class="badge"><span class="badge-icon">★</span> BBB A+ Rating · Accredited since 2008</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="service-area">
+      <h3>Service Area</h3>
+      <p>Proudly serving the greater Phoenix metro and surrounding communities since 2003:</p>
+      <div class="cities">
+        <span>Phoenix</span><span>Scottsdale</span><span>Tempe</span><span>Mesa</span>
+        <span>Chandler</span><span>Gilbert</span><span>Glendale</span><span>Peoria</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <h2 class="section-title">Get a Free Quote</h2>
+    <p class="section-subtitle">Contact us for estimates and scheduling</p>
+    <div class="contact-section">
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <label>Name *</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>Phone *</label>
+          <input type="tel" required>
+        </div>
+        <div class="form-group">
+          <label>Service Needed</label>
+          <input type="text" placeholder="e.g. Burst pipe, panel upgrade, AC not cooling">
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea rows="4" placeholder="e.g. Kitchen remodel, water heater replacement, add outlet in garage"></textarea>
+        </div>
+        <button type="submit" class="btn">Request Quote</button>
+      </form>
+      <div>
+        <h3>Contact Info</h3>
+        <p><strong>Phone:</strong> <a href="tel:1-800-555-0300" style="color:var(--orange)">1-800-555-0300</a></p>
+        <p><strong>Hours:</strong> 24/7 Emergency | Mon–Sat 7am–7pm</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <h4>ProFix Solutions</h4>
+        <span>Licensed & Insured Contractors</span>
+        <span>Serving the Valley since 2003</span>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="tel:1-800-555-0300">1-800-555-0300</a>
+      </div>
+    </div>
+  </footer>
+  </main>
+
+  <script>
+    // Mobile menu
+    (function() {
+      const btn = document.querySelector('.mobile-menu-btn');
+      const menu = document.querySelector('.nav-links');
+      if (btn && menu) {
+        btn.addEventListener('click', function() {
+          const open = menu.classList.toggle('open');
+          btn.setAttribute('aria-expanded', open);
+        });
+        document.querySelectorAll('.nav-links a').forEach(function(a) {
+          a.addEventListener('click', function() { menu.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); });
+        });
+      }
+    })();
+    document.querySelectorAll('.slider-handle').forEach(handle => {
+      const wrap = document.getElementById(handle.dataset.target);
+      const after = wrap.querySelector('.slider-after');
+      let isDragging = false;
+      function update(x) {
+        const rect = wrap.getBoundingClientRect();
+        const pct = Math.max(0, Math.min(100, ((x - rect.left) / rect.width) * 100));
+        after.style.width = pct + '%';
+        handle.style.left = pct + '%';
+      }
+      handle.addEventListener('mousedown', () => { isDragging = true; });
+      document.addEventListener('mouseup', () => { isDragging = false; });
+      document.addEventListener('mousemove', e => { if (isDragging) update(e.clientX); });
+      handle.addEventListener('touchstart', () => { isDragging = true; });
+      document.addEventListener('touchend', () => { isDragging = false; });
+      document.addEventListener('touchmove', e => { if (isDragging && e.touches[0]) update(e.touches[0].clientX); });
+    });
+    document.getElementById('contactForm').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Thanks! We\'ll call you shortly with a quote.');
+    });
+  </script>
+</body>
+</html>
