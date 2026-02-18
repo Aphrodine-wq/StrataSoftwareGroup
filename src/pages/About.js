@@ -1,6 +1,5 @@
 import React from 'react';
 import useScrollReveal from '../hooks/useScrollReveal';
-import AnimatedCounter from '../components/AnimatedCounter';
 import './About.css';
 
 function About() {
@@ -130,33 +129,6 @@ function About() {
             creative problem-solving to build products and services that make a difference.
           </p>
 
-          {/* Animated Stats Bar */}
-          <div className="about-stats-bar reveal reveal-delay-1">
-            <div className="about-stat">
-              <span className="about-stat-number">
-                <AnimatedCounter end={5} suffix="+" />
-              </span>
-              <span className="about-stat-label">Years of Experience</span>
-            </div>
-            <div className="about-stat">
-              <span className="about-stat-number">
-                <AnimatedCounter end={50} suffix="+" />
-              </span>
-              <span className="about-stat-label">Projects Completed</span>
-            </div>
-            <div className="about-stat">
-              <span className="about-stat-number">
-                <AnimatedCounter end={15} suffix="+" />
-              </span>
-              <span className="about-stat-label">Team Members</span>
-            </div>
-            <div className="about-stat">
-              <span className="about-stat-number">
-                <AnimatedCounter end={12} suffix="+" />
-              </span>
-              <span className="about-stat-label">Industries Served</span>
-            </div>
-          </div>
         </section>
 
         {/* Values */}

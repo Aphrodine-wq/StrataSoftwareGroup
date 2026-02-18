@@ -5,7 +5,6 @@ import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 
-import Preloader from './components/Preloader';
 import PageTransition from './components/PageTransition';
 import Home from './pages/Home';
 import Products from './pages/Products';
@@ -20,8 +19,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Preloader />
-        
         <Navigation />
         <PageTransition />
         <main className="main-content page-entered">

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import useScrollReveal from '../hooks/useScrollReveal';
 import WebGLBackground from '../components/WebGLBackground';
 import Tilt3DCard from '../components/Tilt3DCard';
-import AnimatedCounter from '../components/AnimatedCounter';
 import ProcessTimeline from '../components/ProcessTimeline';
 import Testimonials from '../components/Testimonials';
 import TechMarquee from '../components/TechMarquee';
@@ -43,27 +42,6 @@ function Home() {
           </div>
         </div>
 
-        {/* Stats with animated counters */}
-        <div className="hero-stats reveal reveal-delay-4">
-          <div className="hero-stat">
-            <span className="hero-stat-number">
-              <AnimatedCounter end={50} suffix="+" />
-            </span>
-            <span className="hero-stat-label">Projects Delivered</span>
-          </div>
-          <div className="hero-stat-divider" />
-          <div className="hero-stat">
-            <span className="hero-stat-number">
-              <AnimatedCounter end={99} suffix="%" />
-            </span>
-            <span className="hero-stat-label">Client Satisfaction</span>
-          </div>
-          <div className="hero-stat-divider" />
-          <div className="hero-stat">
-            <span className="hero-stat-number">24/7</span>
-            <span className="hero-stat-label">Support Available</span>
-          </div>
-        </div>
       </section>
 
       {/* ── Section Divider ── */}
