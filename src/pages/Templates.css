@@ -8,8 +8,19 @@
   padding: 6rem 2rem 4rem;
 }
 
+.templates .page-header h1 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.templates .page-header p {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+}
+
 .templates-content {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -17,14 +28,14 @@
 
 .templates-intro {
   text-align: center;
-  max-width: 680px;
-  margin: 0 auto 3rem;
+  max-width: 720px;
+  margin: 0 auto 3.5rem;
 }
 
 .templates-intro p {
   color: var(--text-secondary);
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 1.08rem;
+  line-height: 1.75;
 }
 
 /* ── Category Filter ── */
@@ -32,9 +43,9 @@
 .templates-filter {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.5rem;
   justify-content: center;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 }
 
 .filter-btn {
@@ -42,14 +53,12 @@
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  padding: 0.45rem 1.1rem;
+  padding: 0.5rem 1.25rem;
   border-radius: 100px;
   cursor: pointer;
-  transition: background var(--transition-fast),
-    color var(--transition-fast),
-    border-color var(--transition-fast);
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 }
 
 .filter-btn:hover {
@@ -63,6 +72,7 @@
   border-color: var(--accent);
   color: var(--bg);
   font-weight: 600;
+  box-shadow: 0 2px 12px rgba(180, 138, 74, 0.3);
 }
 
 .filter-btn--active:hover {
@@ -76,7 +86,7 @@
 .templates-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  gap: 2rem;
   margin-bottom: 5rem;
 }
 
@@ -85,91 +95,108 @@
 .template-card {
   background: var(--bg-elev-2);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
+  border-radius: 16px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform var(--transition-base),
-    box-shadow var(--transition-base),
-    border-color var(--transition-base);
+  transition: transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.2s ease;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
 }
 
 .template-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2), 0 0 0 1px var(--border-strong);
   border-color: var(--border-strong);
 }
 
 /* Card Header */
 
 .template-card-header {
-  height: 140px;
+  height: 160px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 1.25rem;
   position: relative;
 }
 
-.template-preview-tag {
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 0.3rem 0.75rem;
-  border-radius: 100px;
-  background: rgba(0, 0, 0, 0.35);
-  color: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(4px);
+.template-card-header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.15) 100%);
+  pointer-events: none;
 }
 
+.template-preview-tag,
 .template-badge {
+  position: relative;
+  z-index: 1;
+}
+
+.template-preview-tag {
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 0.3rem 0.75rem;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0.85rem;
+  border-radius: 100px;
+  background: rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+}
+
+.template-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0.85rem;
   border-radius: 100px;
   background: var(--accent);
   color: var(--bg);
   border: none;
+  box-shadow: 0 2px 8px rgba(180, 138, 74, 0.35);
 }
 
 /* Card Body */
 
 .template-card-body {
-  padding: 1.75rem 2rem 2rem;
+  padding: 2rem 1.75rem 1.75rem;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
 .template-meta {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
 }
 
 .template-category {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   color: var(--accent-soft);
 }
 
 .template-card-body h2 {
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.01em;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
 }
 
 .template-description {
   color: var(--text-secondary);
-  font-size: 0.9rem;
-  line-height: 1.65;
+  font-size: 0.92rem;
+  line-height: 1.6;
   margin-bottom: 1.25rem;
 }
 
@@ -178,23 +205,23 @@
 .template-features {
   list-style: none;
   padding: 0;
-  margin: 0 0 1.75rem;
+  margin: 0 0 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
+  gap: 0.5rem;
 }
 
 .template-features li {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
-  font-size: 0.87rem;
+  gap: 0.6rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
 }
 
 .template-features svg {
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
   color: var(--accent-soft);
   flex-shrink: 0;
 }
@@ -203,16 +230,16 @@
 
 .template-footer {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 1.25rem;
   margin-top: auto;
-  flex-wrap: wrap;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-subtle);
 }
 
 .template-price {
   font-family: var(--font-display);
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--accent-soft);
   line-height: 1;
@@ -221,19 +248,21 @@
 .template-actions {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  flex-shrink: 0;
+  gap: 0.6rem;
+  flex-wrap: wrap;
 }
 
 .template-preview-btn {
   text-decoration: none;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.9rem;
 }
 
 .template-preview-inpage {
   font-size: 0.8rem;
   color: var(--text-secondary);
   text-decoration: none;
-  align-self: center;
+  padding: 0.5rem 0;
 }
 
 .template-preview-inpage:hover {
@@ -242,7 +271,9 @@
 }
 
 .template-cta {
-  flex-shrink: 0;
+  padding: 0.65rem 1.35rem;
+  font-size: 0.9rem;
+  margin-left: auto;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -252,9 +283,10 @@
 .templates-custom {
   background: var(--bg-elev-2);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-xl);
+  border-radius: 20px;
   overflow: hidden;
   margin-bottom: 2rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
 }
 
 .templates-custom-inner {
@@ -267,7 +299,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 0%, rgba(180, 138, 74, 0.08) 0%, transparent 65%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(180, 138, 74, 0.06) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -292,6 +324,7 @@
 @media (max-width: 1024px) {
   .templates-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
   }
 }
 
@@ -302,6 +335,7 @@
 
   .templates-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
     max-width: 480px;
     margin-left: auto;
     margin-right: auto;
@@ -311,22 +345,33 @@
     padding: 2.5rem 1.5rem;
   }
 
+  .template-card-body {
+    padding: 1.5rem 1.25rem 1.5rem;
+  }
+
   .template-footer {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.75rem;
+    padding-top: 1rem;
   }
 
   .template-actions {
     width: 100%;
-    flex-wrap: wrap;
   }
 
-  .template-preview-btn,
   .template-cta {
+    margin-left: 0;
     flex: 1;
-    min-width: 120px;
+    min-width: 0;
     justify-content: center;
+  }
+
+  .template-preview-btn {
+    flex: 1;
+    min-width: 0;
+    justify-content: center;
+  }
+
+  .template-preview-inpage {
+    width: 100%;
     text-align: center;
   }
 }

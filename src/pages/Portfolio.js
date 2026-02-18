@@ -38,14 +38,14 @@ function Portfolio() {
       url: 'https://www.lifebalanceoxford.com',
     },
     {
-      title: 'OM365',
+      title: 'Ole Miss 365',
       description:
         'Productivity and wellness platform delivering daily insights, mindfulness tools, and organizational solutions for individuals and teams.',
       category: 'Client',
       technologies: ['React', 'Node.js', 'Cloud'],
       gradient: 'linear-gradient(135deg, #5E4B6E, #2E2535)',
       stats: { timeline: 'Live', team: 'Strata' },
-      url: 'https://www.om365.com',
+      url: 'https://olemiss365.com/',
     },
     {
       title: 'NexPay Financial Platform',
