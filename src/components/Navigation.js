@@ -68,6 +68,11 @@ function Navigation() {
             </Link>
           </li>
           <li className="nav-item">
+            <Link to="/templates" className={`nav-link ${isActive('/templates')}`}>
+              Templates
+            </Link>
+          </li>
+          <li className="nav-item">
             <Link to="/about" className={`nav-link ${isActive('/about')}`}>
               About
             </Link>
