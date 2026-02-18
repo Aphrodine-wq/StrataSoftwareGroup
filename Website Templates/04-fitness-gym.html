@@ -1,0 +1,691 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitLife Gym | Train Insane or Remain The Same</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #39FF14;
+            --secondary-color: #1A1A2E;
+            --text-color: #FFFFFF;
+            --font-family: 'Roboto', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            transition: background 0.3s;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .hamburger-menu {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger-menu span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px 0;
+            background-color: var(--text-color);
+            transition: 0.4s;
+        }
+
+        /* Hero Section */
+        #hero {
+            position: relative;
+            height: 100vh;
+            background: url('https://picsum.photos/seed/gym/1920/1080') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #fff;
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 5%;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        /* Classes Section */
+        .schedule-table table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        .schedule-table th, .schedule-table td {
+            padding: 1rem;
+            border: 1px solid #333;
+        }
+
+        .schedule-table th {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+        }
+
+        /* Trainers Section */
+        .trainer-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .trainer-cards .card {
+            background-color: #2a2a3a;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .trainer-cards .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .trainer-cards .card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .trainer-cards .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Pricing Section */
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-cards .card {
+            background-color: #2a2a3a;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .pricing-cards .card.featured {
+            border-color: var(--primary-color);
+        }
+
+        .pricing-cards .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-cards .card .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .pricing-cards .card .price span {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .pricing-cards .card ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-cards .card ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        /* BMI Calculator */
+        #bmi-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input {
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #2a2a3a;
+            color: var(--text-color);
+        }
+
+        #bmi-result {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        /* Quote Section */
+        #quote {
+            background-color: #2a2a3a;
+        }
+
+        #quote blockquote {
+            text-align: center;
+            font-size: 2rem;
+            font-style: italic;
+        }
+
+        #quote cite {
+            display: block;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            padding: 2rem 5%;
+            text-align: center;
+        }
+
+        .social-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Scroll-to-top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 60px);
+                background-color: var(--secondary-color);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: left 0.3s;
+            }
+
+            nav ul.active {
+                left: 0;
+            }
+
+            nav ul li {
+                margin: 1.5rem 0;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            
+            <a href="#" class="logo">FitLife</a>
+            <ul>
+                <li><a href="#classes">Classes</a></li>
+                <li><a href="#trainers">Trainers</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>Train Insane or Remain The Same</h1>
+                <p>Your journey to a healthier, stronger you starts here. Join our community and transform your life.</p>
+                <a href="#pricing" class="cta-button">Join Now</a>
+            </div>
+        
+        </section>
+
+        <section id="classes">
+            
+            <h2>Class Schedule</h2>
+            <div class="schedule-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                            <th>Saturday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>6:00 AM - 7:00 AM</td>
+                            <td>Yoga</td>
+                            <td>Cardio</td>
+                            <td>Yoga</td>
+                            <td>Cardio</td>
+                            <td>Yoga</td>
+                            <td>HIIT</td>
+                        </tr>
+                        <tr>
+                            <td>7:00 AM - 8:00 AM</td>
+                            <td>HIIT</td>
+                            <td>Strength</td>
+                            <td>HIIT</td>
+                            <td>Strength</td>
+                            <td>HIIT</td>
+                            <td>Yoga</td>
+                        </tr>
+                        <tr>
+                            <td>5:00 PM - 6:00 PM</td>
+                            <td>Zumba</td>
+                            <td>Pilates</td>
+                            <td>Zumba</td>
+                            <td>Pilates</td>
+                            <td>Zumba</td>
+                            <td>Strength</td>
+                        </tr>
+                        <tr>
+                            <td>6:00 PM - 7:00 PM</td>
+                            <td>Strength</td>
+                            <td>Yoga</td>
+                            <td>Strength</td>
+                            <td>Yoga</td>
+                            <td>Strength</td>
+                            <td>Cardio</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+        </section>
+
+        <section id="trainers">
+            
+            <h2>Meet Our Trainers</h2>
+            <div class="trainer-cards">
+                <div class="card">
+                    <img src="https://picsum.photos/seed/trainer1/400/400" alt="Trainer 1">
+                    <h3>John Doe</h3>
+                    <p>Specialty: Strength Training</p>
+                </div>
+                <div class="card">
+                    <img src="https://picsum.photos/seed/trainer2/400/400" alt="Trainer 2">
+                    <h3>Jane Smith</h3>
+                    <p>Specialty: Yoga & Pilates</p>
+                </div>
+                <div class="card">
+                    <img src="https://picsum.photos/seed/trainer3/400/400" alt="Trainer 3">
+                    <h3>Mike Ross</h3>
+                    <p>Specialty: HIIT & Cardio</p>
+                </div>
+            </div>
+        
+        </section>
+
+        <section id="pricing">
+            
+            <h2>Membership Plans</h2>
+            <div class="pricing-cards">
+                <div class="card">
+                    <h3>Basic</h3>
+                    <p class="price">$30<span>/mo</span></p>
+                    <ul>
+                        <li>Access to all equipment</li>
+                        <li>Locker room access</li>
+                        <li>2 classes per week</li>
+                    </ul>
+                    <a href="#" class="cta-button">Choose Plan</a>
+                </div>
+                <div class="card featured">
+                    <h3>Pro</h3>
+                    <p class="price">$50<span>/mo</span></p>
+                    <ul>
+                        <li>Access to all equipment</li>
+                        <li>Locker room access</li>
+                        <li>Unlimited classes</li>
+                        <li>Personal trainer session</li>
+                    </ul>
+                    <a href="#" class="cta-button">Choose Plan</a>
+                </div>
+                <div class="card">
+                    <h3>Elite</h3>
+                    <p class="price">$70<span>/mo</span></p>
+                    <ul>
+                        <li>Access to all equipment</li>
+                        <li>Locker room access</li>
+                        <li>Unlimited classes</li>
+                        <li>2 personal trainer sessions</li>
+                        <li>Sauna access</li>
+                    </ul>
+                    <a href="#" class="cta-button">Choose Plan</a>
+                </div>
+            </div>
+        
+        </section>
+
+        <section id="gallery">
+            
+            <h2>Transformations</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/before1/400/600" alt="Before 1">
+                    <div class="overlay">Before</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/after1/400/600" alt="After 1">
+                    <div class="overlay">After</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/before2/400/600" alt="Before 2">
+                    <div class="overlay">Before</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/after2/400/600" alt="After 2">
+                    <div class="overlay">After</div>
+                </div>
+            </div>
+        
+        </section>
+
+        <section id="bmi">
+            
+            <h2>BMI Calculator</h2>
+            <form id="bmi-form">
+                <div class="form-group">
+                    <label for="weight">Weight (kg)</label>
+                    <input type="number" id="weight" required>
+                </div>
+                <div class="form-group">
+                    <label for="height">Height (cm)</label>
+                    <input type="number" id="height" required>
+                </div>
+                <button type="submit" class="cta-button">Calculate BMI</button>
+                <div id="bmi-result"></div>
+            </form>
+        
+        </section>
+
+        <section id="quote">
+            
+            <blockquote>
+                <p>"The only bad workout is the one that didn't happen."</p>
+                <cite>- Unknown</cite>
+            </blockquote>
+        
+        </section>
+    </main>
+
+    <footer>
+        
+        <div class="footer-content" id="contact">
+            <p>&copy; 2026 FitLife Gym. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+    
+        <a href="#" class="scroll-to-top">&#8593;</a>
+
+    </footer>
+
+
+    <script>
+        // Hamburger Menu
+        const hamburger = document.querySelector('.hamburger-menu');
+        const navUl = document.querySelector('nav ul');
+
+        hamburger.addEventListener('click', () => {
+            navUl.classList.toggle('active');
+        });
+
+        // Scroll-to-top button
+        const scrollToTopBtn = document.querySelector('.scroll-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        // BMI Calculator
+        const bmiForm = document.getElementById('bmi-form');
+        const bmiResult = document.getElementById('bmi-result');
+
+        bmiForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+
+            if (weight > 0 && height > 0) {
+                const bmi = (weight / ((height / 100) ** 2)).toFixed(2);
+                let category = '';
+
+                if (bmi < 18.5) {
+                    category = 'Underweight';
+                } else if (bmi >= 18.5 && bmi <= 24.9) {
+                    category = 'Normal weight';
+                } else if (bmi >= 25 && bmi <= 29.9) {
+                    category = 'Overweight';
+                } else {
+                    category = 'Obesity';
+                }
+
+                bmiResult.innerHTML = `Your BMI is <strong>${bmi}</strong>. This is considered <strong>${category}</strong>.`;
+            } else {
+                bmiResult.innerHTML = 'Please enter valid weight and height.';
+            }
+        });
+    </script>
+</body>
+</html>

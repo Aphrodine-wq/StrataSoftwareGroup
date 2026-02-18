@@ -11,7 +11,7 @@
   padding: 1rem 0;
   background: transparent;
   border-bottom: 1px solid transparent;
-  isolation: isolate; /* so logo mix-blend-mode blends with nav, not content behind */
+  isolation: isolate;
   transition: background var(--transition-base),
     border-color var(--transition-base),
     backdrop-filter var(--transition-base),
@@ -55,8 +55,6 @@
   width: auto;
   object-fit: contain;
   display: block;
-  /* Transparent background: black/dark areas blend with nav (use real transparent PNG to remove this) */
-  mix-blend-mode: lighten;
   filter: brightness(1.1) contrast(1.05);
   transition: filter var(--transition-fast), transform var(--transition-fast);
 }

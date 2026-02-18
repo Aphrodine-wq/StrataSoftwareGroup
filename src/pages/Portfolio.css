@@ -176,6 +176,20 @@
   letter-spacing: 0.02em;
 }
 
+.portfolio-card-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.portfolio-card-link:hover {
+  color: var(--accent-soft);
+}
+
 .portfolio-empty {
   text-align: center;
   color: var(--text-muted);

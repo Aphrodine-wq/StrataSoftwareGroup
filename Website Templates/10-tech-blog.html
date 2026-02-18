@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Blog</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+    --primary-color: #00F5FF;
+    --dark-color: #0D1117;
+    --light-color: #FFFFFF;
+    --text-color-light: #333;
+    --text-color-dark: #E6EDF3;
+    --bg-color-light: #FFFFFF;
+    --bg-color-dark: #0D1117;
+    --card-bg-light: #F6F8FA;
+    --card-bg-dark: #161B22;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    --text-color-light: var(--text-color-dark);
+    --bg-color-light: var(--bg-color-dark);
+    --card-bg-light: var(--card-bg-dark);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--dark-color);
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #00c4cc;
+}
+header {
+    background-color: var(--card-bg-light);
+    padding: 20px 0;
+    border-bottom: 1px solid var(--primary-color);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: var(--text-color-light);
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+#theme-toggle {
+    background: none;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.hero {
+    background-image: url('https://picsum.photos/1200/400');
+    background-size: cover;
+    background-position: center;
+    color: var(--light-color);
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.hero-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+.container {
+    display: flex;
+    margin-top: 40px;
+}
+
+.main-content {
+    flex: 3;
+    margin-right: 40px;
+}
+
+.sidebar {
+    flex: 1;
+}
+
+.blog-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.post-card {
+    background-color: var(--card-bg-light);
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+}
+
+.post-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.post-content {
+    padding: 20px;
+}
+
+.post-category {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--dark-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.post-content h3 {
+    margin: 0 0 10px;
+}
+
+.post-content h3 a {
+    color: var(--text-color-light);
+}
+
+.post-meta {
+    font-size: 14px;
+    color: #777;
+}
+
+.widget {
+    background-color: var(--card-bg-light);
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.widget h3 {
+    margin-top: 0;
+}
+
+.widget ul li {
+    margin-bottom: 10px;
+}
+
+.tag-cloud a {
+    display: inline-block;
+    background-color: #eee;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+.author-bio {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-bg-light);
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 40px;
+}
+
+.author-bio img {
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.code-snippet-showcase {
+    margin-top: 40px;
+}
+
+pre {
+    background-color: #282c34;
+    color: #abb2bf;
+    padding: 20px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.newsletter {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 40px;
+}
+
+.newsletter form {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.newsletter input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    width: 300px;
+}
+
+.newsletter button {
+    border-radius: 0 5px 5px 0;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.page-link {
+    padding: 10px 15px;
+    margin: 0 5px;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 5px;
+}
+
+.page-link.active {
+    background-color: var(--primary-color);
+    color: var(--dark-color);
+}
+
+footer {
+    background-color: var(--card-bg-light);
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+.social-links a {
+    margin: 0 10px;
+    color: var(--text-color-light);
+}
+
+.scroll-to-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--primary-color);
+    color: var(--dark-color);
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    display: none;
+    font-size: 24px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .main-content {
+        margin-right: 0;
+    }
+
+    nav ul {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 36px;
+    }
+
+    .blog-posts {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">TechBlog</div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Articles</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="theme-switch">
+                <button id="theme-toggle">Toggle Dark Mode</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Featured Article</h1>
+                <h2>The Future of Web Development</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed doeiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+        </section>
+        <div class="container">
+        <div class="main-content">
+            <section class="blog-posts">
+            <div class="post-card">
+                <img src="https://picsum.photos/400/200" alt="Blog Post Image">
+                <div class="post-content">
+                    <span class="post-category">Web Development</span>
+                    <h3><a href="#">Understanding CSS Grid</a></h3>
+                    <p>A deep dive into the CSS Grid Layout module, and how to use it to create complex, responsive layouts.</p>
+                    <div class="post-meta">
+                        <span>By John Doe</span>
+                        <span>5 min read</span>
+                    </div>
+                </div>
+            </div>
+            <div class="post-card">
+                <img src="https://picsum.photos/400/201" alt="Blog Post Image">
+                <div class="post-content">
+                    <span class="post-category">JavaScript</span>
+                    <h3><a href="#">Modern JavaScript Features</a></h3>
+                    <p>An overview of the latest features in ECMAScript, including async/await, destructuring, and more.</p>
+                    <div class="post-meta">
+                        <span>By Jane Smith</span>
+                        <span>8 min read</span>
+                    </div>
+                </div>
+            </div>
+            <div class="post-card">
+                <img src="https://picsum.photos/400/202" alt="Blog Post Image">
+                <div class="post-content">
+                    <span class="post-category">DevOps</span>
+                    <h3><a href="#">CI/CD with GitHub Actions</a></h3>
+                    <p>Learn how to automate your development workflow with GitHub Actions for continuous integration and delivery.</p>
+                    <div class="post-meta">
+                        <span>By Alex Johnson</span>
+                        <span>10 min read</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+        <aside class="sidebar">
+            <div class="widget">
+                <h3>Popular Posts</h3>
+                <ul>
+                    <li><a href="#">Getting Started with Docker</a></li>
+                    <li><a href="#">A Guide to RESTful APIs</a></li>
+                    <li><a href="#">The Power of Functional Programming</a></li>
+                </ul>
+            </div>
+            <div class="widget">
+                <h3>Tag Cloud</h3>
+                <div class="tag-cloud">
+                    <a href="#">JavaScript</a>
+                    <a href="#">Python</a>
+                    <a href="#">Go</a>
+                    <a href="#">Cloud</a>
+                    <a href="#">Machine Learning</a>
+                    <a href="#">WebAssembly</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+        <section class="author-bio">
+            <img src="https://placehold.co/100x100" alt="Author Image">
+            <div class="author-details">
+                <h4>About the Author</h4>
+                <p>John Doe is a full-stack developer with over 10 years of experience in the industry. He loves to write about new technologies and share his knowledge with the community.</p>
+            </div>
+        </section>
+
+        <section class="code-snippet-showcase">
+            <h2>Code Snippet Showcase</h2>
+            <pre><code class="language-javascript">
+function greet() {
+    console.log('Hello, World!');
+}
+
+greet();
+            </code></pre>
+        </section>
+
+        <section class="newsletter">
+            <h2>Subscribe to our Newsletter</h2>
+            <p>Get the latest articles and updates delivered to your inbox.</p>
+            <form>
+                <input type="email" placeholder="Enter your email">
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+        </section>
+
+        <section class="pagination">
+            <a href="#" class="page-link">Prev</a>
+            <a href="#" class="page-link active">1</a>
+            <a href="#" class="page-link">2</a>
+            <a href="#" class="page-link">3</a>
+            <a href="#" class="page-link">Next</a>
+        </section>
+
+    </main>
+    <footer>
+        <div class="social-links">
+            <a href="#">Twitter</a>
+            <a href="#">GitHub</a>
+            <a href="#">LinkedIn</a>
+        </div>
+        <p>&copy; 2026 TechBlog. All rights reserved.</p>
+    </footer>
+    <a href="#" id="scroll-to-top" class="scroll-to-top-btn">&uarr;</a>
+<script>
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+});
+
+const hamburger = document.querySelector('.hamburger-menu');
+const navUl = document.querySelector('nav ul');
+
+hamburger.addEventListener('click', () => {
+    navUl.style.display = navUl.style.display === 'flex' ? 'none' : 'flex';
+});
+
+const scrollToTopBtn = document.getElementById('scroll-to-top');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        scrollToTopBtn.style.display = 'block';
+    } else {
+        scrollToTopBtn.style.display = 'none';
+    }
+});
+
+scrollToTopBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+</script>
+</body>
+</html>

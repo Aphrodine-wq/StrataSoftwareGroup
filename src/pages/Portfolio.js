@@ -8,6 +8,46 @@ function Portfolio() {
 
   const projects = [
     {
+      title: 'FairTradeWorker.com',
+      description:
+        'Fair trade and ethical sourcing platform connecting workers with transparent supply chains and sustainable business practices.',
+      category: 'Client',
+      technologies: ['React', 'Node.js', 'PostgreSQL'],
+      gradient: 'linear-gradient(135deg, #2D5A3D, #1A3522)',
+      stats: { timeline: 'Live', team: 'Strata' },
+      url: 'https://www.FairTradeWorker.com',
+    },
+    {
+      title: 'G-Rump',
+      description:
+        'Free, open-source repository and platform — modern tooling for developers with clean architecture and extensible design.',
+      category: 'Client',
+      technologies: ['TypeScript', 'Node.js', 'GitHub'],
+      gradient: 'linear-gradient(135deg, #3D3B5C, #1E1D2E)',
+      stats: { timeline: 'Live', team: 'Strata' },
+      url: 'https://www.g-rump.com',
+    },
+    {
+      title: 'Life Balance Oxford',
+      description:
+        'Wellness and life coaching services in Oxford — helping clients achieve balance through personalized guidance and holistic approaches.',
+      category: 'Client',
+      technologies: ['React', 'WordPress', 'SEO'],
+      gradient: 'linear-gradient(135deg, #4A5D6B, #2A3540)',
+      stats: { timeline: 'Live', team: 'Strata' },
+      url: 'https://www.lifebalanceoxford.com',
+    },
+    {
+      title: 'OM365',
+      description:
+        'Productivity and wellness platform delivering daily insights, mindfulness tools, and organizational solutions for individuals and teams.',
+      category: 'Client',
+      technologies: ['React', 'Node.js', 'Cloud'],
+      gradient: 'linear-gradient(135deg, #5E4B6E, #2E2535)',
+      stats: { timeline: 'Live', team: 'Strata' },
+      url: 'https://www.om365.com',
+    },
+    {
       title: 'NexPay Financial Platform',
       description:
         'A next-generation payment processing dashboard serving 10K+ merchants with real-time analytics, fraud detection, and multi-currency support.',
@@ -45,7 +85,7 @@ function Portfolio() {
     },
   ];
 
-  const categories = ['All', 'Full-Stack', 'Web App', 'Mobile', 'Design'];
+  const categories = ['All', 'Client', 'Full-Stack', 'Web App', 'Mobile', 'Design'];
 
   const filtered =
     activeFilter === 'All'
@@ -106,6 +146,16 @@ function Portfolio() {
                   <span key={i} className="portfolio-tech-pill">{tech}</span>
                 ))}
               </div>
+              {project.url && (
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="portfolio-card-link"
+                >
+                  Visit Site →
+                </a>
+              )}
             </div>
           </div>
         ))}

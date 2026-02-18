@@ -1,14 +1,11 @@
 # Logo (transparent background)
 
-The site logo is `logo.png`. To have a **truly transparent** background (no black box):
+The site logo is `logo.png` with a **transparent background**, so it works on both light and dark backgrounds.
 
-1. **Option A – Online:** Use [remove.bg](https://www.remove.bg) or [Photopea](https://www.photopea.com): upload `logo.png`, remove the black background, download as PNG, and replace this folder’s `logo.png`.
-2. **Option B – Script:** From the project root run:  
-   `npm install jimp --save-dev` then `npm run make-logo-transparent`  
-   This makes near-black pixels in `logo.png` transparent.
+To regenerate the transparent version (if you replace the source logo):
 
-The app uses `mix-blend-mode: lighten` in CSS so the current black-background logo still looks transparent on the site. If you replace `logo.png` with a PNG that has real transparency, you can remove the `mix-blend-mode: lighten` rules from:
+```bash
+npm run make-logo-transparent
+```
 
-- `src/components/Navigation.css` (`.nav-logo-img`)
-- `src/components/Footer.css` (`.footer-logo-img`)
-- `src/components/Preloader.css` (`.preloader-logo`)
+This uses Sharp to make near-black pixels in `logo.png` transparent. For more refined results, you can use [remove.bg](https://www.remove.bg) or [Photopea](https://www.photopea.com).
