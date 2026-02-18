@@ -20,6 +20,18 @@ function Navigation() {
     setIsOpen(false);
   }, [location]);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -45,6 +57,14 @@ function Navigation() {
           <span></span>
           <span></span>
         </button>
+
+        {isOpen && (
+          <div
+            className="nav-backdrop"
+            onClick={() => setIsOpen(false)}
+            aria-hidden="true"
+          />
+        )}
 
         <ul className={`nav-menu ${isOpen ? 'active' : ''}`}>
           <li className="nav-item">
