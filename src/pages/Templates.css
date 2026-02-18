@@ -207,6 +207,7 @@
   justify-content: space-between;
   gap: 1rem;
   margin-top: auto;
+  flex-wrap: wrap;
 }
 
 .template-price {
@@ -215,6 +216,29 @@
   font-weight: 700;
   color: var(--accent-soft);
   line-height: 1;
+}
+
+.template-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.template-preview-btn {
+  text-decoration: none;
+}
+
+.template-preview-inpage {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  align-self: center;
+}
+
+.template-preview-inpage:hover {
+  color: var(--accent-soft);
+  text-decoration: underline;
 }
 
 .template-cta {
@@ -289,12 +313,20 @@
 
   .template-footer {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 0.75rem;
   }
 
-  .template-cta {
+  .template-actions {
     width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .template-preview-btn,
+  .template-cta {
+    flex: 1;
+    min-width: 120px;
     justify-content: center;
+    text-align: center;
   }
 }

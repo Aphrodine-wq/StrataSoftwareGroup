@@ -17,6 +17,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "prebuild": "node scripts/copy-website-templates.mjs",
+    "copy-templates": "node scripts/copy-website-templates.mjs",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "make-logo-transparent": "node scripts/make-logo-transparent.mjs"

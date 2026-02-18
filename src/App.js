@@ -13,6 +13,7 @@ import Portfolio from './pages/Portfolio';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Templates from './pages/Templates';
+import TemplatePreview from './pages/TemplatePreview';
 import './App.css';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/about" element={<About />} />
             <Route path="/templates" element={<Templates />} />
+            <Route path="/templates/preview/:id" element={<TemplatePreview />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
