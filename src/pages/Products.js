@@ -8,6 +8,38 @@ function Products() {
 
   const products = [
     {
+      name: 'After Hours AI Receptionist',
+      tagline: 'Never miss a client call after 5 PM.',
+      description:
+        'An AI-powered phone receptionist that answers every call outside business hours — capturing leads, scheduling consultations, handling client intake, and sending you detailed transcripts. Built for law firms, insurance agencies, and professional services.',
+      status: 'Live',
+      features: [
+        '24/7 after-hours call answering',
+        'Automated appointment scheduling',
+        'Client intake & lead capture',
+        'Call transcription & message summaries',
+        'Customizable greetings & scripts',
+        'SMS & email notifications',
+      ],
+      gradient: 'linear-gradient(135deg, #6366f1 0%, #3B82F6 100%)',
+    },
+    {
+      name: 'Full Time AI Receptionist',
+      tagline: 'Your front desk, fully automated.',
+      description:
+        'A dedicated AI receptionist that manages all inbound calls around the clock — intelligent routing, CRM synchronization, bilingual support, and a real-time analytics dashboard to track every interaction.',
+      status: 'Live',
+      features: [
+        'Intelligent call routing & transfers',
+        'CRM integration (Clio, Salesforce, HubSpot)',
+        'Bilingual support (English & Spanish)',
+        'Real-time analytics dashboard',
+        'Overflow & peak-hour handling',
+        'Custom call flows per department',
+      ],
+      gradient: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+    },
+    {
       name: 'Fair Trade Worker',
       tagline: 'Workforce management, reimagined.',
       description:
@@ -53,32 +85,11 @@ function Products() {
     },
   ];
 
-  const tiers = [
-    {
-      name: 'Starter',
-      price: '$49/mo',
-      features: ['Up to 25 workers', 'Basic scheduling', 'Email support', 'Standard reports'],
-      highlighted: false,
-    },
-    {
-      name: 'Professional',
-      price: '$149/mo',
-      features: ['Up to 150 workers', 'Advanced scheduling + compliance', 'Priority support', 'Custom integrations', 'Analytics dashboard'],
-      highlighted: true,
-    },
-    {
-      name: 'Enterprise',
-      price: 'Custom',
-      features: ['Unlimited workers', 'Dedicated account manager', 'SLA guarantee', 'SSO & RBAC', 'On-premise option'],
-      highlighted: false,
-    },
-  ];
-
   return (
     <div className="products">
       <div className="page-header reveal">
-        <h1>Our Products</h1>
-        <p>Software solutions we've built and maintain</p>
+        <h1>AI Solutions & Products</h1>
+        <p>AI receptionists, workforce tools, and developer products built by Strata</p>
       </div>
 
       <div className="products-content">
@@ -87,7 +98,7 @@ function Products() {
           {products.map((product, index) => (
             <div
               key={index}
-              className={`product-card reveal reveal-delay-${index + 1} ${product.status === 'Live' ? 'product-card--live' : 'product-card--upcoming'
+              className={`product-card reveal reveal-delay-${Math.min(index + 1, 4)} ${product.status === 'Live' ? 'product-card--live' : 'product-card--upcoming'
                 }`}
             >
               <div
@@ -123,39 +134,6 @@ function Products() {
             </div>
           ))}
         </div>
-
-        {/* Pricing Tiers — Fair Trade Worker */}
-        <section className="pricing-section reveal">
-          <h2>Fair Trade Worker — Plans</h2>
-          <p className="pricing-subtitle">Choose the plan that grows with your team</p>
-
-          <div className="pricing-grid">
-            {tiers.map((tier, index) => (
-              <div
-                key={index}
-                className={`pricing-card reveal reveal-delay-${index + 1} ${tier.highlighted ? 'pricing-card--highlighted' : ''
-                  }`}
-              >
-                {tier.highlighted && <span className="pricing-badge">Most Popular</span>}
-                <h3>{tier.name}</h3>
-                <div className="pricing-price">{tier.price}</div>
-                <ul className="pricing-features">
-                  {tier.features.map((f, i) => (
-                    <li key={i}>
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Link to="/contact" className={tier.highlighted ? 'btn-primary' : 'btn-secondary'}>
-                  {tier.price === 'Custom' ? 'Contact Sales' : 'Get Started'}
-                </Link>
-              </div>
-            ))}
-          </div>
-        </section>
       </div>
     </div>
   );

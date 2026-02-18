@@ -9,6 +9,31 @@ function Services() {
 
   const services = [
     {
+      name: 'After Hours AI Phone Receptionist',
+      description:
+        'Never lose a client after business hours. Our AI receptionist answers every call, captures caller details, schedules consultations, handles intake forms, and sends you a full transcript — so you wake up to new leads, not missed calls.',
+      price: 'Contact for Pricing',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+        </svg>
+      ),
+      features: ['24/7 call answering after hours', 'Call transcription & message summaries', 'Appointment scheduling', 'Client intake & lead capture'],
+    },
+    {
+      name: 'Full Time AI Receptionist',
+      description:
+        'A dedicated AI receptionist that handles all inbound calls around the clock — routing callers to the right person, answering common questions, syncing with your CRM, and providing bilingual support for a seamless client experience.',
+      price: 'Contact for Pricing',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="12 6 12 12 16 14" />
+        </svg>
+      ),
+      features: ['Intelligent call routing & transfers', 'CRM integration (Clio, Salesforce, etc.)', 'Bilingual (English & Spanish)', 'Real-time analytics dashboard'],
+    },
+    {
       name: 'Custom Software Development',
       description:
         'End-to-end custom software solutions tailored to your business needs. From web applications to enterprise platforms, we build scalable, maintainable software that grows with you.',
@@ -79,32 +104,32 @@ function Services() {
 
   const differentiators = [
     {
+      title: 'AI-Powered 24/7',
+      description: 'Your AI receptionist never takes a day off — answering calls at midnight, weekends, and holidays.',
+      icon: '🤖',
+    },
+    {
+      title: 'Industry-Trained',
+      description: 'Built specifically for law firms, insurance agencies, and professional services.',
+      icon: '🎯',
+    },
+    {
       title: 'Transparent Pricing',
-      description: 'No hidden fees, no scope creep. Detailed estimates upfront.',
+      description: 'No hidden fees, no per-minute surprises. Simple, predictable plans.',
       icon: '💎',
     },
     {
-      title: 'Agile Delivery',
-      description: '2-week sprints with demos. You see progress, not promises.',
+      title: 'Fast Setup',
+      description: 'Go live in days, not months. We handle setup, training, and integration.',
       icon: '🚀',
-    },
-    {
-      title: 'Code Ownership',
-      description: 'You own 100% of the code. No lock-in, no licensing traps.',
-      icon: '🔑',
-    },
-    {
-      title: 'Post-Launch Support',
-      description: '90-day warranty included with every project we ship.',
-      icon: '🛡️',
     },
   ];
 
   return (
     <div className="services">
       <div className="page-header reveal">
-        <h1>Our Services</h1>
-        <p>Expert development and consulting tailored to your needs</p>
+        <h1>AI Receptionist Services & More</h1>
+        <p>AI-powered phone solutions and expert development tailored to your business</p>
       </div>
 
       <div className="services-content">
@@ -153,13 +178,13 @@ function Services() {
 
         {/* ── CTA ── */}
         <section className="services-cta reveal">
-          <h2>Need a Custom Solution?</h2>
+          <h2>Ready for an AI Receptionist?</h2>
           <p>
-            Every project is unique. Let's discuss your requirements and find the
-            perfect approach for your business.
+            Stop losing clients to missed calls. Let's set up your AI receptionist
+            and start capturing every lead — after hours and beyond.
           </p>
           <Link to="/contact" className="btn-primary">
-            Request a Quote
+            Get Started
             <span className="btn-arrow">→</span>
           </Link>
         </section>

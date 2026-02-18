@@ -16,8 +16,8 @@ function Footer() {
                             <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="Strata Software Group" className="footer-logo-img" />
                         </Link>
                         <p className="footer-tagline">
-                            Building tomorrow's solutions today. We craft innovative software
-                            that empowers businesses to thrive in the digital age.
+                            AI-powered receptionists and premium software for law firms,
+                            insurance agencies, and professional services.
                         </p>
                     </div>
 
@@ -36,10 +36,10 @@ function Footer() {
                     <div className="footer-links-col">
                         <h4>Services</h4>
                         <ul>
+                            <li><Link to="/services">AI Receptionists</Link></li>
+                            <li><Link to="/services">After Hours AI</Link></li>
                             <li><Link to="/services">Custom Development</Link></li>
-                            <li><Link to="/services">Web Applications</Link></li>
-                            <li><Link to="/services">Mobile Apps</Link></li>
-                            <li><Link to="/services">UI/UX Design</Link></li>
+                            <li><Link to="/templates">Website Templates</Link></li>
                         </ul>
                     </div>
 
@@ -52,12 +52,8 @@ function Footer() {
                                 info@stratasoftwaregroup.com
                             </li>
                             <li>
-                                <span className="footer-contact-icon">☎</span>
-                                +1 (555) 123-4567
-                            </li>
-                            <li>
                                 <span className="footer-contact-icon">⌖</span>
-                                San Francisco, CA
+                                Tupelo, MS
                             </li>
                         </ul>
                     </div>

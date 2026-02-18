@@ -34,7 +34,7 @@ function TemplatePreview() {
             <Link to="/templates" className="btn-secondary template-preview-back">
               Back to Templates
             </Link>
-            <Link to="/contact" className="btn-primary">
+            <Link to={`/templates/checkout/${template.id}`} className="btn-primary">
               Purchase
             </Link>
           </div>

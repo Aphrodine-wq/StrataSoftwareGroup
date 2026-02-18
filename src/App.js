@@ -14,12 +14,17 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Templates from './pages/Templates';
 import TemplatePreview from './pages/TemplatePreview';
+import TemplateCheckout from './pages/TemplateCheckout';
+import CheckoutSuccess from './pages/CheckoutSuccess';
+import CheckoutCancel from './pages/CheckoutCancel';
+import CursorGlow from './components/CursorGlow';
 import './App.css';
 
 function App() {
   return (
     <Router>
       <div className="App">
+        <CursorGlow />
         <Navigation />
         <PageTransition />
         <main className="main-content page-entered">
@@ -31,6 +36,9 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/templates" element={<Templates />} />
             <Route path="/templates/preview/:id" element={<TemplatePreview />} />
+            <Route path="/templates/checkout/:id" element={<TemplateCheckout />} />
+            <Route path="/checkout/success" element={<CheckoutSuccess />} />
+            <Route path="/checkout/cancel" element={<CheckoutCancel />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
@@ -43,3 +51,4 @@ function App() {
 }
 
 export default App;
+

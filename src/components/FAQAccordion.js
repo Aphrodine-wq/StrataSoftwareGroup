@@ -4,7 +4,27 @@ import './FAQAccordion.css';
 
 const faqs = [
     {
-        question: 'How long does a typical project take?',
+        question: 'How does the AI Receptionist handle legal client calls?',
+        answer:
+            'Our AI receptionist is trained to handle law firm calls with confidentiality and professionalism. It greets callers, asks screening questions, captures case details, runs basic conflict checks against your criteria, schedules consultations on your calendar, and sends you a detailed transcript and summary — all while maintaining attorney-client confidentiality standards.',
+    },
+    {
+        question: 'Can the AI Receptionist integrate with my insurance CRM?',
+        answer:
+            'Yes! Our AI receptionist integrates with popular insurance CRMs like Salesforce, HubSpot, Applied Epic, and AMS360. It can log caller details, create new leads, update policy notes, and trigger follow-up workflows automatically. We also support custom integrations via API.',
+    },
+    {
+        question: 'What\'s the difference between After Hours and Full Time AI Receptionist?',
+        answer:
+            'The After Hours AI Receptionist activates outside your business hours (evenings, weekends, holidays) to capture leads you\'d otherwise miss. The Full Time AI Receptionist handles all inbound calls 24/7 — acting as your complete front desk with intelligent call routing, CRM sync, bilingual support, and overflow handling during busy periods.',
+    },
+    {
+        question: 'How long does setup take?',
+        answer:
+            'Most AI receptionist setups go live within 3–5 business days. We handle the configuration, script customization, CRM integration, and testing. You provide your preferences, greetings, and scheduling rules, and we take care of the rest.',
+    },
+    {
+        question: 'How long does a typical software project take?',
         answer:
             'Timelines vary based on scope and complexity. A simple web application typically takes 4–8 weeks, while a full-featured platform can take 3–6 months. We provide detailed timelines during our discovery phase.',
     },
@@ -21,12 +41,7 @@ const faqs = [
     {
         question: 'How does your pricing work?',
         answer:
-            'We offer both fixed-price and time-and-materials models. After our discovery workshop, we provide a detailed proposal with transparent pricing. No hidden fees, no surprises.',
-    },
-    {
-        question: 'Can you work with our existing team?',
-        answer:
-            'Yes! We frequently embed with client engineering teams for augmentation, mentoring, and collaborative development. We adapt to your workflows, tools, and processes.',
+            'We offer both fixed-price and time-and-materials models. After our discovery workshop, we provide a detailed proposal with transparent pricing. No hidden fees, no surprises. AI receptionist plans are billed monthly with no long-term contracts required.',
     },
 ];
 
@@ -42,7 +57,7 @@ function FAQAccordion() {
         <section className="faq-section">
             <div className="faq-header reveal">
                 <h2>Frequently Asked Questions</h2>
-                <p>Everything you need to know before getting started</p>
+                <p>Everything you need to know about our AI receptionists and services</p>
             </div>
 
             <div className="faq-list">

@@ -5,24 +5,31 @@ import './Testimonials.css';
 const testimonials = [
     {
         quote:
-            "Strata Software Group transformed our vision into a polished product in record time. Their attention to detail and technical excellence is unmatched.",
-        name: 'Sarah Mitchell',
-        title: 'CTO',
-        company: 'Nexus Innovations',
+            "Our after-hours AI receptionist from Strata has captured leads we were completely missing. We've seen a 40% increase in new client consultations since going live.",
+        name: 'Jennifer Caldwell',
+        title: 'Managing Partner',
+        company: 'Caldwell & Associates Law Firm',
     },
     {
         quote:
-            "Working with Strata felt like having an elite in-house engineering team. They didn't just write code — they solved our core business problems.",
-        name: 'David Chen',
-        title: 'Founder & CEO',
-        company: 'BrightPath Analytics',
+            "We used to lose quote requests every evening and weekend. Now our AI receptionist handles everything — scheduling, intake, even basic policy questions. It's like having a full-time employee that never sleeps.",
+        name: 'Marcus Rivera',
+        title: 'Agency Owner',
+        company: 'Rivera Insurance Group',
     },
     {
         quote:
-            "From the initial workshop to deployment, every step was transparent and professionally managed. The final product exceeded our expectations by miles.",
-        name: 'Jessica Romero',
-        title: 'VP of Product',
-        company: 'VeloHealth',
+            "The AI receptionist integrates perfectly with our case management system. It handles conflict checks, schedules consultations, and sends us detailed transcripts. Our attorneys love it.",
+        name: 'Patricia Nguyen',
+        title: 'Office Administrator',
+        company: 'Nguyen Legal Partners',
+    },
+    {
+        quote:
+            "Strata's law firm website template paired with their AI receptionist transformed our online presence overnight. We went from zero web leads to booking 15+ consultations a month.",
+        name: 'Thomas Whitfield',
+        title: 'Solo Practitioner',
+        company: 'Whitfield Law PLLC',
     },
 ];
 
@@ -54,8 +61,8 @@ function Testimonials() {
     return (
         <section className="testimonials-section">
             <div className="testimonials-header reveal">
-                <h2>What Clients Say</h2>
-                <p>Trusted by innovative teams worldwide</p>
+                <h2>What Our Clients Say</h2>
+                <p>Trusted by law firms and insurance agencies nationwide</p>
             </div>
 
             <div className="testimonial-carousel reveal reveal-delay-1">

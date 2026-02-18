@@ -27,9 +27,10 @@ function Templates() {
         {/* Intro */}
         <div className="templates-intro reveal">
           <p>
-            Every template is built by the Strata team to the same standard as our client
-            work — clean code, responsive design, and a premium feel out of the box.
-            Preview any template below to try before you buy. Purchase once, own forever.
+            Launch your law firm, insurance agency, or professional services website in hours — not weeks.
+            Every template is built by Strata to the same standard as our client work, with clean code,
+            responsive design, and a premium feel out of the box. Pair any template with our AI
+            Receptionist for a complete client-acquisition system. Purchase once, own forever.
           </p>
         </div>
 
@@ -109,7 +110,7 @@ function Templates() {
                     >
                       View in page
                     </Link>
-                    <Link to="/contact" className="btn-primary template-cta">
+                    <Link to={`/templates/checkout/${template.id}`} className="btn-primary template-cta">
                       Purchase <span className="btn-arrow">→</span>
                     </Link>
                   </div>
