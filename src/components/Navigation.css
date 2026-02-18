@@ -219,11 +219,11 @@
 @keyframes navItemSlideIn {
   from {
     opacity: 0;
-    transform: translateX(14px);
+    transform: translateY(-10px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
 }
 
@@ -252,53 +252,49 @@
     position: relative;
   }
 
-  /* Backdrop overlay */
+  /* Backdrop — not needed for full-screen overlay */
   .nav-backdrop {
-    display: block;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.65);
-    z-index: 998;
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
-    animation: navBackdropIn 0.2s ease forwards;
+    display: none;
   }
 
-  /* ── Drawer ── */
+  /* ── Full-screen overlay menu ── */
   .nav-menu {
     position: fixed;
     top: 0;
+    left: 0;
     right: 0;
     bottom: 0;
-    width: min(300px, 85vw);
+    width: 100%;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
     padding: 0;
     background: var(--bg-elev-1);
-    border-left: 1px solid var(--border-subtle);
-    box-shadow: -12px 0 48px rgba(0, 0, 0, 0.55);
-    transform: translateX(100%);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-left: none;
+    box-shadow: none;
+    transform: translateY(-100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     z-index: 999;
   }
 
   .nav-menu.active {
-    transform: translateX(0);
+    transform: translateY(0);
   }
 
-  /* ── Drawer header ── */
+  /* ── Full-screen menu header ── */
   .nav-menu-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.875rem 1.25rem;
+    padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--border-subtle);
     flex-shrink: 0;
-    min-height: 64px;
-    background: var(--bg-elev-2);
+    min-height: 72px;
+    background: rgba(17, 22, 28, 0.97);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
   }
 
   .nav-menu-logo {
@@ -337,13 +333,14 @@
     color: var(--accent-soft);
   }
 
-  /* ── Nav items list (mobile: stacked) ── */
+  /* ── Nav items list (mobile: full-screen stacked) ── */
   .nav-items {
     flex-direction: column;
     gap: 0;
     align-items: stretch;
-    padding: 0.75rem 0;
+    padding: 1rem 0;
     flex: 1;
+    justify-content: center;
   }
 
   .nav-item {
@@ -363,14 +360,14 @@
   .nav-menu.active .nav-item:nth-child(6) { animation-delay: 0.26s; }
   .nav-menu.active .nav-item:nth-child(7) { animation-delay: 0.30s; }
 
-  /* ── Mobile link styles ── */
+  /* ── Full-screen nav link styles ── */
   .nav-link {
-    padding: 0.875rem 1.5rem;
+    padding: 1rem 2rem;
     border-radius: 0;
-    font-size: 0.975rem;
+    font-size: 1.125rem;
     font-weight: 500;
-    letter-spacing: 0.01em;
-    min-height: 52px;
+    letter-spacing: 0.02em;
+    min-height: 64px;
     display: flex;
     align-items: center;
     border-left: 3px solid transparent;
@@ -397,21 +394,22 @@
     font-weight: 600;
   }
 
-  /* ── CTA item in drawer ── */
+  /* ── CTA item in full-screen menu ── */
   .nav-item--cta {
-    padding: 1rem 1.25rem 0.5rem;
+    padding: 1.25rem 2rem 0.75rem;
     border-top: 1px solid var(--border-subtle);
-    margin-top: 0.25rem;
+    margin-top: 0.5rem;
   }
 
   .nav-contact-btn {
     display: flex;
     justify-content: center;
     text-align: center;
-    padding: 0.875rem 1.5rem;
+    padding: 1rem 2rem;
     border-radius: var(--radius-sm);
     border-left: none;
-    min-height: 48px;
+    min-height: 56px;
+    font-size: 1.125rem;
   }
 
   .nav-contact-btn:hover {
