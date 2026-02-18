@@ -5,7 +5,6 @@ import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 
-import Preloader from './components/Preloader';
 import PageTransition from './components/PageTransition';
 import Home from './pages/Home';
 import Products from './pages/Products';
@@ -13,14 +12,13 @@ import Services from './pages/Services';
 import Portfolio from './pages/Portfolio';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Templates from './pages/Templates';
 import './App.css';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Preloader />
-        
         <Navigation />
         <PageTransition />
         <main className="main-content page-entered">
@@ -30,6 +28,7 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/about" element={<About />} />
+            <Route path="/templates" element={<Templates />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
