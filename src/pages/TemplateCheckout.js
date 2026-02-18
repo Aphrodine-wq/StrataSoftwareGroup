@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { loadStripe } from '@stripe/stripe-js';
 import useScrollReveal from '../hooks/useScrollReveal';
 import { getTemplateById } from '../data/websiteTemplates';
 import './TemplateCheckout.css';
 
 const baseUrl = process.env.PUBLIC_URL || '';
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
 function TemplateCheckout() {
     useScrollReveal();
