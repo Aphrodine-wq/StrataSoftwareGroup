@@ -435,8 +435,8 @@ select:focus-visible {
    ═══════════════════════════════════════════════════════════ */
 
 .main-content {
-  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity var(--transition-slow) cubic-bezier(0.22, 1, 0.36, 1),
+    transform var(--transition-slow) cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .page-entering {
@@ -447,6 +447,12 @@ select:focus-visible {
 .page-entered {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main-content {
+    transition-duration: 0.15s;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════

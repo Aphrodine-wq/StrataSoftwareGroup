@@ -99,13 +99,21 @@ function Navigation() {
           <ul className="nav-items">
             {navLinks.map((link) => (
               <li key={link.path} className="nav-item">
-                <Link to={link.path} className={`nav-link ${isActive(link.path)}`}>
+                <Link
+                  to={link.path}
+                  className={`nav-link ${isActive(link.path)}`}
+                  aria-current={location.pathname === link.path ? 'page' : undefined}
+                >
                   {link.label}
                 </Link>
               </li>
             ))}
             <li className="nav-item nav-item--cta">
-              <Link to="/contact" className={`nav-link nav-contact-btn ${isActive('/contact')}`}>
+              <Link
+                to="/contact"
+                className={`nav-link nav-contact-btn ${isActive('/contact')}`}
+                aria-current={location.pathname === '/contact' ? 'page' : undefined}
+              >
                 Contact Us
               </Link>
             </li>
@@ -120,6 +128,7 @@ function Navigation() {
             key={tab.path}
             to={tab.path}
             className={`mobile-tab ${isActive(tab.path)}`}
+            aria-current={location.pathname === tab.path ? 'page' : undefined}
           >
             <span className="mobile-tab-icon">{tab.icon}</span>
             <span className="mobile-tab-label">{tab.label}</span>

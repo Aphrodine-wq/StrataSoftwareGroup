@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 /**
- * Scrolls to top on every route change + triggers a page-enter animation
- * by toggling a class on the main content element.
+ * Scrolls to top on every route change, triggers a page-enter animation,
+ * and moves focus to main content for accessibility.
  */
 function PageTransition() {
     const location = useLocation();
@@ -22,6 +22,8 @@ function PageTransition() {
             requestAnimationFrame(() => {
                 main.classList.remove('page-entering');
                 main.classList.add('page-entered');
+                // Focus main for screen readers on route change
+                if (typeof main.focus === 'function') main.focus({ preventScroll: true });
             });
         });
     }, [location.pathname]);

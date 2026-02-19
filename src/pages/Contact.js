@@ -14,12 +14,13 @@ function Contact() {
   });
 
   const [errors, setErrors] = useState({});
-  const [toast, setToast] = useState({ visible: false, message: '' });
+  const [toast, setToast] = useState({ visible: false, message: '', isError: false });
+  const [submitting, setSubmitting] = useState(false);
 
   // Auto-dismiss toast after 4s
   useEffect(() => {
     if (!toast.visible) return;
-    const timer = setTimeout(() => setToast({ visible: false, message: '' }), 4000);
+    const timer = setTimeout(() => setToast((t) => ({ ...t, visible: false, message: '' })), 4000);
     return () => clearTimeout(timer);
   }, [toast.visible]);
 
@@ -48,7 +49,7 @@ function Contact() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
@@ -56,14 +57,35 @@ function Contact() {
       return;
     }
     setErrors({});
-    setToast({ visible: true, message: "Thanks! We'll be in touch within 24 hours." });
-    setFormData({ name: '', email: '', company: '', budget: '', message: '' });
+    setSubmitting(true);
+    const apiUrl = process.env.REACT_APP_CONTACT_API_URL || '/api/contact';
+    try {
+      const res = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = res.ok ? null : await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(data?.message || data?.error || `Request failed (${res.status})`);
+      }
+      setToast({ visible: true, message: "Thanks! We'll be in touch within 24 hours.", isError: false });
+      setFormData({ name: '', email: '', company: '', budget: '', message: '' });
+    } catch (err) {
+      setToast({
+        visible: true,
+        message: err.message || 'Something went wrong. Please try again or email us directly.',
+        isError: true,
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
     <div className="contact">
       {/* Toast Notification */}
-      <div className={`toast ${toast.visible ? 'toast--visible' : ''}`}>
+      <div className={`toast ${toast.visible ? 'toast--visible' : ''} ${toast.isError ? 'toast--error' : ''}`} role="alert">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
           <polyline points="22 4 12 14.01 9 11.01" />
@@ -148,8 +170,10 @@ function Contact() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="John Doe"
+                aria-describedby={errors.name ? 'name-error' : undefined}
+                aria-invalid={!!errors.name}
               />
-              {errors.name && <span className="form-error">{errors.name}</span>}
+              {errors.name && <span id="name-error" className="form-error">{errors.name}</span>}
             </div>
 
             <div className={`form-group ${errors.email ? 'form-group--error' : ''}`}>
@@ -161,8 +185,10 @@ function Contact() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="john@company.com"
+                aria-describedby={errors.email ? 'email-error' : undefined}
+                aria-invalid={!!errors.email}
               />
-              {errors.email && <span className="form-error">{errors.email}</span>}
+              {errors.email && <span id="email-error" className="form-error">{errors.email}</span>}
             </div>
           </div>
 
@@ -205,13 +231,21 @@ function Contact() {
               value={formData.message}
               onChange={handleChange}
               placeholder="Tell us about your project, timeline, and goals..."
+              aria-describedby={errors.message ? 'message-error' : undefined}
+              aria-invalid={!!errors.message}
             />
-            {errors.message && <span className="form-error">{errors.message}</span>}
+            {errors.message && <span id="message-error" className="form-error">{errors.message}</span>}
           </div>
 
-          <button type="submit" className="btn-primary contact-submit-btn">
-            Send Message
-            <span className="btn-arrow">→</span>
+          <button type="submit" className="btn-primary contact-submit-btn" disabled={submitting}>
+            {submitting ? (
+              <>Sending…</>
+            ) : (
+              <>
+                Send Message
+                <span className="btn-arrow">→</span>
+              </>
+            )}
           </button>
         </form>
       </div>

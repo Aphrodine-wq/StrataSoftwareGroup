@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback, useState } from 'react';
 import './WebGLBackground.css';
 
 /**
@@ -233,7 +233,23 @@ function WebGLBackground({ className = '' }) {
   const startTimeRef = useRef(Date.now());
   const mouseRef = useRef({ x: 0, y: 0 });
   const targetMouseRef = useRef({ x: 0, y: 0 });
+  const heroReadyMarkedRef = useRef(false);
   const MOUSE_LERP = 0.04;
+
+  // Disable WebGL on mobile (<=768px) or when user prefers reduced motion; show CSS fallback
+  const [useWebGL, setUseWebGL] = useState(true);
+  useEffect(() => {
+    const mobile = window.matchMedia('(max-width: 768px)');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const disable = () => setUseWebGL(!mobile.matches && !reduced.matches);
+    disable();
+    mobile.addEventListener('change', disable);
+    reduced.addEventListener('change', disable);
+    return () => {
+      mobile.removeEventListener('change', disable);
+      reduced.removeEventListener('change', disable);
+    };
+  }, []);
 
   const handleMouseMove = useCallback((e) => {
     targetMouseRef.current.x = e.clientX;
@@ -241,9 +257,12 @@ function WebGLBackground({ className = '' }) {
   }, []);
 
   useEffect(() => {
-    // Respect reduced motion
+    if (!useWebGL) return;
+    // Respect reduced motion (double-check)
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (mq.matches) return;
+    const mobile = window.matchMedia('(max-width: 768px)');
+    if (mobile.matches) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -321,8 +340,11 @@ function WebGLBackground({ className = '' }) {
     targetMouseRef.current.x = window.innerWidth / 2;
     targetMouseRef.current.y = window.innerHeight / 2;
 
-    // Render loop — smooth mouse lerp for fluid parallax
+    // Render loop — smooth mouse lerp; pause when tab hidden to save CPU/battery
     function render() {
+      rafRef.current = requestAnimationFrame(render);
+      if (document.visibilityState === 'hidden') return;
+
       const m = mouseRef.current;
       const t = targetMouseRef.current;
       m.x += (t.x - m.x) * MOUSE_LERP;
@@ -333,7 +355,10 @@ function WebGLBackground({ className = '' }) {
       gl.uniform2f(uRes, canvas.width, canvas.height);
       gl.uniform2f(uMouse, m.x, canvas.height - m.y);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
-      rafRef.current = requestAnimationFrame(render);
+      if (!heroReadyMarkedRef.current && typeof performance !== 'undefined' && performance.mark) {
+        heroReadyMarkedRef.current = true;
+        performance.mark('hero-ready');
+      }
     }
     render();
 
@@ -346,8 +371,11 @@ function WebGLBackground({ className = '' }) {
       gl.deleteShader(fs);
       gl.deleteBuffer(buffer);
     };
-  }, [handleMouseMove]);
+  }, [handleMouseMove, useWebGL]);
 
+  if (!useWebGL) {
+    return <div className={`webgl-bg webgl-bg--fallback ${className}`} aria-hidden="true" />;
+  }
   return <canvas ref={canvasRef} className={`webgl-bg ${className}`} />;
 }
 

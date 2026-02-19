@@ -20,10 +20,11 @@ function CursorGlow() {
         if (!glow) return;
 
         const tick = () => {
+            raf.current = requestAnimationFrame(tick);
+            if (document.visibilityState === 'hidden') return;
             rendered.current.x += (pos.current.x - rendered.current.x) * 0.15;
             rendered.current.y += (pos.current.y - rendered.current.y) * 0.15;
             glow.style.transform = `translate(${rendered.current.x}px, ${rendered.current.y}px)`;
-            raf.current = requestAnimationFrame(tick);
         };
 
         const onMove = (e) => {

@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './FloatingParticles.css';
 
 /**
  * CSS-only ambient floating particles for premium depth.
  * ~18 randomized glowing dots with staggered drift animations.
- * Respects prefers-reduced-motion.
+ * Respects prefers-reduced-motion (disabled or minimal count).
  */
 function FloatingParticles({ count = 18, className = '' }) {
-    const particles = Array.from({ length: count }, (_, i) => {
+    const [effectiveCount, setEffectiveCount] = useState(() =>
+        typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : count
+    );
+    useEffect(() => {
+        const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+        setEffectiveCount(mq.matches ? 0 : count);
+        const handler = () => setEffectiveCount(mq.matches ? 0 : count);
+        mq.addEventListener('change', handler);
+        return () => mq.removeEventListener('change', handler);
+    }, [count]);
+
+    const particles = Array.from({ length: effectiveCount }, (_, i) => {
         const size = 2 + Math.random() * 4;
         const left = Math.random() * 100;
         const delay = Math.random() * 20;

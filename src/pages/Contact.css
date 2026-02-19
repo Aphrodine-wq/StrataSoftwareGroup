@@ -45,10 +45,21 @@
   opacity: 1;
 }
 
+.toast--error {
+  border-color: rgba(198, 91, 91, 0.4);
+}
+
+.toast--error svg {
+  color: var(--error);
+}
+
+.toast:not(.toast--error) svg {
+  color: var(--success);
+}
+
 .toast svg {
   width: 20px;
   height: 20px;
-  color: #4ade80;
   flex-shrink: 0;
 }
 
