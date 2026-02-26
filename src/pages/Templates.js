@@ -29,8 +29,8 @@ function Templates() {
           <p>
             Launch your law firm, insurance agency, or professional services website in hours — not weeks.
             Every template is built by Strata to the same standard as our client work, with clean code,
-            responsive design, and a premium feel out of the box. Pair any template with our AI
-            Receptionist for a complete client-acquisition system. Purchase once, own forever.
+            responsive design, and a premium feel out of the box. Pair any template with our
+            receptionist for a complete client-acquisition system. Purchase once, own forever.
           </p>
         </div>
 

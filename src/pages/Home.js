@@ -1,23 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Link } from 'react-router-dom';
 import useScrollReveal from '../hooks/useScrollReveal';
-import WebGLBackground from '../components/WebGLBackground';
 import FloatingParticles from '../components/FloatingParticles';
 import Tilt3DCard from '../components/Tilt3DCard';
 import ProcessTimeline from '../components/ProcessTimeline';
 import Testimonials from '../components/Testimonials';
 import TechMarquee from '../components/TechMarquee';
+import '../components/WebGLBackground.css';
 import './Home.css';
+
+const WebGLBackground = lazy(() => import('../components/WebGLBackground'));
 
 function Home() {
   useScrollReveal();
+  const [deferWebGL, setDeferWebGL] = useState(true);
+  useEffect(() => {
+    let cancelled = false;
+    const run = () => { if (!cancelled) setDeferWebGL(false); };
+    const id = typeof requestIdleCallback !== 'undefined'
+      ? requestIdleCallback(run, { timeout: 800 })
+      : setTimeout(run, 400);
+    return () => {
+      cancelled = true;
+      if (typeof requestIdleCallback !== 'undefined') cancelIdleCallback(id);
+      else clearTimeout(id);
+    };
+  }, []);
 
   return (
     <div className="home">
-      {/* ── Hero Section with WebGL Shader ── */}
+      {/* ── Hero Section: CSS fallback first, WebGL loads after idle for faster paint ── */}
       <section className="hero">
-        <WebGLBackground className="hero-shader" />
-        <FloatingParticles count={20} />
+        {deferWebGL ? (
+          <div className="hero-shader webgl-bg--fallback" aria-hidden="true" />
+        ) : (
+          <Suspense fallback={<div className="hero-shader webgl-bg--fallback" aria-hidden="true" />}>
+            <WebGLBackground className="hero-shader" />
+          </Suspense>
+        )}
+        <FloatingParticles count={10} />
 
         {/* Layered depth elements */}
         <div className="hero-depth-layer hero-depth-1" aria-hidden="true" />
@@ -25,14 +46,14 @@ function Home() {
         <div className="hero-depth-layer hero-depth-3" aria-hidden="true" />
 
         <div className="hero-content">
-          <p className="hero-label reveal">AI Agents · Websites · Marketing</p>
+          <p className="hero-label reveal">Receptionists · Websites · Marketing</p>
           <h1 className="hero-title reveal reveal-delay-1">
             Grow your business<br />
-            <span className="hero-title-accent">with AI-powered solutions.</span>
+            <span className="hero-title-accent">with 24/7 phone, web, and marketing.</span>
           </h1>
           <p className="hero-description reveal reveal-delay-2">
-            AI receptionists that answer every call, stunning websites that convert visitors
-            into clients, and marketing strategies that drive real growth — all built for
+            Receptionists that answer every call, stunning websites that convert visitors
+            into clients, and marketing strategies that drive real growth — built for
             law firms, insurance agencies, and professional services.
           </p>
           <div className="hero-actions reveal reveal-delay-3">
@@ -56,11 +77,11 @@ function Home() {
       {/* ── Section Divider ── */}
       <hr className="section-divider" />
 
-      {/* ── AI Receptionist Solutions ── */}
+      {/* ── Receptionist & Phone Solutions ── */}
       <section className="features-section">
         <div className="features-header reveal">
-          <h2>AI Receptionist Solutions</h2>
-          <p>Intelligent phone answering for law firms, insurance agencies, and professional services</p>
+          <h2>Receptionist & Phone Solutions</h2>
+          <p>24/7 phone answering for law firms, insurance agencies, and professional services</p>
         </div>
 
         <div className="features">
@@ -70,8 +91,8 @@ function Home() {
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg>
             </div>
-            <h3>After Hours AI Receptionist</h3>
-            <p>Never lose a lead after 5 PM. Our AI answers calls, takes detailed messages, schedules consultations, and handles client intake — even at midnight.</p>
+            <h3>After Hours Receptionist</h3>
+            <p>Never lose a lead after 5 PM. We answer calls, take detailed messages, schedule consultations, and handle client intake — even at midnight.</p>
             <Link to="/services" className="feature-link">
               Learn More <span>→</span>
             </Link>
@@ -84,8 +105,8 @@ function Home() {
                 <polyline points="12 6 12 12 16 14" />
               </svg>
             </div>
-            <h3>Full Time AI Receptionist</h3>
-            <p>24/7 intelligent call handling with CRM integration, smart routing, bilingual support, and real-time analytics for your practice or agency.</p>
+            <h3>Full Time Receptionist</h3>
+            <p>24/7 call handling with CRM integration, smart routing, bilingual support, and real-time analytics for your practice or agency.</p>
             <Link to="/services" className="feature-link">
               Learn More <span>→</span>
             </Link>
@@ -113,7 +134,7 @@ function Home() {
       <section className="features-section">
         <div className="features-header reveal">
           <h2>Built for Your Industry</h2>
-          <p>Purpose-built AI solutions that understand your clients</p>
+          <p>Purpose-built solutions that understand your clients</p>
         </div>
 
         <div className="features">
@@ -124,7 +145,7 @@ function Home() {
               </svg>
             </div>
             <h3>Law Firms</h3>
-            <p>Capture every potential client call. Our AI handles initial consultations, conflict checks, case intake, and appointment scheduling — with full attorney-client confidentiality.</p>
+            <p>Capture every potential client call. We handle initial consultations, conflict checks, case intake, and appointment scheduling — with full attorney-client confidentiality.</p>
           </Tilt3DCard>
 
           <Tilt3DCard className="feature-card reveal reveal-delay-2">
@@ -136,7 +157,7 @@ function Home() {
               </svg>
             </div>
             <h3>Insurance Agencies</h3>
-            <p>Never miss a quote request or claims call. Our AI receptionist routes calls to the right agent, captures policy details, and schedules follow-ups automatically.</p>
+            <p>Never miss a quote request or claims call. Our receptionist routes calls to the right agent, captures policy details, and schedules follow-ups automatically.</p>
           </Tilt3DCard>
 
           <Tilt3DCard className="feature-card reveal reveal-delay-3">
@@ -148,7 +169,7 @@ function Home() {
               </svg>
             </div>
             <h3>Professional Services</h3>
-            <p>From accounting firms to medical practices — our AI receptionist adapts to your workflow, integrates with your tools, and keeps your front desk covered.</p>
+            <p>From accounting firms to medical practices — our receptionist adapts to your workflow, integrates with your tools, and keeps your front desk covered.</p>
           </Tilt3DCard>
         </div>
       </section>
@@ -168,8 +189,8 @@ function Home() {
         <div className="cta-glow" aria-hidden="true" />
         <div className="cta-glow-ring" aria-hidden="true" />
         <div className="cta-banner-content">
-          <h2>Ready to Automate Your Front Desk?</h2>
-          <p>Stop losing clients to missed calls. Get an AI receptionist that works around the clock.</p>
+          <h2>Ready to Cover Your Front Desk 24/7?</h2>
+          <p>Stop losing clients to missed calls. Get a receptionist that works around the clock.</p>
           <Link to="/contact" className="btn-primary">
             Get Started Today
             <span className="btn-arrow">→</span>

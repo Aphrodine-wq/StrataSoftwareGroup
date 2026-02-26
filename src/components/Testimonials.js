@@ -5,28 +5,28 @@ import './Testimonials.css';
 const testimonials = [
     {
         quote:
-            "Our after-hours AI receptionist from Strata has captured leads we were completely missing. We've seen a 40% increase in new client consultations since going live.",
+            "Our after-hours receptionist from Strata has captured leads we were completely missing. We've seen a 40% increase in new client consultations since going live.",
         name: 'Jennifer Caldwell',
         title: 'Managing Partner',
         company: 'Caldwell & Associates Law Firm',
     },
     {
         quote:
-            "We used to lose quote requests every evening and weekend. Now our AI receptionist handles everything — scheduling, intake, even basic policy questions. It's like having a full-time employee that never sleeps.",
+            "We used to lose quote requests every evening and weekend. Now our receptionist handles everything — scheduling, intake, even basic policy questions. It's like having a full-time employee that never sleeps.",
         name: 'Marcus Rivera',
         title: 'Agency Owner',
         company: 'Rivera Insurance Group',
     },
     {
         quote:
-            "The AI receptionist integrates perfectly with our case management system. It handles conflict checks, schedules consultations, and sends us detailed transcripts. Our attorneys love it.",
+            "The receptionist integrates perfectly with our case management system. It handles conflict checks, schedules consultations, and sends us detailed transcripts. Our attorneys love it.",
         name: 'Patricia Nguyen',
         title: 'Office Administrator',
         company: 'Nguyen Legal Partners',
     },
     {
         quote:
-            "Strata's law firm website template paired with their AI receptionist transformed our online presence overnight. We went from zero web leads to booking 15+ consultations a month.",
+            "Strata's law firm website template paired with their receptionist transformed our online presence overnight. We went from zero web leads to booking 15+ consultations a month.",
         name: 'Thomas Whitfield',
         title: 'Solo Practitioner',
         company: 'Whitfield Law PLLC',

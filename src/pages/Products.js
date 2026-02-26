@@ -8,10 +8,10 @@ function Products() {
 
   const products = [
     {
-      name: 'After Hours AI Receptionist',
+      name: 'After Hours Receptionist',
       tagline: 'Never miss a client call after 5 PM.',
       description:
-        'An AI-powered phone receptionist that answers every call outside business hours — capturing leads, scheduling consultations, handling client intake, and sending you detailed transcripts. Built for law firms, insurance agencies, and professional services.',
+        'A phone receptionist that answers every call outside business hours — capturing leads, scheduling consultations, handling client intake, and sending you detailed transcripts. Built for law firms, insurance agencies, and professional services.',
       status: 'Live',
       features: [
         '24/7 after-hours call answering',
@@ -24,10 +24,10 @@ function Products() {
       gradient: 'linear-gradient(135deg, #6366f1 0%, #3B82F6 100%)',
     },
     {
-      name: 'Full Time AI Receptionist',
-      tagline: 'Your front desk, fully automated.',
+      name: 'Full Time Receptionist',
+      tagline: 'Your front desk, fully covered.',
       description:
-        'A dedicated AI receptionist that manages all inbound calls around the clock — intelligent routing, CRM synchronization, bilingual support, and a real-time analytics dashboard to track every interaction.',
+        'A dedicated receptionist that manages all inbound calls around the clock — intelligent routing, CRM synchronization, bilingual support, and a real-time analytics dashboard to track every interaction.',
       status: 'Live',
       features: [
         'Intelligent call routing & transfers',
@@ -59,7 +59,7 @@ function Products() {
       name: 'CodeVault',
       tagline: 'Your codebase, documented automatically.',
       description:
-        'AI-powered documentation engine that continuously analyzes your repository, generates living docs, and keeps them in sync with every commit.',
+        'Documentation engine that continuously analyzes your repository, generates living docs, and keeps them in sync with every commit.',
       status: 'Coming Q2 2026',
       features: [
         'Auto-generated API documentation',
@@ -88,8 +88,8 @@ function Products() {
   return (
     <div className="products">
       <div className="page-header reveal">
-        <h1>AI Solutions & Products</h1>
-        <p>AI receptionists, workforce tools, and developer products built by Strata</p>
+        <h1>Products & Solutions</h1>
+        <p>Receptionists, workforce tools, and developer products built by Strata</p>
       </div>
 
       <div className="products-content">

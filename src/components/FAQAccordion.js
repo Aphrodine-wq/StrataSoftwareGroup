@@ -4,24 +4,24 @@ import './FAQAccordion.css';
 
 const faqs = [
     {
-        question: 'How does the AI Receptionist handle legal client calls?',
+        question: 'How does the receptionist handle legal client calls?',
         answer:
-            'Our AI receptionist is trained to handle law firm calls with confidentiality and professionalism. It greets callers, asks screening questions, captures case details, runs basic conflict checks against your criteria, schedules consultations on your calendar, and sends you a detailed transcript and summary — all while maintaining attorney-client confidentiality standards.',
+            'Our receptionist is trained to handle law firm calls with confidentiality and professionalism. It greets callers, asks screening questions, captures case details, runs basic conflict checks against your criteria, schedules consultations on your calendar, and sends you a detailed transcript and summary — all while maintaining attorney-client confidentiality standards.',
     },
     {
-        question: 'Can the AI Receptionist integrate with my insurance CRM?',
+        question: 'Can the receptionist integrate with my insurance CRM?',
         answer:
-            'Yes! Our AI receptionist integrates with popular insurance CRMs like Salesforce, HubSpot, Applied Epic, and AMS360. It can log caller details, create new leads, update policy notes, and trigger follow-up workflows automatically. We also support custom integrations via API.',
+            'Yes! Our receptionist integrates with popular insurance CRMs like Salesforce, HubSpot, Applied Epic, and AMS360. It can log caller details, create new leads, update policy notes, and trigger follow-up workflows automatically. We also support custom integrations via API.',
     },
     {
-        question: 'What\'s the difference between After Hours and Full Time AI Receptionist?',
+        question: 'What\'s the difference between After Hours and Full Time receptionist?',
         answer:
-            'The After Hours AI Receptionist activates outside your business hours (evenings, weekends, holidays) to capture leads you\'d otherwise miss. The Full Time AI Receptionist handles all inbound calls 24/7 — acting as your complete front desk with intelligent call routing, CRM sync, bilingual support, and overflow handling during busy periods.',
+            'The After Hours receptionist activates outside your business hours (evenings, weekends, holidays) to capture leads you\'d otherwise miss. The Full Time receptionist handles all inbound calls 24/7 — acting as your complete front desk with intelligent call routing, CRM sync, bilingual support, and overflow handling during busy periods.',
     },
     {
         question: 'How long does setup take?',
         answer:
-            'Most AI receptionist setups go live within 3–5 business days. We handle the configuration, script customization, CRM integration, and testing. You provide your preferences, greetings, and scheduling rules, and we take care of the rest.',
+            'Most receptionist setups go live within 3–5 business days. We handle the configuration, script customization, CRM integration, and testing. You provide your preferences, greetings, and scheduling rules, and we take care of the rest.',
     },
     {
         question: 'How long does a typical software project take?',
@@ -41,7 +41,7 @@ const faqs = [
     {
         question: 'How does your pricing work?',
         answer:
-            'We offer both fixed-price and time-and-materials models. After our discovery workshop, we provide a detailed proposal with transparent pricing. No hidden fees, no surprises. AI receptionist plans are billed monthly with no long-term contracts required.',
+            'We offer both fixed-price and time-and-materials models. After our discovery workshop, we provide a detailed proposal with transparent pricing. No hidden fees, no surprises. Receptionist plans are billed monthly with no long-term contracts required.',
     },
 ];
 
@@ -57,7 +57,7 @@ function FAQAccordion() {
         <section className="faq-section">
             <div className="faq-header reveal">
                 <h2>Frequently Asked Questions</h2>
-                <p>Everything you need to know about our AI receptionists and services</p>
+                <p>Everything you need to know about our receptionists and services</p>
             </div>
 
             <div className="faq-list">

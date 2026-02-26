@@ -9,9 +9,9 @@ function Services() {
 
   const services = [
     {
-      name: 'After Hours AI Phone Receptionist',
+      name: 'After Hours Phone Receptionist',
       description:
-        'Never lose a client after business hours. Our AI receptionist answers every call, captures caller details, schedules consultations, handles intake forms, and sends you a full transcript — so you wake up to new leads, not missed calls.',
+        'Never lose a client after business hours. Our receptionist answers every call, captures caller details, schedules consultations, handles intake forms, and sends you a full transcript — so you wake up to new leads, not missed calls.',
       price: 'Contact for Pricing',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -21,9 +21,9 @@ function Services() {
       features: ['24/7 call answering after hours', 'Call transcription & message summaries', 'Appointment scheduling', 'Client intake & lead capture'],
     },
     {
-      name: 'Full Time AI Receptionist',
+      name: 'Full Time Receptionist',
       description:
-        'A dedicated AI receptionist that handles all inbound calls around the clock — routing callers to the right person, answering common questions, syncing with your CRM, and providing bilingual support for a seamless client experience.',
+        'A dedicated receptionist that handles all inbound calls around the clock — routing callers to the right person, answering common questions, syncing with your CRM, and providing bilingual support for a seamless client experience.',
       price: 'Contact for Pricing',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -104,8 +104,8 @@ function Services() {
 
   const differentiators = [
     {
-      title: 'AI-Powered 24/7',
-      description: 'Your AI receptionist never takes a day off — answering calls at midnight, weekends, and holidays.',
+      title: '24/7 Coverage',
+      description: 'Your receptionist never takes a day off — answering calls at midnight, weekends, and holidays.',
       icon: '🤖',
     },
     {
@@ -128,8 +128,8 @@ function Services() {
   return (
     <div className="services">
       <div className="page-header reveal">
-        <h1>AI Receptionist Services & More</h1>
-        <p>AI-powered phone solutions and expert development tailored to your business</p>
+        <h1>Receptionist Services & More</h1>
+        <p>24/7 phone solutions and expert development tailored to your business</p>
       </div>
 
       <div className="services-content">
@@ -178,9 +178,9 @@ function Services() {
 
         {/* ── CTA ── */}
         <section className="services-cta reveal">
-          <h2>Ready for an AI Receptionist?</h2>
+          <h2>Ready for 24/7 Reception?</h2>
           <p>
-            Stop losing clients to missed calls. Let's set up your AI receptionist
+            Stop losing clients to missed calls. Let's set up your receptionist
             and start capturing every lead — after hours and beyond.
           </p>
           <Link to="/contact" className="btn-primary">
