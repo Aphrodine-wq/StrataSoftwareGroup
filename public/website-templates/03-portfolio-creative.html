@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FF6B6B;
+            --secondary-color: #2C3E50;
+            --text-color: #333;
+            --bg-color: #FFFFFF;
+            --light-gray: #f4f4f4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            background: var(--secondary-color);
+            color: var(--bg-color);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--bg-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            background-color: white;
+        }
+
+        .hero {
+            background: var(--secondary-color);
+            color: var(--bg-color);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+        }
+
+        #portfolio .filter-buttons {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            background: none;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--secondary-color);
+            color: var(--bg-color);
+        }
+
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-item {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-item img {
+            width: 100%;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 107, 107, 0.9);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .project-item:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .project-overlay h3 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 0.5rem;
+        }
+
+        #about {
+            background: var(--light-gray);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .skills-container {
+            margin-top: 2rem;
+        }
+
+        .skill {
+            margin-bottom: 1rem;
+        }
+
+        .skill p {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background: #ddd;
+            border-radius: 5px;
+        }
+
+        .progress {
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 5px;
+            width: 0;
+            transition: width 1s ease-in-out;
+        }
+
+        #services {
+            background: var(--bg-color);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--light-gray);
+            padding: 2rem;
+            text-align: center;
+            border-radius: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 1rem;
+        }
+
+        #clients {
+            background: var(--secondary-color);
+            padding: 4rem 0;
+            overflow: hidden;
+        }
+
+        .clients-ticker {
+            display: flex;
+            width: 200%;
+            animation: ticker 30s linear infinite;
+        }
+
+        .clients-ticker img {
+            height: 50px;
+            margin: 0 40px;
+            filter: grayscale(100%) invert(100%);
+            opacity: 0.7;
+            transition: all 0.3s;
+        }
+
+        .clients-ticker img:hover {
+            filter: none;
+            opacity: 1;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        #contact {
+            background: var(--light-gray);
+        }
+
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #e65a5a;
+        }
+
+        footer {
+            background: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 999;
+        }
+
+        .scroll-to-top.show {
+            display: block;
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 5rem;
+                flex-direction: column;
+                background-color: var(--secondary-color);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 2.5rem 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Creative</a>
+            <ul class="nav-links">
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>Bold & Creative</h1>
+                <p>We are a digital agency that thrives on creative and innovative solutions.</p>
+            </div>
+        </section>
+
+        <section id="portfolio">
+            <div class="container">
+                <h2 class="section-title">Our Work</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="web">Web Design</button>
+                    <button class="filter-btn" data-filter="branding">Branding</button>
+                    <button class="filter-btn" data-filter="print">Print</button>
+                </div>
+                <div class="project-gallery">
+                    <div class="project-item" data-category="web">
+                        <img src="https://picsum.photos/seed/project1/600/400" alt="Project 1">
+                        <div class="project-overlay">
+                            <h3>Project Title</h3>
+                            <p>Web Design</p>
+                        </div>
+                    </div>
+                    <div class="project-item" data-category="branding">
+                        <img src="https://picsum.photos/seed/project2/600/400" alt="Project 2">
+                        <div class="project-overlay">
+                            <h3>Project Title</h3>
+                            <p>Branding</p>
+                        </div>
+                    </div>
+                    <div class="project-item" data-category="print">
+                        <img src="https://picsum.photos/seed/project3/600/400" alt="Project 3">
+                        <div class="project-overlay">
+                            <h3>Project Title</h3>
+                            <p>Print</p>
+                        </div>
+                    </div>
+                    <div class="project-item" data-category="web">
+                        <img src="https://picsum.photos/seed/project4/600/400" alt="Project 4">
+                        <div class="project-overlay">
+                            <h3>Project Title</h3>
+                            <p>Web Design</p>
+                        </div>
+                    </div>
+                    <div class="project-item" data-category="branding">
+                        <img src="https://picsum.photos/seed/project5/600/400" alt="Project 5">
+                        <div class="project-overlay">
+                            <h3>Project Title</h3>
+                            <p>Branding</p>
+                        </div>
+                    </div>
+                    <div class="project-item" data-category="print">
+                        <img src="https://picsum.photos/seed/project6/600/400" alt="Project 6">
+                        <div class="project-overlay">
+                            <h3>Project Title</h3>
+                            <p>Print</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">About Us</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Who We Are</h3>
+                        <p>We are a team of passionate designers and developers dedicated to creating beautiful and functional digital experiences. Our goal is to help our clients achieve their business objectives through creative design and cutting-edge technology.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et quam vitae ipsum rhoncus ullamcorper. Praesent vitae est vitae augue eleifend pulvinar.</p>
+                    </div>
+                    <div class="about-skills">
+                        <h3>Our Skills</h3>
+                        <div class="skills-container">
+                            <div class="skill">
+                                <p>UI/UX Design</p>
+                                <div class="progress-bar"><div class="progress" data-width="90%"></div></div>
+                            </div>
+                            <div class="skill">
+                                <p>Web Development</p>
+                                <div class="progress-bar"><div class="progress" data-width="95%"></div></div>
+                            </div>
+                            <div class="skill">
+                                <p>Branding</p>
+                                <div class="progress-bar"><div class="progress" data-width="85%"></div></div>
+                            </div>
+                            <div class="skill">
+                                <p>SEO</p>
+                                <div class="progress-bar"><div class="progress" data-width="80%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <h2 class="section-title">Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fas fa-pencil-ruler"></i>
+                        <h3>Web Design</h3>
+                        <p>Stunning and effective websites that capture your brand and engage your audience.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-code"></i>
+                        <h3>Development</h3>
+                        <p>Clean, efficient code and robust back-end solutions for any web application.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-bullhorn"></i>
+                        <h3>Marketing</h3>
+                        <p>Data-driven digital marketing strategies to grow your online presence.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="clients">
+            <div class="clients-ticker">
+                <img src="https://placehold.co/150x50/png?text=Client1" alt="Client 1">
+                <img src="https://placehold.co/150x50/png?text=Client2" alt="Client 2">
+                <img src="https://placehold.co/150x50/png?text=Client3" alt="Client 3">
+                <img src="https://placehold.co/150x50/png?text=Client4" alt="Client 4">
+                <img src="https://placehold.co/150x50/png?text=Client5" alt="Client 5">
+                <img src="https://placehold.co/150x50/png?text=Client6" alt="Client 6">
+                <img src="https://placehold.co/150x50/png?text=Client1" alt="Client 1">
+                <img src="https://placehold.co/150x50/png?text=Client2" alt="Client 2">
+                <img src="https://placehold.co/150x50/png?text=Client3" alt="Client 3">
+                <img src="https://placehold.co/150x50/png?text=Client4" alt="Client 4">
+                <img src="https://placehold.co/150x50/png?text=Client5" alt="Client 5">
+                <img src="https://placehold.co/150x50/png?text=Client6" alt="Client 6">
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Your Message" rows="7" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Creative. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <a href="#hero" class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Filter portfolio
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectItems = document.querySelectorAll('.project-item');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filter = btn.dataset.filter;
+
+                    projectItems.forEach(item => {
+                        if (filter === 'all' || item.dataset.category === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Animate progress bars on scroll
+            const skillsSection = document.querySelector('#about');
+            const progressBars = document.querySelectorAll('.progress');
+
+            function animateSkills() {
+                progressBars.forEach(bar => {
+                    const barWidth = bar.dataset.width;
+                    bar.style.width = barWidth;
+                });
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateSkills();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(skillsSection);
+
+            // Scroll to top button
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.add('show');
+                } else {
+                    scrollToTopBtn.classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

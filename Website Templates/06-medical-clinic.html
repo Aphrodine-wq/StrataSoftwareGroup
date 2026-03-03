@@ -1,0 +1,559 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare - Medical Clinic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #00B4D8;
+            --secondary-color: #F8F9FA;
+            --text-color: #333;
+            --white-color: #fff;
+            --gray-color: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: var(--white-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero {
+            background: var(--secondary-color);
+            padding: 150px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            text-align: left;
+        }
+
+        .hero-content {
+            max-width: 500px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background: var(--primary-color);
+            color: var(--white-color);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #009ACD;
+        }
+
+        .hero-image img {
+            max-width: 400px;
+            border-radius: 10px;
+        }
+
+        section {
+            padding: 80px 20px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .department-cards, .doctor-team-grid, .blog-preview-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--white-color);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .doctor-team-grid .card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--secondary-color);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial .author {
+            font-weight: 700;
+        }
+
+        .blog-preview-cards .card img {
+            max-width: 100%;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .partner-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 4rem;
+        }
+
+        .partner-logos img {
+            height: 50px;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .partner-logos img:hover {
+            filter: grayscale(0%);
+        }
+
+        .emergency-banner {
+            background: var(--primary-color);
+            color: var(--white-color);
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .emergency-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .emergency-banner p {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .faq-accordion .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .faq-accordion .faq-question {
+            background: var(--secondary-color);
+            padding: 1rem;
+            cursor: pointer;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-accordion .faq-answer {
+            padding: 1rem;
+            border-top: 1px solid #ddd;
+            display: none;
+        }
+
+        footer {
+            background: var(--text-color);
+            color: var(--white-color);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        #scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: var(--white-color);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #scroll-to-top.visible {
+            display: block;
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: var(--white-color);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 1rem 0;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 1rem 0;
+                text-align: center;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero {
+                flex-direction: column;
+                padding: 100px 20px;
+            }
+
+            .hero-content {
+                order: 2;
+                text-align: center;
+            }
+
+            .hero-image {
+                order: 1;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <div class="logo">MediCare</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#departments">Departments</a></li>
+                <li><a href="#doctors">Doctors</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="menu-toggle">&#9776;</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Your Health, Our Priority</h1>
+                <p>Providing compassionate and comprehensive healthcare for our community. Our experienced team is dedicated to your well-being.</p>
+                <a href="#contact" class="cta-button">Book an Appointment</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://placehold.co/400x400/00B4D8/FFFFFF?text=Doctor" alt="Doctor Image">
+            </div>
+        </section>
+
+        <section id="departments" class="container">
+            <h2>Our Departments</h2>
+            <div class="department-cards">
+                <div class="card">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Cardiology</h3>
+                    <p>Expert care for your heart's health, from diagnosis to treatment.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Neurology</h3>
+                    <p>Specialized treatment for disorders of the nervous system.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-bone"></i>
+                    <h3>Orthopedics</h3>
+                    <p>Comprehensive care for bones, joints, ligaments, and muscles.</p>
+                </div>
+                 <div class="card">
+                    <i class="fas fa-baby"></i>
+                    <h3>Pediatrics</h3>
+                    <p>Dedicated healthcare for infants, children, and adolescents.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="doctors" style="background: var(--secondary-color);">
+            <div class="container">
+                <h2>Our Expert Doctors</h2>
+                <div class="doctor-team-grid">
+                    <div class="card">
+                        <img src="https://placehold.co/150x150/00B4D8/FFFFFF?text=Dr.+Smith" alt="Dr. Emily Smith">
+                        <h3>Dr. Emily Smith</h3>
+                        <p>Cardiologist</p>
+                    </div>
+                    <div class="card">
+                        <img src="https://placehold.co/150x150/00B4D8/FFFFFF?text=Dr.+Jones" alt="Dr. David Jones">
+                        <h3>Dr. David Jones</h3>
+                        <p>Neurologist</p>
+                    </div>
+                    <div class="card">
+                        <img src="https://placehold.co/150x150/00B4D8/FFFFFF?text=Dr.+Williams" alt="Dr. Sarah Williams">
+                        <h3>Dr. Sarah Williams</h3>
+                        <p>Orthopedic Surgeon</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="container">
+            <h2>What Our Patients Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <p>"The care I received at MediCare was exceptional. The staff was friendly, and the doctors were incredibly knowledgeable and attentive."
+                    </p>
+                    <p class="author">- John Doe</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" style="background: var(--secondary-color);">
+            <div class="container">
+                <h2>Health Tips & News</h2>
+                <div class="blog-preview-cards">
+                    <div class="card">
+                        <img src="https://placehold.co/300x200/F8F9FA/333?text=Healthy+Eating" alt="Blog Post Image">
+                        <h3>10 Tips for a Healthier Diet</h3>
+                        <p>Learn how to make simple changes to your diet for a healthier lifestyle.</p>
+                        <a href="#" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">Read More</a>
+                    </div>
+                    <div class="card">
+                        <img src="https://placehold.co/300x200/F8F9FA/333?text=Exercise" alt="Blog Post Image">
+                        <h3>The Benefits of Regular Exercise</h3>
+                        <p>Discover the positive impact of physical activity on your mind and body.</p>
+                        <a href="#" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">Read More</a>
+                    </div>
+                    <div class="card">
+                        <img src="https://placehold.co/300x200/F8F9FA/333?text=Mental+Health" alt="Blog Post Image">
+                        <h3>Managing Stress in a Busy World</h3>
+                        <p>Find effective strategies to cope with stress and improve your mental well-being.</p>
+                        <a href="#" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="partners" class="container">
+            <h2>Our Insurance Partners</h2>
+            <div class="partner-logos">
+                <img src="https://placehold.co/150x50/CCCCCC/FFFFFF?text=Partner+1" alt="Insurance Partner 1">
+                <img src="https://placehold.co/150x50/CCCCCC/FFFFFF?text=Partner+2" alt="Insurance Partner 2">
+                <img src="https://placehold.co/150x50/CCCCCC/FFFFFF?text=Partner+3" alt="Insurance Partner 3">
+                <img src="https://placehold.co/150x50/CCCCCC/FFFFFF?text=Partner+4" alt="Insurance Partner 4">
+            </div>
+        </section>
+
+        <section id="emergency-contact">
+            <div class="emergency-banner">
+                <h2>Emergency? Call us now!</h2>
+                <p>+1 234 567 890</p>
+            </div>
+        </section>
+
+        <section id="faq" class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question">What are your opening hours? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">
+                        <p>Our clinic is open from 8:00 AM to 6:00 PM, Monday to Friday, and from 9:00 AM to 1:00 PM on Saturdays.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do I need an appointment? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">
+                        <p>We recommend booking an appointment to minimize waiting time. However, we do accept walk-in patients.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What insurance plans do you accept? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">
+                        <p>We accept a wide range of insurance plans. Please see our partners section or contact us for more details.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="footer-content container">
+            <p>&copy; 2026 MediCare Clinic. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <button id="scroll-to-top">&#8593;</button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const menuToggle = document.querySelector(".menu-toggle");
+            const navUl = document.querySelector("nav ul");
+
+            menuToggle.addEventListener("click", function() {
+                navUl.classList.toggle("active");
+            });
+
+            const scrollToTopBtn = document.getElementById("scroll-to-top");
+
+            window.addEventListener("scroll", function() {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.add("visible");
+                } else {
+                    scrollToTopBtn.classList.remove("visible");
+                }
+            });
+
+            scrollToTopBtn.addEventListener("click", function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            });
+
+            const faqQuestions = document.querySelectorAll(".faq-question");
+
+            faqQuestions.forEach(question => {
+                question.addEventListener("click", function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    if (answer.style.display === "block") {
+                        answer.style.display = "none";
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    } else {
+                        answer.style.display = "block";
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    }
+                });
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    navUl.classList.remove("active");
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

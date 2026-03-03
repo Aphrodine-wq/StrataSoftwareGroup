@@ -1,0 +1,554 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaaS/Startup Landing Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6C63FF;
+            --secondary-color: #00D4FF;
+            --dark-bg: #1a1a2e;
+            --light-bg: #2a2a3e;
+            --text-color: #ffffff;
+            --font-family: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            background: transparent;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            transition: background 0.3s ease;
+        }
+
+        header.scrolled {
+            background: var(--dark-bg);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #5a52d9;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: var(--dark-bg);
+        }
+
+        .btn-secondary:hover {
+            background-color: #00b8e6;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        #hero {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .animated-text {
+            animation: text-animation 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes text-animation {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        #features {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card svg {
+            margin-bottom: 1rem;
+            stroke: var(--secondary-color);
+        }
+
+        #pricing {
+            padding: 4rem 0;
+            background: var(--light-bg);
+        }
+
+        .pricing-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .price-tier {
+            background: var(--dark-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .price-tier.featured {
+            transform: scale(1.05);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .price-tier ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .price-tier li {
+            margin-bottom: 0.5rem;
+        }
+
+        #testimonials {
+            padding: 4rem 0;
+        }
+
+        .testimonial-carousel {
+            display: flex;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .testimonial {
+            min-width: 100%;
+            text-align: center;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        #cta {
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        #cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #newsletter {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        #newsletter form {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        #newsletter input {
+            padding: 0.75rem;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            width: 300px;
+        }
+
+        #newsletter button {
+            border-radius: 0 5px 5px 0;
+        }
+
+        footer {
+            background: var(--light-bg);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: var(--text-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-size: 1.5rem;
+            display: none;
+            z-index: 100;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: var(--dark-bg);
+                padding: 1rem 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+    
+
+</head>
+<body>
+
+    <header>
+        <nav>
+            
+            <div class="container">
+                <a href="#" class="logo">Startup</a>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#" class="btn btn-primary">Sign Up</a></li>
+                </ul>
+                <button class="hamburger">&#9776;</button>
+            </div>
+        
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="animated-text">Modern SaaS for your Business</h1>
+                    <p>Supercharge your productivity with our innovative solutions.</p>
+                    <a href="#cta" class="btn btn-secondary">Get Started</a>
+                </div>
+            </div>
+        
+        </section>
+
+        <section id="features">
+            
+            <div class="container">
+                <h2 class="section-title">Features</h2>
+                <div class="feature-cards">
+                    <div class="card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                        <h3>Analytics</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <h3>Collaboration</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <h3>Security</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                </div>
+            </div>
+        
+        </section>
+
+        <section id="pricing">
+            
+            <div class="container">
+                <h2 class="section-title">Pricing</h2>
+                <div class="pricing-table">
+                    <div class="price-tier">
+                        <h3>Basic</h3>
+                        <div class="price">$19<span>/mo</span></div>
+                        <ul>
+                            <li>Feature 1</li>
+                            <li>Feature 2</li>
+                            <li>Feature 3</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Choose Plan</a>
+                    </div>
+                    <div class="price-tier featured">
+                        <h3>Pro</h3>
+                        <div class="price">$49<span>/mo</span></div>
+                        <ul>
+                            <li>All Basic Features</li>
+                            <li>Feature 4</li>
+                            <li>Feature 5</li>
+                        </ul>
+                        <a href="#" class="btn btn-secondary">Choose Plan</a>
+                    </div>
+                    <div class="price-tier">
+                        <h3>Enterprise</h3>
+                        <div class="price">$99<span>/mo</span></div>
+                        <ul>
+                            <li>All Pro Features</li>
+                            <li>Feature 6</li>
+                            <li>Feature 7</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Choose Plan</a>
+                    </div>
+                </div>
+            </div>
+        
+        </section>
+
+        <section id="testimonials">
+            
+            <div class="container">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <div class="testimonial-carousel">
+                    <div class="testimonial">
+                        <img src="https://i.pravatar.cc/150?img=1" alt="Customer 1">
+                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti."</p>
+                        <h4>- Customer 1</h4>
+                    </div>
+                    <div class="testimonial">
+                        <img src="https://i.pravatar.cc/150?img=2" alt="Customer 2">
+                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti."</p>
+                        <h4>- Customer 2</h4>
+                    </div>
+                    <div class="testimonial">
+                        <img src="https://i.pravatar.cc/150?img=3" alt="Customer 3">
+                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti."</p>
+                        <h4>- Customer 3</h4>
+                    </div>
+                </div>
+            </div>
+        
+        </section>
+
+        <section id="cta">
+            
+            <div class="container">
+                <h2>Ready to get started?</h2>
+                <p>Join thousands of businesses who trust us with their success.</p>
+                <a href="#" class="btn btn-secondary">Create Your Account</a>
+            </div>
+        
+        </section>
+
+        <section id="newsletter">
+            
+            <div class="container">
+                <h3>Subscribe to our Newsletter</h3>
+                <form>
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        
+        </section>
+    </main>
+
+    <footer>
+        
+        <div class="container">
+            <p>&copy; 2026 Startup. All rights reserved.</p>
+        </div>
+    
+    </footer>
+
+    <a href="#" class="scroll-to-top">&#8593;</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Scroll to top button
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.style.display = 'block';
+                } else {
+                    scrollToTopBtn.style.display = 'none';
+                }
+            });
+
+            // Testimonial Carousel
+            const carousel = document.querySelector('.testimonial-carousel');
+            const testimonials = document.querySelectorAll('.testimonial');
+            let currentIndex = 0;
+
+            function showTestimonial(index) {
+                const offset = -index * 100;
+                carousel.style.transform = `translateX(${offset}%)`;
+            }
+
+            function nextTestimonial() {
+                currentIndex = (currentIndex + 1) % testimonials.length;
+                showTestimonial(currentIndex);
+            }
+
+            setInterval(nextTestimonial, 5000);
+
+            // Header scroll effect
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

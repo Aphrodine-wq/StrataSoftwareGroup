@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SportPulse – live scores, breaking sports news, and expert analysis. Subscribe for updates on football, basketball, hockey, and more.">
+  <title>SportPulse | Live Scores & Sports News</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #e63946;
+      --primary-dark: #c1121f;
+      --secondary: #0d1b2a;
+      --dark: #0a0f14;
+      --card-bg: #141c26;
+      --white: #ffffff;
+      --grey: #94a3b8;
+      --grey-light: #cbd5e1;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    .skip-link {
+      position: absolute;
+      top: -3rem;
+      left: 1rem;
+      padding: 0.6rem 1rem;
+      background: var(--primary);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 8px;
+      z-index: 101;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 1rem; outline: 2px solid var(--white); outline-offset: 2px; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--dark);
+      color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .nav {
+      position: sticky;
+      top: 0;
+      background: rgba(10,15,20,0.95);
+      backdrop-filter: blur(12px);
+      padding: 0.85rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-logo { font-family: 'Oswald', sans-serif; font-size: 1.65rem; font-weight: 700; color: var(--primary); letter-spacing: 0.05em; }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .hero-featured {
+      position: relative;
+      background: linear-gradient(to top, rgba(10,15,20,0.95) 0%, rgba(10,15,20,0.4) 50%, transparent 100%),
+        url('https://images.unsplash.com/photo-1461896836934-fff607b2b3de?w=1920&q=80') center/cover no-repeat;
+      min-height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 3rem 2rem;
+    }
+    .hero-featured .tag { color: var(--primary); font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 0.8rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.15em; }
+    .hero-featured h1 { font-family: 'Oswald', sans-serif; font-size: 2.75rem; font-weight: 700; margin-bottom: 0.75rem; text-shadow: 0 2px 20px rgba(0,0,0,0.6); letter-spacing: -0.02em; line-height: 1.15; }
+    .hero-featured p { color: var(--grey-light); font-size: 1.05rem; max-width: 600px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .trending {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      padding: 2rem 0;
+    }
+    .trend-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .trend-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
+    .trend-card .thumb {
+      height: 160px;
+      overflow: hidden;
+      position: relative;
+    }
+    .trend-card .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .trend-card .content { padding: 1rem; }
+    .trend-card h3 { font-size: 1rem; margin-bottom: 0.25rem; }
+    .trend-card p { font-size: 0.85rem; opacity: 0.8; }
+    .filters {
+      display: flex;
+      gap: 0.75rem;
+      padding: 1rem 0;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 0.5rem 1.25rem;
+      background: var(--card-bg);
+      border: 2px solid rgba(255,255,255,0.1);
+      color: var(--grey-light);
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--white);
+    }
+    .section-title { font-family: 'Oswald', sans-serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: var(--primary); letter-spacing: 0.02em; }
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      padding: 2rem 0 4rem;
+    }
+    .article-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .article-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(230,57,70,0.15);
+      border-color: rgba(230,57,70,0.3);
+    }
+    .article-card .thumb {
+      height: 180px;
+      overflow: hidden;
+    }
+    .article-card .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .article-card .content { padding: 1.25rem; }
+    .article-card .cat { color: var(--primary); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.25rem; }
+    .article-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .article-card p { font-size: 0.9rem; opacity: 0.8; }
+    .scores {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2rem 0;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .scores h2 { margin-bottom: 1rem; color: var(--primary); }
+    .score-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid #333;
+    }
+    .score-row:last-child { border-bottom: none; }
+    .score-row .teams { font-weight: 600; }
+    .score-row .score { color: var(--primary); font-weight: 800; }
+    .score-row .live { background: #dc2626; color: white; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; margin-left: 0.5rem; }
+    .newsletter {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      padding: 3rem 2rem;
+      text-align: center;
+      margin: 4rem 0;
+      border-radius: 12px;
+    }
+    .newsletter h2 { margin-bottom: 0.5rem; }
+    .newsletter p { opacity: 0.9; margin-bottom: 1rem; }
+    .newsletter form { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
+    .newsletter input {
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: 6px;
+      min-width: 250px;
+    }
+    .newsletter button {
+      padding: 0.75rem 1.5rem;
+      background: var(--dark);
+      color: var(--white);
+      border: none;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .newsletter button:hover { background: #2a2a2a; }
+    .footer {
+      padding: 3rem 2rem;
+      border-top: 2px solid var(--primary);
+      text-align: center;
+    }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 1rem; flex-wrap: wrap; }
+    .footer a { color: var(--grey); text-decoration: none; }
+    .footer a:hover { color: var(--primary); }
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.25rem;
+    }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(10,15,20,0.98);
+      backdrop-filter: blur(12px);
+      padding: 1rem;
+      gap: 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-links.open li { padding: 0.75rem 0; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open { display: flex; }
+      .mobile-menu-btn { display: block; }
+      .trending, .article-grid { grid-template-columns: 1fr; }
+      .hero-featured h1 { font-size: 1.75rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <header>
+  <nav class="nav" role="navigation" aria-label="Main">
+    <div class="nav-logo">SportPulse</div>
+    <ul class="nav-links" id="nav-menu">
+      <li><a href="#trending">Trending</a></li>
+      <li><a href="#articles">News</a></li>
+      <li><a href="#scores">Scores</a></li>
+      <li><a href="#newsletter">Subscribe</a></li>
+    </ul>
+    <button class="mobile-menu-btn" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">☰</button>
+  </nav>
+  </header>
+
+  <main id="main">
+  <section class="hero-featured">
+    <div class="container">
+      <span class="tag">Breaking</span>
+      <h1>Championship Showdown: Top Teams Face Off in Historic Finals</h1>
+      <p>The stage is set for an epic finale as the top seeds prepare for the most anticipated matchup of the season.</p>
+      <p style="font-size:0.9rem; opacity:0.8; margin-top:0.5rem;">NFL, NBA, NHL, MLB, and more—every major league, every angle. Live scores and analysis you can trust.</p>
+    </div>
+  </section>
+
+  <section id="trending" class="container">
+    <h2 class="section-title">Trending Now</h2>
+    <div class="trending">
+      <article class="trend-card">
+        <div class="thumb"><img src="https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=600&q=80" alt="Football"></div>
+        <div class="content">
+          <h3>Draft Day Surprises: Biggest Steals and Reaches</h3>
+          <p>From late-round gems to first-round head-scratchers—our writers break down which teams nailed it and which left fans asking why. Analysis of the most talked-about picks.</p>
+        </div>
+      </article>
+      <article class="trend-card">
+        <div class="thumb"><img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&q=80" alt="Basketball"></div>
+        <div class="content">
+          <h3>Triple-Double Record Falls in Overtime Thriller</h3>
+          <p>Twenty-three points, nineteen rebounds, fourteen assists: the first 20-15-10 line in franchise history. Historic performance caps a wild night at the arena.</p>
+        </div>
+      </article>
+      <article class="trend-card">
+        <div class="thumb"><img src="https://images.unsplash.com/photo-1529973625058-a665b0324445?w=600&q=80" alt="Baseball"></div>
+        <div class="content">
+          <h3>Opening Day Predictions: Who Will Take the Pennant?</h3>
+          <p>Division-by-division breakdown with win totals and dark-horse picks. Experts weigh in on the season ahead before first pitch.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="container">
+    <h2 class="section-title">Filter by Sport</h2>
+    <div class="filters">
+      <button class="filter-btn active" data-sport="all">All</button>
+      <button class="filter-btn" data-sport="football">Football</button>
+      <button class="filter-btn" data-sport="basketball">Basketball</button>
+      <button class="filter-btn" data-sport="hockey">Hockey</button>
+      <button class="filter-btn" data-sport="baseball">Baseball</button>
+    </div>
+
+    <h2 class="section-title" id="articles">Latest News</h2>
+    <div class="article-grid">
+      <article class="article-card" data-sport="football">
+        <div class="thumb"><img src="https://images.unsplash.com/photo-1504450758481-7338bbe57582?w=600&q=80" alt="Football"></div>
+        <div class="content">
+          <span class="cat">Football</span>
+          <h3>Quarterback Contract Talks Heat Up as Deadline Nears</h3>
+          <p>Sources say the two sides are within $2M per year on a deal that could reset the market. Franchise star in negotiations for record extension; announcement expected by Friday.</p>
+        </div>
+      </article>
+      <article class="article-card" data-sport="basketball">
+        <div class="thumb"><img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?w=600&q=80" alt="Basketball"></div>
+        <div class="content">
+          <span class="cat">Basketball</span>
+          <h3>Rookie Sensation Continues Dominant Run</h3>
+          <p>Thirty-one points on 12-of-18 shooting in a comeback win. First-year star notches another 30-point game and is now averaging 24.2 PPG over his last ten.</p>
+        </div>
+      </article>
+      <article class="article-card" data-sport="hockey">
+        <div class="thumb"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Hockey"></div>
+        <div class="content">
+          <span class="cat">Hockey</span>
+          <h3>Playoff Race Tightens in Final Week</h3>
+          <p>Three points separate the fifth-through-ninth spots in the conference. Five teams vying for the last two playoff berths; tiebreaker scenarios explained.</p>
+        </div>
+      </article>
+      <article class="article-card" data-sport="baseball">
+        <div class="thumb"><img src="https://images.unsplash.com/photo-1534158914592-062992fbe900?w=600&q=80" alt="Baseball"></div>
+        <div class="content">
+          <span class="cat">Baseball</span>
+          <h3>No-Hitter Bid Broken in Ninth Inning</h3>
+          <p>One strike away from the first no-no of the season, a bloop single to right ended the dream. Pitcher falls one out short of history but still gets the complete-game shutout.</p>
+        </div>
+      </article>
+      <article class="article-card" data-sport="football">
+        <div class="thumb"><img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=600&q=80" alt="Football"></div>
+        <div class="content">
+          <span class="cat">Football</span>
+          <h3>Injury Report: Key Players Status for Week 15</h3>
+          <p>Two starters listed as questionable; one RB expected to return. Latest updates from practice squads and team sources ahead of Sunday.</p>
+        </div>
+      </article>
+      <article class="article-card" data-sport="basketball">
+        <div class="thumb"><img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&q=80" alt="Basketball"></div>
+        <div class="content">
+          <span class="cat">Basketball</span>
+          <h3>Trade Deadline: Blockbuster Deal Reportedly Close</h3>
+          <p>Framework could involve three teams and two All-Stars. Multiple names could be on the move if final details get done before the deadline.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="scores" class="container">
+    <div class="scores">
+      <h2>Live Scores</h2>
+      <div class="score-row">
+        <span class="teams">NFL · Eagles vs Cowboys</span>
+        <span><span class="score">24 - 21</span><span class="live">LIVE</span><span style="font-size:0.75rem; opacity:0.7; margin-left:0.25rem;">Q4 8:32</span></span>
+      </div>
+      <div class="score-row">
+        <span class="teams">NBA · Lakers vs Celtics</span>
+        <span><span class="score">98 - 102</span><span style="font-size:0.75rem; opacity:0.7; margin-left:0.25rem;">Final</span></span>
+      </div>
+      <div class="score-row">
+        <span class="teams">NHL · Bruins vs Rangers</span>
+        <span><span class="score">2 - 1</span><span class="live">LIVE</span><span style="font-size:0.75rem; opacity:0.7; margin-left:0.25rem;">2nd 4:15</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section id="newsletter" class="container">
+    <div class="newsletter">
+      <h2>Get the Latest Updates</h2>
+      <p>Subscribe for breaking news, live scores, and exclusive analysis. One daily digest plus real-time alerts for big stories—no spam, unsubscribe anytime.</p>
+      <form id="subscribeForm">
+        <input type="email" placeholder="Your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+    <p>© 2026 SportPulse. All rights reserved.</p>
+  </footer>
+  </main>
+
+  <script>
+    // Mobile menu
+    (function() {
+      const btn = document.querySelector('.mobile-menu-btn');
+      const menu = document.querySelector('.nav-links');
+      if (btn && menu) {
+        btn.addEventListener('click', function() {
+          const open = menu.classList.toggle('open');
+          btn.setAttribute('aria-expanded', open);
+        });
+        document.querySelectorAll('.nav-links a').forEach(function(a) {
+          a.addEventListener('click', function() { menu.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); });
+        });
+      }
+    })();
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const sport = this.dataset.sport;
+        document.querySelectorAll('.article-card').forEach(card => {
+          const show = sport === 'all' || card.dataset.sport === sport;
+          card.style.display = show ? 'block' : 'none';
+        });
+      });
+    });
+    document.getElementById('subscribeForm').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Thanks for subscribing!');
+    });
+  </script>
+</body>
+</html>

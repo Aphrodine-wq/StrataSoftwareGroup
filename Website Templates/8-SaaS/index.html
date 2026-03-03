@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DevStack – API infrastructure for modern teams. Low latency, security first, auto scaling. Start your free trial today.">
+  <title>DevStack | API Infrastructure for Modern Teams</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <header>
+  <nav class="nav" role="navigation" aria-label="Main">
+    <div class="nav-logo">DevStack</div>
+    <ul class="nav-links" id="nav-menu">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how">How it Works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="#cta" class="nav-cta">Start Free Trial</a>
+    <button class="mobile-menu-btn" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">☰</button>
+  </nav>
+  </header>
+
+  <main id="main">
+  <section class="hero">
+    <canvas id="viz-canvas"></canvas>
+    <div class="hero-content">
+      <h1>Build. Scale. Ship.</h1>
+      <p>API infrastructure that grows with you. Sub-50ms global latency, 99.99% uptime SLA, and zero DevOps—so you focus on product, not plumbing.</p>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <h2 class="section-title">Everything You Need</h2>
+    <p class="section-subtitle" style="text-align:center; margin-bottom:2rem;">From first deploy to millions of requests—one platform for auth, routing, and observability.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="icon">⚡</div>
+        <h3>Low Latency</h3>
+        <p>Global edge network with points of presence in 12 regions. Sub-50ms p99 response times so your API feels local everywhere. We route to the nearest edge automatically.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔐</div>
+        <h3>Security First</h3>
+        <p>OAuth2, API keys, and rate limiting built-in. Optional mTLS and IP allowlisting. Every request is logged and auditable; SOC 2 Type II certified.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📊</div>
+        <h3>Analytics</h3>
+        <p>Real-time usage and error tracking in the dashboard. See request volume, latency percentiles, and failure rates by endpoint. Export to your data warehouse or Slack.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔄</div>
+        <h3>Auto Scaling</h3>
+        <p>Handles traffic spikes automatically—no capacity planning. Scale to zero when idle on the Starter plan; Pro and Enterprise get dedicated capacity and reserved throughput.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📚</div>
+        <h3>Documentation</h3>
+        <p>Auto-generated OpenAPI specs from your code or our CLI. Interactive docs, code samples, and changelog in one place. Keep SDKs in sync with a single command.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔌</div>
+        <h3>Integrations</h3>
+        <p>Webhooks for events; SDKs for Node, Python, Go, and Ruby. REST and GraphQL. Connect to Stripe, SendGrid, or your own backend in minutes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="section">
+    <h2 class="section-title">How It Works</h2>
+    <div class="steps">
+      <div class="step"><span>1</span> Sign up & get API key — Create an account and generate a key in the dashboard. No credit card for the trial.</div>
+      <div class="step"><span>2</span> Deploy your endpoints — Use our CLI or CI/CD plugin to deploy. We support Docker, serverless, or connect to your existing gateway.</div>
+      <div class="step"><span>3</span> Monitor & scale — Watch latency and errors in real time. Auto scaling kicks in when traffic grows; you only pay for what you use.</div>
+      <div class="step"><span>4</span> Ship to production — Point your domain, enable SSL, and go live. We handle TLS, DDoS mitigation, and global routing.</div>
+    </div>
+  </section>
+
+  <section id="pricing" class="section">
+    <h2 class="section-title">Pricing</h2>
+    <div class="pricing-toggle">
+      <span>Monthly</span>
+      <label class="toggle"><input type="checkbox" id="annual"><span></span></label>
+      <span>Annual</span>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Starter</h3>
+        <div class="price"><span data-m="29" data-a="23">29</span>/mo</div>
+        <ul><li>100K requests/mo</li><li>1 project</li><li>7-day log retention</li><li>Community support</li></ul>
+        <a href="#" class="btn btn-outline">Get Started</a>
+      </div>
+      <div class="pricing-card featured">
+        <h3>Pro</h3>
+        <div class="price"><span data-m="99" data-a="79">99</span>/mo</div>
+        <ul><li>5M requests/mo</li><li>10 projects</li><li>30-day retention</li><li>Priority support</li><li>Custom domains</li></ul>
+        <a href="#" class="btn btn-primary">Start Trial</a>
+      </div>
+      <div class="pricing-card">
+        <h3>Enterprise</h3>
+        <div class="price">Custom</div>
+        <ul><li>Unlimited requests</li><li>Dedicated infra & SLA</li><li>Unlimited retention</li><li>24/7 support & SSO</li></ul>
+        <a href="#" class="btn btn-outline">Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="code" class="section">
+    <h2 class="section-title">Simple Integration</h2>
+    <div class="code-block">
+      <pre><code>// List all API endpoints for your project (Node.js example)
+const DevStack = require('devstack-sdk');
+const client = new DevStack({ apiKey: process.env.DEVSTACK_KEY });
+
+const data = await client.endpoints.list();
+console.log(data);</code></pre>
+    </div>
+  </section>
+
+  <section id="faq" class="section">
+    <h2 class="section-title">FAQ</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">How quickly can I get started?</div>
+        <div class="faq-a">Most teams are up and running in under 10 minutes. Sign up, create a project, and deploy with our CLI or connect an existing API. The dashboard will show your first request within a few seconds. No sales call required for Starter or Pro.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What languages do you support?</div>
+        <div class="faq-a">We have official SDKs for Node, Python, Go, and Ruby. Any language that can speak HTTP can use our REST API—curl, PHP, Java, etc. OpenAPI specs are available for code generation.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What happens if I exceed my request limit?</div>
+        <div class="faq-a">On Starter and Pro we throttle gracefully: you’ll get 429s above your plan limit, and we’ll email you so you can upgrade or adjust. Enterprise plans can set custom limits and alerts. We never drop traffic without notice.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do you offer SLAs?</div>
+        <div class="faq-a">Pro includes a 99.9% uptime SLA with credit back if we miss it. Enterprise gets 99.99% and a dedicated success manager. All plans have status page and incident notifications.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cta" class="cta-section">
+    <h2>Start Your Free Trial</h2>
+    <p>14 days free. No credit card required.</p>
+    <form class="cta-form">
+      <input type="email" placeholder="Email" required>
+      <button type="submit" class="btn btn-primary">Get Started</button>
+    </form>
+  </section>
+
+  </main>
+  <footer class="footer">
+    <p>© 2026 DevStack</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

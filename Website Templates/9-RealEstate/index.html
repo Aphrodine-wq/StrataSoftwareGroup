@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Summit Realty – find your perfect home. Search properties, view featured listings, and connect with experienced agents.">
+  <title>Summit Realty | Find Your Dream Home</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <header>
+  <nav class="nav" role="navigation" aria-label="Main">
+    <div class="nav-logo">Summit Realty</div>
+    <ul class="nav-links" id="nav-menu">
+      <li><a href="#search">Search</a></li>
+      <li><a href="#featured">Featured</a></li>
+      <li><a href="#listings">Listings</a></li>
+      <li><a href="#agents">Agents</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="mobile-menu-btn" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">☰</button>
+  </nav>
+  </header>
+
+  <main id="main">
+  <section class="hero">
+    <h1>Find Your Perfect Home</h1>
+    <p style="margin-bottom:1.5rem; opacity:0.95;">Search hundreds of listings across the metro area. New properties added daily—single-family, condos, and townhomes.</p>
+    <form class="search-bar" id="searchForm">
+      <input type="text" placeholder="City or ZIP" name="location">
+      <select name="type">
+        <option value="">Any Type</option>
+        <option value="house">House</option>
+        <option value="condo">Condo</option>
+        <option value="townhouse">Townhouse</option>
+      </select>
+      <select name="price">
+        <option value="">Any Price</option>
+        <option value="200000">Under $200K</option>
+        <option value="400000">$200K - $400K</option>
+        <option value="600000">$400K - $600K</option>
+        <option value="1000000">$600K+</option>
+      </select>
+      <button type="submit" class="btn">Search</button>
+    </form>
+  </section>
+
+  <section id="featured" class="section">
+    <h2 class="section-title">Featured Properties</h2>
+    <p class="section-subtitle" style="text-align:center; margin-bottom:2rem;">Hand-picked listings with strong value and move-in appeal. Schedule a showing with one click.</p>
+    <div class="featured-grid">
+      <article class="property-card featured" data-price="425000" data-beds="4" data-type="house">
+        <div class="property-gallery">
+          <div class="gallery-slide active"><img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80" alt="Modern family home exterior and yard"></div>
+          <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80" alt="Living room"></div>
+          <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" alt="Kitchen"></div>
+        </div>
+        <div class="property-info">
+          <span class="price">$425,000</span>
+          <h3>Modern Family Home</h3>
+          <p class="meta">4 bed · 3 bath · 2,400 sqft</p>
+          <p class="location">Oak Street, Greenwood</p>
+          <p class="property-desc">Recently renovated kitchen and baths; large backyard with deck. Quiet cul-de-sac.</p>
+        </div>
+      </article>
+      <article class="property-card featured" data-price="289000" data-beds="2" data-type="condo">
+        <div class="property-gallery">
+          <div class="gallery-slide active"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80" alt="Downtown condo interior"></div>
+        </div>
+        <div class="property-info">
+          <span class="price">$289,000</span>
+          <h3>Downtown Condo</h3>
+          <p class="meta">2 bed · 2 bath · 1,100 sqft</p>
+          <p class="location">City Center, Metro</p>
+          <p class="property-desc">Corner unit with floor-to-ceiling windows and city views. Walk score 98.</p>
+        </div>
+      </article>
+      <article class="property-card featured" data-price="550000" data-beds="5" data-type="house">
+        <div class="property-gallery">
+          <div class="gallery-slide active"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80" alt="Lakeside estate"></div>
+        </div>
+        <div class="property-info">
+          <span class="price">$550,000</span>
+          <h3>Lakeside Estate</h3>
+          <p class="meta">5 bed · 4 bath · 3,200 sqft</p>
+          <p class="location">Lakeview Drive</p>
+          <p class="property-desc">Private dock and lake access. Finished basement; ideal for multi-gen or home office.</p>
+        </div>
+      </article>
+      <article class="property-card featured" data-price="350000" data-beds="3" data-type="townhouse">
+        <div class="property-gallery">
+          <div class="gallery-slide active"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Townhouse front"></div>
+        </div>
+        <div class="property-info">
+          <span class="price">$350,000</span>
+          <h3>Charming Townhouse</h3>
+          <p class="meta">3 bed · 2.5 bath · 1,800 sqft</p>
+          <p class="location">Maple Lane</p>
+          <p class="property-desc">End unit with extra windows and a small patio. HOA includes lawn and snow removal.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="listings" class="section">
+    <h2 class="section-title">All Listings</h2>
+    <div class="listings-grid">
+      <article class="property-card" data-price="325000" data-beds="3" data-type="house">...</article>
+      <article class="property-card" data-price="210000" data-beds="2" data-type="condo">...</article>
+      <article class="property-card" data-price="475000" data-beds="4" data-type="house">...</article>
+      <article class="property-card" data-price="189000" data-beds="1" data-type="condo">...</article>
+      <article class="property-card" data-price="395000" data-beds="3" data-type="townhouse">...</article>
+      <article class="property-card" data-price="625000" data-beds="5" data-type="house">...</article>
+      <article class="property-card" data-price="265000" data-beds="2" data-type="condo">...</article>
+      <article class="property-card" data-price="510000" data-beds="4" data-type="house">...</article>
+    </div>
+  </section>
+
+  <section id="agents" class="section agents-section">
+    <h2 class="section-title">Our Agents</h2>
+    <p class="section-subtitle" style="text-align:center; margin-bottom:2rem;">Licensed, full-time agents who know the local market and will guide you from search to closing.</p>
+    <div class="agents-grid">
+      <div class="agent-card">
+        <div class="agent-avatar">JD</div>
+        <h3>Jennifer Davis</h3>
+        <p>Senior Agent · 15 years</p>
+        <p class="agent-bio">Jennifer specializes in family homes and relocations. She’s closed over 400 transactions and consistently ranks in the top 5% of agents in the metro area. She’s known for her sharp negotiations and smooth closings.</p>
+        <a href="mailto:jennifer@summitrealty.com">Contact</a>
+      </div>
+      <div class="agent-card">
+        <div class="agent-avatar">MR</div>
+        <h3>Michael Roberts</h3>
+        <p>Luxury Specialist · 10 years</p>
+        <p class="agent-bio">Michael focuses on luxury and waterfront properties. He’s worked with developers and high-net-worth buyers and brings a discreet, detail-oriented approach to every deal. Certified luxury home marketing specialist.</p>
+        <a href="mailto:michael@summitrealty.com">Contact</a>
+      </div>
+      <div class="agent-card">
+        <div class="agent-avatar">SL</div>
+        <h3>Sarah Lee</h3>
+        <p>First-Time Buyers · 8 years</p>
+        <p class="agent-bio">Sarah loves helping first-time buyers navigate the process from pre-approval to keys. She runs first-time buyer workshops and makes sure her clients understand every step. Patient, responsive, and great at finding off-market gems.</p>
+        <a href="mailto:sarah@summitrealty.com">Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <h2 class="section-title">Get in Touch</h2>
+    <div class="contact-grid">
+      <div class="map-mock">🗺️ Map</div>
+      <form class="contact-form" id="contactForm">
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="tel" placeholder="Phone">
+        <textarea placeholder="Message" rows="4"></textarea>
+        <button type="submit" class="btn">Send</button>
+      </form>
+    </div>
+  </section>
+
+  </main>
+  <footer class="footer">
+    <p>© 2026 Summit Realty. All rights reserved.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
