@@ -9,49 +9,65 @@ function Products() {
   const products = [
     {
       name: 'G-Rump',
-      tagline: 'AI coding agent for macOS.',
+      tagline: 'An epistemological agent that constructs knowledge about your codebase.',
       description:
-        'A native macOS AI coding agent built with 54K lines of Swift and SwiftUI. Multi-model support across OpenRouter, Anthropic, OpenAI, and Ollama — with 100+ local tools, MCP integration, and full agent orchestration for complex development workflows.',
+        'G-Rump doesn\'t just autocomplete your code — it builds an internal model of what your project knows and what it doesn\'t. 54K lines of native Swift orchestrate multi-model reasoning across OpenRouter, Anthropic, OpenAI, and Ollama, using 100+ local tools and MCP integration to construct genuine understanding of your codebase before acting on it. The difference between pattern-matching and knowledge construction is the difference between a suggestion and a collaborator.',
       status: 'Live',
       features: [
-        'Multi-model AI support (OpenRouter, Anthropic, OpenAI, Ollama)',
-        '100+ local tools for code analysis & manipulation',
-        'MCP (Model Context Protocol) integration',
-        'Agent orchestration for multi-step tasks',
-        'Native macOS app built with SwiftUI',
-        'Developer ID signed & notarized',
+        'Epistemological code analysis — understands before suggesting',
+        'Multi-model reasoning (OpenRouter, Anthropic, OpenAI, Ollama)',
+        '100+ local tools for deep codebase knowledge construction',
+        'MCP (Model Context Protocol) for structured context exchange',
+        'Agent orchestration that reasons about multi-step plans',
+        'Native macOS app — Developer ID signed & notarized',
       ],
       gradient: 'linear-gradient(135deg, #6366f1 0%, #3B82F6 100%)',
     },
     {
-      name: 'AEON',
-      tagline: 'Multi-language static analysis engine.',
+      name: 'FairEstimator',
+      tagline: 'Construction estimating with epistemological transparency.',
       description:
-        'A deep code analysis engine spanning 85K lines of Python with 20+ language adapters. Combines traditional static analysis with AI-powered suggestions to surface bugs, security issues, and code quality improvements across your entire codebase.',
+        'Most AI estimating tools give you a number. FairEstimator shows you HOW it arrived at that number — which line items it combined, what regional data it weighted, and where its confidence intervals widen. Every estimate surfaces the reasoning chain so contractors can verify the logic, not just trust the output. That\'s the difference between a black box and a thinking partner.',
       status: 'Live',
       features: [
+        'Transparent reasoning — see HOW estimates are composed',
+        'Confidence intervals on every line item',
+        'Regional cost data with source attribution',
+        'AI-powered scope analysis from project descriptions',
+        'Exportable estimates with full methodology breakdown',
+        'Built for contractors who need to verify, not just trust',
+      ],
+      gradient: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+    },
+    {
+      name: 'AEON',
+      tagline: 'Where type systems become logic and AI co-evolves with your code.',
+      description:
+        'AEON treats your type system as a logic (Curry-Howard correspondence) — every type signature is a theorem, every implementation is a proof. Across 85K lines of Python and 20+ language adapters, it doesn\'t just lint your code; it reasons about what your types guarantee and where those guarantees break down. The AI co-evolves with your codebase, learning your project\'s invariants to surface increasingly precise analysis over time.',
+      status: 'Live',
+      features: [
+        'Type-theoretic analysis via Curry-Howard correspondence',
+        'AI that co-evolves with your codebase over time',
         '20+ language adapters (Python, JS, Go, Rust, Swift, and more)',
-        'AI-powered code suggestions & refactoring',
-        'Security vulnerability detection',
-        'CLI-first developer workflow',
-        'CI/CD pipeline integration',
-        'Custom rule authoring',
+        'Proof-aware refactoring suggestions',
+        'Security analysis grounded in type-level guarantees',
+        'CLI-first workflow with CI/CD integration',
       ],
       gradient: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
     },
     {
       name: 'Driftlands',
-      tagline: 'Survival crafting in a procedural world.',
+      tagline: 'Emergent survival where entropy is the game designer.',
       description:
-        'A survival crafting game built with Bevy and Rust — procedural world generation, real-time combat, crafting, farming, and base building. 40 user stories covering the full gameplay loop from first landing to endgame defense.',
+        'Driftlands doesn\'t script its world — it parameterizes emergence and lets entropy do the design work. Built in Bevy/Rust with a full ECS architecture, every system (weather, ecology, combat, crafting) feeds back into every other system through tunable entropy parameters. The result is a survival crafting game where no two playthroughs converge, because the world genuinely doesn\'t know what it\'s going to do next — and neither do you.',
       status: 'In Development',
       features: [
-        'Procedural world generation',
-        'Real-time combat system',
-        'Crafting, farming & building mechanics',
-        'Built with Bevy engine (Rust/ECS)',
-        '40 user stories covering full gameplay loop',
-        'Exploration, survival & base defense',
+        'Emergence parameters — tune chaos, watch worlds diverge',
+        'Entropy-driven procedural generation (not random, emergent)',
+        'Full ECS architecture in Bevy/Rust for systemic feedback loops',
+        'Real-time combat shaped by environmental state',
+        'Crafting and building that alter the world\'s entropy balance',
+        '40 user stories spanning exploration to endgame defense',
       ],
       gradient: 'linear-gradient(135deg, #B48A4A 0%, #7E5E33 100%)',
     },
@@ -61,7 +77,7 @@ function Products() {
     <div className="products">
       <div className="page-header reveal">
         <h1>Products & Solutions</h1>
-        <p>Developer tools, AI agents, and games built by Strata</p>
+        <p>Software that knows what it knows — and shows you how it got there</p>
       </div>
 
       <div className="products-content">

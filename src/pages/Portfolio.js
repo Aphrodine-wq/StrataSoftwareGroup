@@ -10,7 +10,7 @@ function Portfolio() {
     {
       title: 'G-Rump',
       description:
-        'AI coding agent for macOS — 54K lines of Swift with multi-model AI support (OpenRouter, Anthropic, OpenAI, Ollama), 100+ local tools, MCP integration, and agent orchestration. macOS native built with SwiftUI.',
+        'An epistemological coding agent — not a faster autocomplete, but a system that constructs genuine knowledge about your codebase before acting. 54K lines of native Swift orchestrating multi-model reasoning, 100+ tools, and MCP integration to build understanding rather than generate guesses.',
       category: 'Product',
       technologies: ['Swift', 'SwiftUI', 'AI/LLM', 'MCP'],
       gradient: 'linear-gradient(135deg, #3D3B5C, #1E1D2E)',
@@ -18,20 +18,29 @@ function Portfolio() {
       url: 'https://www.g-rump.com',
     },
     {
+      title: 'FairEstimator',
+      description:
+        'Construction estimating with epistemological transparency. Every estimate shows HOW the AI combined elements — which data sources, what confidence intervals, where the reasoning is strong and where it acknowledges uncertainty. Contractors verify the logic, not just the number.',
+      category: 'Product',
+      technologies: ['React', 'Node.js', 'AI/ML', 'Construction'],
+      gradient: 'linear-gradient(135deg, #5C4A1E, #3D310F)',
+      stats: { timeline: 'Live', team: 'Strata' },
+    },
+    {
       title: 'AEON',
       description:
-        'Multi-language static analysis engine — 85K lines of Python powering 20+ language adapters, deep code analysis with AI-powered suggestions, and a CLI-first interface built for developer workflows.',
+        'A static analysis engine where the type system IS a logic (Curry-Howard correspondence). 85K lines of Python, 20+ language adapters, and AI that co-evolves with your codebase — learning your invariants to deliver increasingly precise, proof-aware analysis over time.',
       category: 'Product',
-      technologies: ['Python', 'AI/ML', 'Static Analysis', 'CLI'],
+      technologies: ['Python', 'AI/ML', 'Type Theory', 'CLI'],
       gradient: 'linear-gradient(135deg, #1A3A5C, #0D1F33)',
       stats: { timeline: 'Live', team: 'Strata' },
     },
     {
       title: 'Driftlands',
       description:
-        'Survival crafting game built with Bevy and Rust — procedural world generation, combat, crafting, farming, and building systems. 40 user stories covering a full gameplay loop from exploration to base defense.',
+        'A survival crafting game where entropy is the game designer. Built in Bevy/Rust with full ECS architecture, every system feeds back into every other through tunable emergence parameters. No two playthroughs converge because the world genuinely doesn\'t know what happens next.',
       category: 'Product',
-      technologies: ['Rust', 'Bevy', 'Procedural Gen', 'ECS'],
+      technologies: ['Rust', 'Bevy', 'Emergence', 'ECS'],
       gradient: 'linear-gradient(135deg, #2D5A3D, #1A3522)',
       stats: { timeline: 'In Development', team: 'Strata' },
     },
@@ -78,7 +87,7 @@ function Portfolio() {
     <div className="portfolio">
       <div className="page-header reveal">
         <h1>Our Portfolio</h1>
-        <p>A selection of projects we're proud of</p>
+        <p>Software that reasons, explains, and earns trust through transparency</p>
       </div>
 
       {/* Filter Bar */}

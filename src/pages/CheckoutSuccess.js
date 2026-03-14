@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { getTemplateById } from '../data/websiteTemplates';
 import useScrollReveal from '../hooks/useScrollReveal';
@@ -8,7 +8,35 @@ function CheckoutSuccess() {
     useScrollReveal();
     const [searchParams] = useSearchParams();
     const templateId = searchParams.get('template');
+    const sessionId = searchParams.get('session_id');
     const template = templateId ? getTemplateById(templateId) : null;
+    const [verified, setVerified] = useState(null); // null = loading, true/false = result
+
+    useEffect(() => {
+        if (!sessionId) {
+            /* No session ID in URL — still show success but skip verification */
+            setVerified(true);
+            return;
+        }
+
+        let cancelled = false;
+
+        async function verifySession() {
+            try {
+                const res = await fetch(`/api/verify-session?session_id=${encodeURIComponent(sessionId)}`);
+                const data = await res.json();
+                if (!cancelled) {
+                    setVerified(data.paid === true);
+                }
+            } catch {
+                /* If verification fails, still show success — Stripe already redirected here */
+                if (!cancelled) setVerified(true);
+            }
+        }
+
+        verifySession();
+        return () => { cancelled = true; };
+    }, [sessionId]);
 
     return (
         <div className="checkout-result">
@@ -25,11 +53,21 @@ function CheckoutSuccess() {
                     {template ? ` of the ${template.name} template` : ''}.
                 </p>
 
+                {template && (
+                    <div className="checkout-result-order">
+                        <div className="checkout-result-order-item">
+                            <span>{template.name} Template</span>
+                            <span>${template.price}</span>
+                        </div>
+                    </div>
+                )}
+
                 <div className="checkout-result-details">
                     <p>
                         A confirmation email with download instructions will be sent to your email shortly.
                         If you don't receive it within a few minutes, please check your spam folder or
-                        contact us.
+                        contact us at{' '}
+                        <a href="mailto:support@stratasoftwaregroup.com">support@stratasoftwaregroup.com</a>.
                     </p>
                 </div>
 

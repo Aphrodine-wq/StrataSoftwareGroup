@@ -35,6 +35,12 @@ module.exports = async function handler(req, res) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
+    /* Ensure Stripe secret key is configured */
+    if (!process.env.STRIPE_SECRET_KEY) {
+        console.error('STRIPE_SECRET_KEY is not set');
+        return res.status(500).json({ error: 'Payment service is not configured' });
+    }
+
     const { templateId, templateName } = req.body || {};
 
     if (!templateId || !templateName) {
@@ -50,7 +56,7 @@ module.exports = async function handler(req, res) {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
     try {
-        const origin = req.headers.origin || req.headers.referer || 'https://www.stratasoftwaregroup.com';
+        const origin = req.headers.origin || req.headers.referer?.replace(/\/$/, '') || 'https://www.stratasoftwaregroup.com';
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
@@ -68,17 +74,18 @@ module.exports = async function handler(req, res) {
                 },
             ],
             mode: 'payment',
-            success_url: `${origin}/checkout/success?template=${encodeURIComponent(templateId)}`,
+            success_url: `${origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}&template=${encodeURIComponent(templateId)}`,
             cancel_url: `${origin}/checkout/cancel?template=${encodeURIComponent(templateId)}`,
+            customer_creation: 'always',
             metadata: {
                 templateId,
                 templateName,
             },
         });
 
-        return res.status(200).json({ url: session.url });
+        return res.status(200).json({ url: session.url, sessionId: session.id });
     } catch (err) {
-        console.error('Stripe error:', err);
+        console.error('Stripe error:', err.message);
         return res.status(500).json({ error: 'Failed to create checkout session' });
     }
 };
