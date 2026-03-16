@@ -45,6 +45,15 @@ function Portfolio() {
       stats: { timeline: 'In Development', team: 'Strata' },
     },
     {
+      title: 'Claude Eyes',
+      description:
+        'Ambient screen intelligence for Claude Code. Captures your screen adaptively (3-30s intervals), runs OCR via macOS Vision with zero ML dependencies, and exposes 31 MCP tools — semantic search, flow state detection, knowledge graph queries. It remembers what you saw 3 hours ago and connects it to what\'s on screen now.',
+      category: 'Product',
+      technologies: ['Python', 'macOS Vision', 'MCP', 'SQLite'],
+      stats: { timeline: 'Live', team: 'Strata' },
+      url: 'https://github.com/Aphrodine-wq/eyes',
+    },
+    {
       title: 'FairTradeWorker.com',
       description:
         'Fair trade and ethical sourcing platform connecting workers with transparent supply chains and sustainable business practices.',
