@@ -1,0 +1,65 @@
+{
+  "project": "StrataSoftwareGroup",
+  "branchName": "ralph/portfolio-update-deploy",
+  "description": "Update Strata website with real portfolio, fix contact form, deploy to Vercel",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Verify portfolio has real project data",
+      "description": "As a visitor, I want to see real project case studies on the Strata website.",
+      "acceptanceCriteria": [
+        "Portfolio.js contains entries for: G-Rump, AEON, Driftlands (at minimum)",
+        "Each entry has: title, description, tech stack, and URL (or 'In Development' note)",
+        "AEON and Driftlands entries have accurate descriptions matching their current state",
+        "No placeholder lorem ipsum text in any portfolio entry",
+        "Typecheck passes"
+      ],
+      "priority": 1,
+      "passes": false,
+      "notes": "Agent found Portfolio.js already has G-Rump, AEON, Driftlands, FairTradeWorker, Life Balance Oxford, Ole Miss 365. Verify accuracy."
+    },
+    {
+      "id": "US-002",
+      "title": "Fix contact form or replace with direct email link",
+      "description": "As a visitor, I want to actually contact Strata through the website.",
+      "acceptanceCriteria": [
+        "Contact form submits successfully OR is replaced with a mailto: link",
+        "If form: verify REACT_APP_CONTACT_API_URL env var is documented",
+        "If mailto: use a professional email address",
+        "No broken form submission (silent failures)",
+        "Typecheck passes"
+      ],
+      "priority": 2,
+      "passes": false,
+      "notes": "Contact form exists with proper logic. May need API endpoint configured or fallback to mailto."
+    },
+    {
+      "id": "US-003",
+      "title": "Replace any remaining href='#' placeholder links",
+      "description": "As a visitor, I want all links to go somewhere real.",
+      "acceptanceCriteria": [
+        "Search entire codebase for href='#' or href=\"#\"",
+        "Replace each with either a real URL, a React Router Link, or remove the element",
+        "No dead links remain in navigation, footer, or CTAs",
+        "Typecheck passes"
+      ],
+      "priority": 3,
+      "passes": false,
+      "notes": "Agent found the site uses real React Router Links, not placeholders. Verify thoroughly."
+    },
+    {
+      "id": "US-004",
+      "title": "Build and deploy to Vercel",
+      "description": "As a business owner, I want the Strata website live with my real portfolio.",
+      "acceptanceCriteria": [
+        "Run npm install && npm run build — build completes without errors",
+        "Run vercel --prod to deploy",
+        "Live URL is accessible and portfolio renders correctly",
+        "Typecheck passes"
+      ],
+      "priority": 4,
+      "passes": false,
+      "notes": "React CRA app. Has vercel.json already."
+    }
+  ]
+}
