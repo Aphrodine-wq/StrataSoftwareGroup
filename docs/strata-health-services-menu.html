@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Strata Software Group · Health Practices · Services Menu</title>
+<style>
+  @page {
+    size: Letter;
+    margin: 0;
+  }
+
+  :root {
+    --cream: #F7F0E1;
+    --cream-2: #F2EAD6;
+    --gold: #B89456;
+    --gold-soft: #C9A773;
+    --ink: #1A2030;
+    --muted: #5A6577;
+    --rule: #C9A773;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    page-break-after: always;
+    width: 8.5in;
+    height: 11in;
+    padding: 0.55in 0.55in 1.05in 0.55in;
+    position: relative;
+    background: var(--cream);
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .frame {
+    position: absolute;
+    top: 0.35in; right: 0.35in; bottom: 0.35in; left: 0.35in;
+    border: 1pt solid var(--gold);
+    pointer-events: none;
+  }
+  .frame::before {
+    content: "";
+    position: absolute;
+    top: 4pt; right: 4pt; bottom: 4pt; left: 4pt;
+    border: 0.5pt solid var(--gold-soft);
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 0.14in;
+    border-bottom: 1pt solid var(--gold);
+    margin-bottom: 0.22in;
+  }
+  .header .logo {
+    width: 1.6in;
+    height: auto;
+    opacity: 0.95;
+  }
+  .header .meta {
+    text-align: right;
+    line-height: 1.4;
+  }
+  .header .meta .eyebrow {
+    font-size: 8pt;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .header .meta .title {
+    font-family: "Playfair Display", "DM Serif Display", Georgia, serif;
+    font-size: 16pt;
+    color: var(--ink);
+    font-weight: 500;
+    margin-top: 2pt;
+  }
+
+  .section-eyebrow {
+    font-size: 9pt;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.08in;
+  }
+  .section-title {
+    font-family: "Playfair Display", "DM Serif Display", Georgia, serif;
+    font-size: 26pt;
+    line-height: 1.05;
+    color: var(--ink);
+    font-weight: 500;
+    margin: 0 0 0.08in 0;
+  }
+  .section-title .accent { color: var(--gold); }
+  .section-blurb {
+    color: var(--muted);
+    max-width: 5.6in;
+    margin-bottom: 0.20in;
+    font-size: 10pt;
+  }
+
+  .group {
+    margin-bottom: 0.14in;
+  }
+  .group-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.12in;
+    border-bottom: 0.7pt solid var(--gold);
+    padding-bottom: 0.04in;
+    margin-bottom: 0.10in;
+  }
+  .group-num {
+    font-family: "Playfair Display", Georgia, serif;
+    color: var(--gold);
+    font-size: 16pt;
+    font-style: italic;
+  }
+  .group-name {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 16pt;
+    color: var(--ink);
+    font-weight: 500;
+    margin: 0;
+    flex: 1;
+  }
+  .group-blurb {
+    color: var(--muted);
+    font-size: 10pt;
+    margin: 0 0 0.14in 0.32in;
+  }
+
+  .item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 0.18in;
+    margin: 0 0 0.07in 0.32in;
+  }
+  .item-name {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 11.5pt;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .item-desc {
+    color: var(--muted);
+    font-size: 9pt;
+    line-height: 1.35;
+    margin-top: 1pt;
+    grid-column: 1 / 2;
+  }
+  .item-price {
+    font-family: "Playfair Display", Georgia, serif;
+    color: var(--gold);
+    font-size: 11pt;
+    white-space: nowrap;
+    border-top: 0.5pt dashed var(--gold-soft);
+    align-self: end;
+    padding-top: 3pt;
+    min-width: 1.2in;
+    text-align: right;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0.55in;
+    left: 0.55in;
+    right: 0.55in;
+    display: flex;
+    justify-content: space-between;
+    font-size: 8.5pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-top: 0.5pt solid var(--gold);
+    padding-top: 0.1in;
+  }
+  .footer .right { color: var(--muted); letter-spacing: 0.14em; }
+
+  /* COVER */
+  .cover {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.7in;
+    position: relative;
+    background: var(--cream);
+    page-break-after: always;
+  }
+  .cover .frame { top: 0.45in; right: 0.45in; bottom: 0.45in; left: 0.45in; }
+  .cover .top {
+    text-align: center;
+    margin-top: 0.4in;
+  }
+  .cover .top .brand {
+    font-size: 9pt;
+    letter-spacing: 0.32em;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .cover .top .ornament {
+    color: var(--gold);
+    font-size: 18pt;
+    margin: 0.1in 0;
+    letter-spacing: 0.6em;
+  }
+  .cover .center {
+    text-align: center;
+    margin-top: 1.2in;
+  }
+  .cover .center img {
+    width: 4in;
+    height: auto;
+    margin-bottom: 0.4in;
+    opacity: 0.95;
+  }
+  .cover .center .eyebrow {
+    font-size: 10pt;
+    letter-spacing: 0.32em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.18in;
+  }
+  .cover .center .title {
+    font-family: "Playfair Display", "DM Serif Display", Georgia, serif;
+    font-size: 42pt;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 0.14in;
+    font-weight: 500;
+  }
+  .cover .center .subtitle {
+    font-size: 10.5pt;
+    letter-spacing: 0.22em;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+  .cover .center .specialization {
+    margin-top: 0.32in;
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    font-size: 14pt;
+    color: var(--gold);
+  }
+
+  .cover .bottom {
+    position: absolute;
+    bottom: 0.95in;
+    left: 0.95in;
+    right: 0.95in;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.4in;
+  }
+  .cover .bottom .col { text-align: center; }
+  .cover .bottom .col.left { text-align: left; }
+  .cover .bottom .col.right { text-align: right; }
+  .cover .bottom .label {
+    font-size: 8.5pt;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 4pt;
+  }
+  .cover .bottom .value {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 12pt;
+    color: var(--ink);
+  }
+
+  /* CTA on last page */
+  .cta {
+    margin-top: 0.18in;
+    padding: 0.16in 0.24in;
+    border-top: 1pt solid var(--gold);
+    border-bottom: 1pt solid var(--gold);
+    background: var(--cream-2);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 0.3in;
+  }
+  .cta .left .eyebrow {
+    font-size: 8.5pt;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .cta .left .headline {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 18pt;
+    color: var(--ink);
+    margin-top: 3pt;
+    line-height: 1.05;
+  }
+  .cta .left .headline .accent { color: var(--gold); }
+  .cta .right { text-align: right; font-size: 9.5pt; color: var(--ink); line-height: 1.45; }
+  .cta .right .name {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 12pt;
+    margin-bottom: 3pt;
+  }
+
+  .fineprint {
+    text-align: center;
+    color: var(--muted);
+    font-size: 9pt;
+    margin-top: 0.18in;
+    font-style: italic;
+  }
+
+  .compliance-note {
+    margin: 0.12in 0.32in 0 0.32in;
+    padding: 0.08in 0.14in;
+    border-left: 2pt solid var(--gold);
+    background: var(--cream-2);
+    color: var(--ink);
+    font-size: 9pt;
+    line-height: 1.4;
+  }
+  .compliance-note strong { color: var(--gold); letter-spacing: 0.05em; }
+
+  /* Narrative / prose */
+  .prose p {
+    color: var(--ink);
+    font-size: 10pt;
+    line-height: 1.55;
+    margin: 0 0 0.09in 0.32in;
+  }
+  .prose .lead {
+    color: var(--muted);
+    font-size: 10pt;
+    max-width: 5.8in;
+    margin: 0 0 0.14in 0.32in;
+  }
+  .prose h3 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 12pt;
+    color: var(--ink);
+    margin: 0.04in 0 0.04in 0.32in;
+    font-weight: 500;
+  }
+  .prose ul {
+    margin: 0 0 0.10in 0.32in;
+    padding-left: 16pt;
+    color: var(--muted);
+    font-size: 9.5pt;
+    line-height: 1.5;
+  }
+
+  /* FAQ */
+  .faq-item { margin: 0 0 0.10in 0.32in; }
+  .faq-q {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 11pt;
+    color: var(--ink);
+    margin-bottom: 2pt;
+    font-weight: 500;
+  }
+  .faq-q::before {
+    content: "Q. ";
+    color: var(--gold);
+    font-style: italic;
+  }
+  .faq-a {
+    color: var(--muted);
+    font-size: 9.5pt;
+    line-height: 1.5;
+  }
+
+  /* Bundles */
+  .bundle {
+    margin: 0 0 0.07in 0.32in;
+    padding: 0.06in 0.12in 0.07in 0.12in;
+    border-left: 2pt solid var(--gold);
+    background: var(--cream-2);
+  }
+  .bundle-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1pt;
+  }
+  .bundle-name {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 12.5pt;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .bundle-price {
+    font-family: "Playfair Display", Georgia, serif;
+    color: var(--gold);
+    font-size: 12.5pt;
+  }
+  .bundle-blurb {
+    color: var(--muted);
+    font-size: 9pt;
+    margin-bottom: 3pt;
+    font-style: italic;
+  }
+  .bundle ul {
+    margin: 0;
+    padding-left: 14pt;
+    color: var(--ink);
+    font-size: 9pt;
+    line-height: 1.4;
+  }
+  .bundle ul li { margin-bottom: 1pt; }
+  .bundle .meta {
+    color: var(--gold);
+    font-size: 8pt;
+    margin-top: 3pt;
+    letter-spacing: 0.05em;
+  }
+
+  /* Engagement phases */
+  .phase {
+    margin: 0 0 0.09in 0.32in;
+    display: grid;
+    grid-template-columns: 0.5in 1fr;
+    gap: 0.12in;
+    align-items: start;
+  }
+  .phase-num {
+    font-family: "Playfair Display", Georgia, serif;
+    color: var(--gold);
+    font-size: 18pt;
+    line-height: 1;
+    padding-top: 2pt;
+  }
+  .phase-title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 12pt;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .phase-when {
+    color: var(--gold);
+    font-size: 8.5pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-left: 4pt;
+  }
+  .phase-body {
+    color: var(--muted);
+    font-size: 9.5pt;
+    line-height: 1.45;
+    margin: 2pt 0 0 0;
+  }
+  .phase-deliverable {
+    color: var(--ink);
+    font-size: 9pt;
+    margin-top: 3pt;
+    font-style: italic;
+  }
+  .phase-deliverable strong { color: var(--gold); font-style: normal; letter-spacing: 0.05em; }
+
+  /* Specialties */
+  .spec-row {
+    display: grid;
+    grid-template-columns: 1.6in 1fr;
+    gap: 0.18in;
+    margin: 0 0 0.05in 0.32in;
+    align-items: baseline;
+  }
+  .spec-name {
+    font-family: "Playfair Display", Georgia, serif;
+    color: var(--ink);
+    font-size: 10.5pt;
+    font-weight: 500;
+  }
+  .spec-desc {
+    color: var(--muted);
+    font-size: 9pt;
+    line-height: 1.4;
+  }
+
+  /* Stack rows */
+  .stack-row {
+    display: grid;
+    grid-template-columns: 1.6in 1fr;
+    gap: 0.18in;
+    margin: 0 0 0.05in 0.32in;
+    align-items: baseline;
+  }
+  .stack-name {
+    font-family: "Playfair Display", Georgia, serif;
+    color: var(--gold);
+    font-size: 10.5pt;
+  }
+  .stack-desc {
+    color: var(--ink);
+    font-size: 9.5pt;
+    line-height: 1.4;
+  }
+
+  /* Belief block (about page) */
+  .belief {
+    margin: 0 0 0.07in 0.32in;
+    padding: 0.04in 0 0.04in 0.14in;
+    border-left: 2pt solid var(--gold);
+    color: var(--ink);
+    font-size: 9.5pt;
+    line-height: 1.5;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<div class="cover">
+  <div class="frame"></div>
+
+  <div class="top">
+    <div class="brand">STRATA SOFTWARE GROUP</div>
+    <div class="ornament">— &diams; —</div>
+  </div>
+
+  <div class="center">
+    <img src="/Users/jameswalton/Projects/strata-software/public/logo.png" alt="Strata Software Group">
+    <div class="eyebrow">A Menu of</div>
+    <div class="title">Health Services</div>
+    <div class="subtitle">EHR · TELEHEALTH · CLINICAL AI · COMPLIANCE</div>
+    <div class="specialization">For private practices, clinics &amp; specialty groups</div>
+  </div>
+
+  <div class="bottom">
+    <div class="col left">
+      <div class="label">Volume</div>
+      <div class="value">No. 01 / 2026</div>
+    </div>
+    <div class="col">
+      <div class="label">Established</div>
+      <div class="value">Mississippi · 2025</div>
+    </div>
+    <div class="col right">
+      <div class="label">Prepared By</div>
+      <div class="value">James Walton</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PAGE 1 — BUILD ============ -->
+<div class="page">
+  <div class="frame"></div>
+
+  <div class="header">
+    <img class="logo" src="/Users/jameswalton/Projects/strata-software/public/logo.png" alt="">
+    <div class="meta">
+      <div class="eyebrow">Section One · Build</div>
+      <div class="title">Patient-Facing &amp; Clinical Software</div>
+    </div>
+  </div>
+
+  <div class="section-eyebrow">Section One</div>
+  <h1 class="section-title">Things we <span class="accent">build.</span></h1>
+  <p class="section-blurb">HIPAA-compliant from the first commit. BAAs in place with every vendor. Encrypted at rest and in transit, audit-logged, ready for an OCR audit on day one.</p>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">i.</span>
+      <h2 class="group-name">Patient-Facing</h2>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">HIPAA-Compliant Practice Website</div>
+        <div class="item-desc">Provider bios, condition pages, medical schema, secure contact forms, accessibility (WCAG 2.1 AA).</div>
+      </div>
+      <div class="item-price">$1,350 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Patient Portal</div>
+        <div class="item-desc">Secure intake, document upload, e-signature, messaging, records access, insurance card capture.</div>
+      </div>
+      <div class="item-price">$4,650 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Telehealth Platform</div>
+        <div class="item-desc">WebRTC video, scheduling, consent, in-visit notes, payment. BAA-covered infrastructure.</div>
+      </div>
+      <div class="item-price">$6,000 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Online Booking &amp; Scheduling</div>
+        <div class="item-desc">Provider availability, appointment types, reminders via SMS/email, no-show flow.</div>
+      </div>
+      <div class="item-price">$1,000 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Patient Check-In Kiosk</div>
+        <div class="item-desc">iPad / tablet self check-in. Demographics, consent, copay capture, ID &amp; insurance scan.</div>
+      </div>
+      <div class="item-price">$1,650 +</div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">ii.</span>
+      <h2 class="group-name">Clinical &amp; Internal</h2>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Custom Clinical Software</div>
+        <div class="item-desc">Specialty-specific workflows, charting helpers, registries, internal portals.</div>
+      </div>
+      <div class="item-price">$6,000 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Patient Mobile App</div>
+        <div class="item-desc">iOS &amp; Android. Records, messaging, telehealth, refill requests. App Store submission included.</div>
+      </div>
+      <div class="item-price">$9,350 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Provider &amp; Admin Dashboards</div>
+        <div class="item-desc">Schedules, charts pending, AR aging, no-shows, productivity. Single source of truth.</div>
+      </div>
+      <div class="item-price">$4,350 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">UI / UX Design</div>
+        <div class="item-desc">Standalone clinical UX, prototyping, design system. Accessibility-first.</div>
+      </div>
+      <div class="item-price">$2,000 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Specialty Note Templates</div>
+        <div class="item-desc">Custom SOAP / H&amp;P / procedure note templates inside your EHR. One-time build per specialty.</div>
+      </div>
+      <div class="item-price">$1,000 +</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left">Strata Software Group · Health</div>
+    <div class="right">PAGE 02 · BUILD</div>
+  </div>
+</div>
+
+<!-- ============ PAGE 2 — INTEGRATE ============ -->
+<div class="page">
+  <div class="frame"></div>
+
+  <div class="header">
+    <img class="logo" src="/Users/jameswalton/Projects/strata-software/public/logo.png" alt="">
+    <div class="meta">
+      <div class="eyebrow">Section Two · Integrate</div>
+      <div class="title">EHR, Labs &amp; Billing Systems</div>
+    </div>
+  </div>
+
+  <div class="section-eyebrow">Section Two</div>
+  <h1 class="section-title">Things we <span class="accent">connect.</span></h1>
+  <p class="section-blurb">FHIR R4, HL7 v2, SMART on FHIR. Real engineering for the systems that actually run a practice — not a Zapier shim.</p>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">iii.</span>
+      <h2 class="group-name">EHR &amp; Practice Management</h2>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">EHR Integration</div>
+        <div class="item-desc">Epic, Athenahealth, eClinicalWorks, DrChrono, AdvancedMD, NextGen, Valant, Practice Fusion. FHIR / HL7 / SMART on FHIR.</div>
+      </div>
+      <div class="item-price">$6,000 + per system</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Practice Management Integration</div>
+        <div class="item-desc">Scheduling, demographics, billing sync. Two-way where supported, one-way mirrors elsewhere.</div>
+      </div>
+      <div class="item-price">$4,350 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">E-Prescribing (Surescripts)</div>
+        <div class="item-desc">EPCS-ready setup, two-factor, formulary checks, refill workflow.</div>
+      </div>
+      <div class="item-price">$1,650 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Patient &amp; Chart Data Migration</div>
+        <div class="item-desc">Historical records, attachments, signed notes. PHI-safe transfer with full audit trail.</div>
+      </div>
+      <div class="item-price">$1,000 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Imaging / PACS Integration</div>
+        <div class="item-desc">DICOM ingest, viewer embed, image-result attachments to encounter notes.</div>
+      </div>
+      <div class="item-price">$2,650 +</div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">iv.</span>
+      <h2 class="group-name">Clinical &amp; Financial Systems</h2>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Insurance Eligibility &amp; Verification</div>
+        <div class="item-desc">270/271 eligibility, real-time benefits check at booking. Availity, Change Healthcare, Office Ally.</div>
+      </div>
+      <div class="item-price">$2,650 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Lab Integration</div>
+        <div class="item-desc">Quest, LabCorp, regional labs. HL7 ORM/ORU orders &amp; results into the chart.</div>
+      </div>
+      <div class="item-price">$2,650 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Billing &amp; RCM Integration</div>
+        <div class="item-desc">Claim scrubbing, ERA/EOB ingestion, denial workflows, AR aging dashboards.</div>
+      </div>
+      <div class="item-price">$1,650 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Payment Processing (HIPAA-Safe)</div>
+        <div class="item-desc">Stripe Health, card-on-file, patient statements, payment plans. No PHI in payment metadata.</div>
+      </div>
+      <div class="item-price">$1,000 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Wearables &amp; Remote Monitoring</div>
+        <div class="item-desc">Apple Health, Fitbit, Dexcom, BP cuffs. RPM data ingestion with thresholds &amp; provider alerts.</div>
+      </div>
+      <div class="item-price">$2,650 +</div>
+    </div>
+  </div>
+
+  <div class="compliance-note">
+    <strong>BAA-COVERED.</strong> Every integration ships with executed Business Associate Agreements, documented data flows, and audit-log retention defined before code goes to production.
+  </div>
+
+  <div class="footer">
+    <div class="left">Strata Software Group · Health</div>
+    <div class="right">PAGE 03 · INTEGRATE</div>
+  </div>
+</div>
+
+<!-- ============ PAGE 3 — AUTOMATE ============ -->
+<div class="page">
+  <div class="frame"></div>
+
+  <div class="header">
+    <img class="logo" src="/Users/jameswalton/Projects/strata-software/public/logo.png" alt="">
+    <div class="meta">
+      <div class="eyebrow">Section Three · Automate</div>
+      <div class="title">Clinical AI &amp; Workflows</div>
+    </div>
+  </div>
+
+  <div class="section-eyebrow">Section Three</div>
+  <h1 class="section-title">Things that <span class="accent">save time.</span></h1>
+  <p class="section-blurb">Documentation that writes itself. Triage that runs after hours. Models you own — fine-tuned on your specialty, not a generic chatbot wearing a stethoscope.</p>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">v.</span>
+      <h2 class="group-name">Clinical AI</h2>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">AI Medical Scribe</div>
+        <div class="item-desc">Ambient encounter capture, SOAP-note generation, EHR write-back. Per-provider licensing or owned deployment.</div>
+      </div>
+      <div class="item-price">$6,000 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Clinical Documentation AI</div>
+        <div class="item-desc">SOAP, H&amp;P, discharge summaries, ICD-10 / CPT suggestions. Reviewed by provider before sign-off.</div>
+      </div>
+      <div class="item-price">$8,000 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Custom-Trained Healthcare Model</div>
+        <div class="item-desc">Fine-tuned for your specialty on your data. Owned by you, hosted privately, BAA-covered.</div>
+      </div>
+      <div class="item-price">$10,650 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Patient Triage Chatbot</div>
+        <div class="item-desc">Symptom triage, scheduling assist, after-hours intake. Escalation to on-call provider.</div>
+      </div>
+      <div class="item-price">$3,000 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Pre-Visit Chart Prep AI</div>
+        <div class="item-desc">Reads chart, summarizes recent encounters, surfaces care gaps. Saves 5–10 min per visit.</div>
+      </div>
+      <div class="item-price">$3,350 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Document &amp; Fax OCR</div>
+        <div class="item-desc">Inbound faxes, intake forms, insurance cards. Auto-classified, indexed, attached to chart.</div>
+      </div>
+      <div class="item-price">$2,350 +</div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">vi.</span>
+      <h2 class="group-name">Workflow Automation</h2>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Intake-to-Scheduling Automation</div>
+        <div class="item-desc">Form &rarr; insurance check &rarr; eligibility &rarr; scheduled visit. No double entry.</div>
+      </div>
+      <div class="item-price">$1,650 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Recall &amp; Follow-Up System</div>
+        <div class="item-desc">Annual visits, lab follow-ups, treatment adherence. SMS/email/voice with consent tracking.</div>
+      </div>
+      <div class="item-price">$1,000 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">AI Phone Triage &amp; Voice Agent</div>
+        <div class="item-desc">HIPAA-compliant voice AI for after-hours triage, prescription refills, appointment requests.</div>
+      </div>
+      <div class="item-price">$2,650 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Reporting &amp; Analytics</div>
+        <div class="item-desc">Productivity, AR aging, no-show, panel-health. Drill-down dashboards on top of EHR data.</div>
+      </div>
+      <div class="item-price">$1,650 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Prior Authorization Automation</div>
+        <div class="item-desc">Auto-fill payer forms, status polling, denial routing. Cuts hours of staff time per week.</div>
+      </div>
+      <div class="item-price">$2,350 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">No-Show Prediction</div>
+        <div class="item-desc">Per-patient no-show risk scoring. Drives reminder cadence &amp; double-book decisions.</div>
+      </div>
+      <div class="item-price">$1,650 +</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left">Strata Software Group · Health</div>
+    <div class="right">PAGE 04 · AUTOMATE</div>
+  </div>
+</div>
+
+<!-- ============ PAGE 4 — HARDWARE & COMPLIANCE ============ -->
+<div class="page">
+  <div class="frame"></div>
+
+  <div class="header">
+    <img class="logo" src="/Users/jameswalton/Projects/strata-software/public/logo.png" alt="">
+    <div class="meta">
+      <div class="eyebrow">Section Four · Secure</div>
+      <div class="title">Hardware, Networks &amp; HIPAA</div>
+    </div>
+  </div>
+
+  <div class="section-eyebrow">Section Four</div>
+  <h1 class="section-title">Things we <span class="accent">harden.</span></h1>
+  <p class="section-blurb">The clinic floor matters as much as the cloud. Workstations that don't fight the front desk, networks that pass an audit, and a paper trail to prove it.</p>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">vii.</span>
+      <h2 class="group-name">Clinic Infrastructure</h2>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Front-Desk &amp; Exam-Room Workstations</div>
+        <div class="item-desc">Built to spec, full-disk encryption, screen-lock policy, antivirus, automated backup. Parts at cost.</div>
+      </div>
+      <div class="item-price">$650 + per unit</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">HIPAA-Compliant Network Setup</div>
+        <div class="item-desc">Segmented VLANs (clinical / guest / IoT), business-grade firewall, audit logging, VPN for telework.</div>
+      </div>
+      <div class="item-price">$1,000 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Secure Data Migration</div>
+        <div class="item-desc">PHI-safe transfer, chain-of-custody documentation, secure-wipe certificates for retired drives.</div>
+      </div>
+      <div class="item-price">$1,000 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">On-Site IT Support</div>
+        <div class="item-desc">Hourly diagnostics, emergency response, vendor coordination. HIPAA-trained technicians.</div>
+      </div>
+      <div class="item-price">$100 / hr</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Backup &amp; Disaster Recovery</div>
+        <div class="item-desc">Encrypted off-site backup, tested restore drills, documented RTO/RPO. PHI-safe storage.</div>
+      </div>
+      <div class="item-price">$1,000 +</div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">viii.</span>
+      <h2 class="group-name">HIPAA Compliance &amp; Audit</h2>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">HIPAA Risk Assessment</div>
+        <div class="item-desc">Technical, administrative &amp; physical safeguards review. Written report, prioritized remediation list.</div>
+      </div>
+      <div class="item-price">$650</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">BAA &amp; Vendor Review</div>
+        <div class="item-desc">Inventory of every vendor touching PHI, BAA status, data-flow diagram, gap report.</div>
+      </div>
+      <div class="item-price">$650</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Policies &amp; Procedures Pack</div>
+        <div class="item-desc">Sanction policy, breach-notification SOP, access-control policy, training log templates.</div>
+      </div>
+      <div class="item-price">$650</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Incident Response &amp; Breach Drill</div>
+        <div class="item-desc">Tabletop exercise, response runbook, contact tree, OCR-ready documentation.</div>
+      </div>
+      <div class="item-price">$650</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">42 CFR Part 2 Compliance</div>
+        <div class="item-desc">Substance-use disorder records — stricter than HIPAA. Consent flow, segmented access, redaction.</div>
+      </div>
+      <div class="item-price">$1,350 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Annual HIPAA Training</div>
+        <div class="item-desc">Workforce training, sign-off tracking, refresher modules. Documentation auditors look for.</div>
+      </div>
+      <div class="item-price">$500 / yr</div>
+    </div>
+  </div>
+
+  <div class="compliance-note">
+    <strong>SCOPE NOTE.</strong> Strata performs technical &amp; operational HIPAA work — risk assessments, safeguards, audits, remediation. For OCR responses or breach-notification filings we coordinate with your healthcare counsel.
+  </div>
+
+  <div class="footer">
+    <div class="left">Strata Software Group · Health</div>
+    <div class="right">PAGE 05 · SECURE</div>
+  </div>
+</div>
+
+<!-- ============ PAGE 6 — SPECIALTIES ============ -->
+<div class="page">
+  <div class="frame"></div>
+
+  <div class="header">
+    <img class="logo" src="/Users/jameswalton/Projects/strata-software/public/logo.png" alt="">
+    <div class="meta">
+      <div class="eyebrow">Section Six · Specialize</div>
+      <div class="title">Practices We Serve</div>
+    </div>
+  </div>
+
+  <div class="section-eyebrow">Section Six</div>
+  <h1 class="section-title">Practices we <span class="accent">know.</span></h1>
+  <p class="section-blurb">Specialty-specific note templates, registries, and integrations included where relevant. We've already done the homework on the workflow, billing codes, and consent stack for each one below.</p>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">xi.</span>
+      <h2 class="group-name">Primary &amp; Family Care</h2>
+    </div>
+    <div class="spec-row"><div class="spec-name">Family Medicine</div><div class="spec-desc">Wellness visits, chronic care, immunization registries, school physicals.</div></div>
+    <div class="spec-row"><div class="spec-name">Internal Medicine</div><div class="spec-desc">Annual physicals, chronic disease management, Medicare wellness visits.</div></div>
+    <div class="spec-row"><div class="spec-name">Pediatrics</div><div class="spec-desc">Vaccines, growth charts, school &amp; sports physicals, parent portal access controls.</div></div>
+    <div class="spec-row"><div class="spec-name">Geriatrics</div><div class="spec-desc">CCM/RPM, fall risk, polypharmacy review, caregiver portal access.</div></div>
+    <div class="spec-row"><div class="spec-name">Urgent Care</div><div class="spec-desc">Walk-in flow, fast charting, payer eligibility at the door, occ-med templates.</div></div>
+  </div>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">xii.</span>
+      <h2 class="group-name">Behavioral &amp; Mental Health</h2>
+    </div>
+    <div class="spec-row"><div class="spec-name">Psychiatry</div><div class="spec-desc">Med management, refills, Surescripts EPCS, controlled-substance audit log.</div></div>
+    <div class="spec-row"><div class="spec-name">Psychology &amp; Therapy</div><div class="spec-desc">DSM-5 templates, intake batteries, recurring sessions, outcome tracking.</div></div>
+    <div class="spec-row"><div class="spec-name">Substance Use</div><div class="spec-desc">42 CFR Part 2 compliance, MAT workflows, segmented access, redacted releases.</div></div>
+    <div class="spec-row"><div class="spec-name">Group &amp; Couples</div><div class="spec-desc">Multi-patient encounters, billing splits, consent for shared notes.</div></div>
+  </div>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">xiii.</span>
+      <h2 class="group-name">Specialty Practices</h2>
+    </div>
+    <div class="spec-row"><div class="spec-name">OB / GYN</div><div class="spec-desc">Pregnancy timelines, ultrasound integration, prenatal flowsheet, postpartum recall.</div></div>
+    <div class="spec-row"><div class="spec-name">Orthopedics &amp; PT</div><div class="spec-desc">Range-of-motion charting, post-op protocols, DME orders, return-to-play notes.</div></div>
+    <div class="spec-row"><div class="spec-name">Dermatology</div><div class="spec-desc">Photo capture, lesion mapping, biopsy tracking, cosmetic vs. medical billing.</div></div>
+    <div class="spec-row"><div class="spec-name">Dental &amp; Orthodontics</div><div class="spec-desc">Treatment plans, ortho timelines, imaging, financing &amp; payment plans.</div></div>
+    <div class="spec-row"><div class="spec-name">Med Spa &amp; Aesthetics</div><div class="spec-desc">Consent stacks, before/after photo vault, package billing, membership plans.</div></div>
+    <div class="spec-row"><div class="spec-name">Cardiology &amp; Endocrine</div><div class="spec-desc">RPM ingestion (BP cuffs, CGM, weight), threshold alerts, lab trending.</div></div>
+  </div>
+
+  <div class="compliance-note">
+    <strong>NOT LISTED?</strong> If your specialty isn't here, we'll spend a 30-minute call learning your workflow and quote it from there. We'd rather write specialty-specific templates than ship a generic chart.
+  </div>
+
+  <div class="footer">
+    <div class="left">Strata Software Group · Health</div>
+    <div class="right">PAGE 06 · SPECIALIZE</div>
+  </div>
+</div>
+
+<!-- ============ PAGE 7 — ENGAGEMENT ============ -->
+<div class="page">
+  <div class="frame"></div>
+
+  <div class="header">
+    <img class="logo" src="/Users/jameswalton/Projects/strata-software/public/logo.png" alt="">
+    <div class="meta">
+      <div class="eyebrow">Section Seven · Engage</div>
+      <div class="title">How We Work</div>
+    </div>
+  </div>
+
+  <div class="section-eyebrow">Section Seven</div>
+  <h1 class="section-title">How we <span class="accent">work.</span></h1>
+  <p class="section-blurb">Five phases. Each one billed plainly, with a clear hand-off so nothing surprises you. Built like we'd build a job site — permits before drywall, and a paper trail at every step.</p>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">xiv.</span>
+      <h2 class="group-name">The Five Phases</h2>
+    </div>
+
+    <div class="phase">
+      <div class="phase-num">01</div>
+      <div>
+        <div class="phase-title">Discovery <span class="phase-when">Week 1</span></div>
+        <div class="phase-body">Practice walkthrough, EHR &amp; vendor inventory, BAA review. Workflow shadowing — front desk, MA, provider, billing. Risk register and dependency map written down before a line of code.</div>
+        <div class="phase-deliverable"><strong>DELIVERABLE</strong> · written scope + fixed quote · $1,000, credited toward build</div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-num">02</div>
+      <div>
+        <div class="phase-title">Design <span class="phase-when">Week 2 – 3</span></div>
+        <div class="phase-body">UX wireframes, clickable prototype. Patient journey + provider journey. HIPAA threat model and data-flow diagrams. We sketch the building before pouring concrete.</div>
+        <div class="phase-deliverable"><strong>DELIVERABLE</strong> · signed-off design + technical spec</div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-num">03</div>
+      <div>
+        <div class="phase-title">Build <span class="phase-when">Week 4 – 12</span></div>
+        <div class="phase-body">Two-week sprints, demo every Friday. BAA &amp; vendor onboarding in parallel so nothing's blocked at launch. Mid-build security review at 50%. Staging environment with synthetic PHI.</div>
+        <div class="phase-deliverable"><strong>DELIVERABLE</strong> · production-ready system in staging + audit-log retention configured</div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-num">04</div>
+      <div>
+        <div class="phase-title">Launch <span class="phase-when">Week 13 – 14</span></div>
+        <div class="phase-body">Staff training — front desk, providers, billing — by role. Cutover plan with rollback path documented. Go-live day on-site or on-call coverage. 30-day hyper-care included.</div>
+        <div class="phase-deliverable"><strong>DELIVERABLE</strong> · live system + trained staff + 30 days of priority support</div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-num">05</div>
+      <div>
+        <div class="phase-title">Support <span class="phase-when">Ongoing</span></div>
+        <div class="phase-body">Strata Care · Health retainer recommended. Quarterly access-review and audit-log review. Annual HIPAA training refresh. Roadmap reviewed every 90 days against what's actually breaking.</div>
+        <div class="phase-deliverable"><strong>DELIVERABLE</strong> · system that doesn't quietly rot</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left">Strata Software Group · Health</div>
+    <div class="right">PAGE 07 · ENGAGE</div>
+  </div>
+</div>
+
+<!-- ============ PAGE 8 — BUNDLES ============ -->
+<div class="page">
+  <div class="frame"></div>
+
+  <div class="header">
+    <img class="logo" src="/Users/jameswalton/Projects/strata-software/public/logo.png" alt="">
+    <div class="meta">
+      <div class="eyebrow">Section Eight · Bundle</div>
+      <div class="title">Pre-Priced Packages</div>
+    </div>
+  </div>
+
+  <div class="section-eyebrow">Section Eight</div>
+  <h1 class="section-title">Things you can <span class="accent">just buy.</span></h1>
+  <p class="section-blurb">Stop scoping line by line. Three bundles, fixed price, fixed timeline. Customize the rest — but for most practices, one of these is the right starting point.</p>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">xv.</span>
+      <h2 class="group-name">Bundles</h2>
+    </div>
+
+    <div class="bundle">
+      <div class="bundle-head">
+        <div class="bundle-name">Solo Practice Starter</div>
+        <div class="bundle-price">$9,650</div>
+      </div>
+      <div class="bundle-blurb">For new or single-provider practices launching in under 60 days.</div>
+      <ul>
+        <li>HIPAA-Compliant Practice Website with provider &amp; condition pages</li>
+        <li>Patient Portal — intake, e-signature, secure messaging, records access</li>
+        <li>Online Booking &amp; Scheduling with SMS &amp; email reminders</li>
+        <li>HIPAA Risk Assessment + BAA &amp; Vendor Review + Policies Pack</li>
+        <li>90 days of Strata Care · Health support included</li>
+      </ul>
+      <div class="meta">TIMELINE 6 WEEKS · SAVE $1,650 VS À LA CARTE</div>
+    </div>
+
+    <div class="bundle">
+      <div class="bundle-head">
+        <div class="bundle-name">Multi-Provider Clinic</div>
+        <div class="bundle-price">$28,000</div>
+      </div>
+      <div class="bundle-blurb">For 3 – 10 provider practices ready to consolidate vendors and add real automation.</div>
+      <ul>
+        <li>Everything in Solo Practice Starter</li>
+        <li>Telehealth Platform on BAA-covered infrastructure</li>
+        <li>One EHR Integration — FHIR / HL7 / SMART on FHIR</li>
+        <li>Patient Mobile App — iOS &amp; Android, App Store submission included</li>
+        <li>AI Medical Scribe — per-provider licensing for year one</li>
+        <li>Provider &amp; Admin Dashboards — schedules, AR aging, productivity</li>
+      </ul>
+      <div class="meta">TIMELINE 12 WEEKS · SAVE $4,650 VS À LA CARTE</div>
+    </div>
+
+    <div class="bundle">
+      <div class="bundle-head">
+        <div class="bundle-name">Specialty Group</div>
+        <div class="bundle-price">$52,000</div>
+      </div>
+      <div class="bundle-blurb">For specialty groups, surgery centers, and DSO/MSO operators with real volume.</div>
+      <ul>
+        <li>Everything in Multi-Provider Clinic</li>
+        <li>Custom-Trained Healthcare Model — fine-tuned on your specialty, owned by you</li>
+        <li>Imaging / PACS Integration with DICOM ingest</li>
+        <li>Real-time Insurance Eligibility &amp; Verification (270/271)</li>
+        <li>Prior Authorization Automation</li>
+        <li>42 CFR Part 2 compliance build (where applicable)</li>
+        <li>12 months of Strata Care · Health</li>
+      </ul>
+      <div class="meta">TIMELINE 16 – 20 WEEKS · SAVE $9,650 VS À LA CARTE</div>
+    </div>
+  </div>
+
+  <div class="compliance-note">
+    <strong>EVERY BUNDLE INCLUDES.</strong> Written project plan, weekly demos, 30-day post-launch hyper-care, executed BAAs, audit-ready documentation, and full source-code ownership. No vendor lock to Strata — you can take what we build anywhere.
+  </div>
+
+  <div class="footer">
+    <div class="left">Strata Software Group · Health</div>
+    <div class="right">PAGE 08 · BUNDLE</div>
+  </div>
+</div>
+
+<!-- ============ PAGE 9 — STACK ============ -->
+<div class="page">
+  <div class="frame"></div>
+
+  <div class="header">
+    <img class="logo" src="/Users/jameswalton/Projects/strata-software/public/logo.png" alt="">
+    <div class="meta">
+      <div class="eyebrow">Section Nine · Stack</div>
+      <div class="title">Under the Hood</div>
+    </div>
+  </div>
+
+  <div class="section-eyebrow">Section Nine</div>
+  <h1 class="section-title">Things under the <span class="accent">hood.</span></h1>
+  <p class="section-blurb">What we build with, why we picked it, and exactly what you own at the end. No black boxes, no proprietary lock-in to Strata. Take what we build and run it anywhere.</p>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">xvi.</span>
+      <h2 class="group-name">Standards &amp; Protocols</h2>
+    </div>
+    <div class="stack-row"><div class="stack-name">FHIR R4</div><div class="stack-desc">Read &amp; write to modern EHRs. SMART on FHIR for OAuth-scoped, EHR-launched apps.</div></div>
+    <div class="stack-row"><div class="stack-name">HL7 v2.x</div><div class="stack-desc">When the vendor's still on the old rails — ORM, ORU, ADT messages.</div></div>
+    <div class="stack-row"><div class="stack-name">DICOM</div><div class="stack-desc">Imaging ingestion, viewer embed, image-result attachments to encounters.</div></div>
+    <div class="stack-row"><div class="stack-name">X12 EDI</div><div class="stack-desc">270/271 eligibility, 837 claims, 835 ERA — Availity, Change Healthcare, Office Ally.</div></div>
+    <div class="stack-row"><div class="stack-name">NCPDP</div><div class="stack-desc">E-prescribing via Surescripts, EPCS for controlled substances.</div></div>
+  </div>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">xvii.</span>
+      <h2 class="group-name">Languages &amp; Frameworks</h2>
+    </div>
+    <div class="stack-row"><div class="stack-name">TypeScript / Next.js</div><div class="stack-desc">Patient-facing web, portals, dashboards. Edge-rendered, accessible.</div></div>
+    <div class="stack-row"><div class="stack-name">React Native (Expo)</div><div class="stack-desc">iOS &amp; Android apps from one codebase. App Store submission handled.</div></div>
+    <div class="stack-row"><div class="stack-name">Kotlin / Spring Boot</div><div class="stack-desc">Clinical and billing backends where the JVM ecosystem actually pays off.</div></div>
+    <div class="stack-row"><div class="stack-name">Python</div><div class="stack-desc">AI pipelines, OCR, fine-tuning, and data ingestion glue.</div></div>
+    <div class="stack-row"><div class="stack-name">Postgres + Redis</div><div class="stack-desc">Primary data store, caching, queue. Boring on purpose.</div></div>
+  </div>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">xviii.</span>
+      <h2 class="group-name">Infrastructure &amp; Security</h2>
+    </div>
+    <div class="stack-row"><div class="stack-name">AWS / GCP</div><div class="stack-desc">BAA-covered tenants for any service touching PHI.</div></div>
+    <div class="stack-row"><div class="stack-name">Cloudflare</div><div class="stack-desc">Edge, DDoS protection, R2 storage, Zero Trust workforce VPN.</div></div>
+    <div class="stack-row"><div class="stack-name">Identity &amp; Access</div><div class="stack-desc">Okta, Auth0, or Cognito for provider SSO. MFA enforced. SCIM where supported.</div></div>
+    <div class="stack-row"><div class="stack-name">Secrets &amp; Encryption</div><div class="stack-desc">HashiCorp Vault, full-disk &amp; backup encryption at rest, TLS 1.3 in transit.</div></div>
+    <div class="stack-row"><div class="stack-name">Monitoring</div><div class="stack-desc">Datadog or Sentry, with audit-log shipping to immutable storage for retention.</div></div>
+  </div>
+
+  <div class="compliance-note">
+    <strong>WHAT YOU OWN.</strong> Source code, infrastructure-as-code, training data, fine-tuned model weights, documentation, and BAAs are all yours. We hand you the keys, not a subscription.
+  </div>
+
+  <div class="footer">
+    <div class="left">Strata Software Group · Health</div>
+    <div class="right">PAGE 09 · STACK</div>
+  </div>
+</div>
+
+<!-- ============ PAGE 10 — FAQ ============ -->
+<div class="page">
+  <div class="frame"></div>
+
+  <div class="header">
+    <img class="logo" src="/Users/jameswalton/Projects/strata-software/public/logo.png" alt="">
+    <div class="meta">
+      <div class="eyebrow">Section Ten · Questions</div>
+      <div class="title">Frequently Asked</div>
+    </div>
+  </div>
+
+  <div class="section-eyebrow">Section Ten</div>
+  <h1 class="section-title">Things people <span class="accent">ask.</span></h1>
+  <p class="section-blurb">The questions that come up on every first call. If yours isn't here, send it — we'd rather answer it once for you than dance around it on a sales pitch.</p>
+
+  <div class="group">
+    <div class="faq-item">
+      <div class="faq-q">Are you HIPAA compliant?</div>
+      <div class="faq-a">We sign a BAA, and HIPAA lives in the build itself — encryption, audit logs, access controls, break-glass policies, training. We also do the boring documentation auditors actually ask for: risk assessments, sanction policy, breach SOP, training logs.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Do you support my EHR?</div>
+      <div class="faq-a">Probably. We've integrated with Epic, Athenahealth, eClinicalWorks, DrChrono, AdvancedMD, NextGen, Valant, Practice Fusion, and others. If yours isn't on the list, we'll quote it after a 30-minute discovery call.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Who owns the AI models you build for me?</div>
+      <div class="faq-a">You do. Custom-trained models are deployed in your tenant, weights stored in your storage, training data kept under your BAA. You can take them anywhere — we just write good ones.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Can you migrate my data from another vendor?</div>
+      <div class="faq-a">Yes. PHI-safe transfer with chain-of-custody documentation, secure-wipe certificates for retired drives, and a full audit trail. Migrations are quoted per scope after we've inventoried the source system.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What's a realistic timeline?</div>
+      <div class="faq-a">Solo practice: 6 weeks. Multi-provider clinic: 10 – 12 weeks. Specialty group: 16 – 20 weeks. Most delays come from EHR vendor BAAs, which we kick off on day one to keep them off the critical path.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Do you handle OCR responses or breach filings?</div>
+      <div class="faq-a">No. We do the technical and operational HIPAA work — risk assessments, safeguards, audits, remediation, audit-ready documentation. For OCR responses or breach-notification filings, we coordinate with your healthcare counsel.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Do you take equity in lieu of fees?</div>
+      <div class="faq-a">Sometimes. For early-stage healthtech founders we'll consider a hybrid arrangement. For established practices: cash, terms, and milestones — that's how everyone stays aligned.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What if my staff hates the new system?</div>
+      <div class="faq-a">We train them, then we hyper-care for 30 days. If a workflow doesn't fit how the front desk actually works, we change it. Adoption is part of the deliverable, not your problem to solve alone.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Where are you based?</div>
+      <div class="faq-a">Oxford, Mississippi. We work remotely across the US, on-site for launches and as needed for clinic infrastructure work. Travel billed at cost when applicable.</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left">Strata Software Group · Health</div>
+    <div class="right">PAGE 10 · QUESTIONS</div>
+  </div>
+</div>
+
+<!-- ============ PAGE 11 — ABOUT ============ -->
+<div class="page">
+  <div class="frame"></div>
+
+  <div class="header">
+    <img class="logo" src="/Users/jameswalton/Projects/strata-software/public/logo.png" alt="">
+    <div class="meta">
+      <div class="eyebrow">Section Eleven · About</div>
+      <div class="title">The Strata Story</div>
+    </div>
+  </div>
+
+  <div class="section-eyebrow">Section Eleven</div>
+  <h1 class="section-title">Things we <span class="accent">believe.</span></h1>
+  <p class="section-blurb">Strata Software Group was started in Mississippi in 2025 by builders who came up the long way — out of construction, government work, and the kind of trades where if your work is bad, somebody calls you the next morning.</p>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">xix.</span>
+      <h2 class="group-name">What we believe</h2>
+    </div>
+
+    <div class="belief">Healthcare software should be built like a building. Permits before drywall, foundations before paint, a paper trail at every step.</div>
+    <div class="belief">Compliance isn't a checkbox at the end. It's the slab. We pour it first.</div>
+    <div class="belief">AI in clinical settings should be owned by the clinic — not rented from a chatbot company that read about medicine on the internet.</div>
+    <div class="belief">The front desk has more in common with a job-site superintendent than people realize. Both run the day. We design for them.</div>
+    <div class="belief">"It works on my machine" is not a deliverable. We hand off systems with documentation an auditor can read.</div>
+  </div>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">xx.</span>
+      <h2 class="group-name">What we won't do</h2>
+    </div>
+
+    <div class="belief">We won't store PHI on a vendor that won't sign a BAA.</div>
+    <div class="belief">We won't ship AI that sees a patient before a provider does.</div>
+    <div class="belief">We won't sell you a system you can't take with you.</div>
+    <div class="belief">We won't quote a project we can't actually finish.</div>
+  </div>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">xxi.</span>
+      <h2 class="group-name">Who's behind it</h2>
+    </div>
+    <div class="prose">
+      <p><strong>James Walton</strong>, founder, leads engineering. Self-taught builder out of construction, now shipping healthcare software full time. <strong>Mason Glen</strong>, co-founder, leads database architecture and compliance — government backend background, the one who reads the regs before writing the migration.</p>
+      <p>We work with a small bench of senior contractors — design, security review, healthcare counsel — pulled in by the project, not on the cap table. Small team on purpose. The phone gets answered by the people writing the code.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left">Strata Software Group · Health</div>
+    <div class="right">PAGE 11 · ABOUT</div>
+  </div>
+</div>
+
+<!-- ============ PAGE 5 — GROW & OPERATE ============ -->
+<div class="page">
+  <div class="frame"></div>
+
+  <div class="header">
+    <img class="logo" src="/Users/jameswalton/Projects/strata-software/public/logo.png" alt="">
+    <div class="meta">
+      <div class="eyebrow">Section Five · Grow &amp; Operate</div>
+      <div class="title">Marketing, Coverage &amp; Retainers</div>
+    </div>
+  </div>
+
+  <div class="section-eyebrow">Section Five</div>
+  <h1 class="section-title">Things that keep you <span class="accent">running.</span></h1>
+  <p class="section-blurb">Patients find you. The phone gets answered. The system you trusted us to build keeps running long after launch day.</p>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">ix.</span>
+      <h2 class="group-name">Practice Marketing</h2>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Local SEO for Medical Practices</div>
+        <div class="item-desc">GMB optimization, medical schema, condition pages, provider pages, location pages, technical SEO.</div>
+      </div>
+      <div class="item-price">$1,650 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">SEO &amp; Content Retainer</div>
+        <div class="item-desc">Monthly condition guides, FAQ build-out, link building, monitoring. Clinically reviewed before publish.</div>
+      </div>
+      <div class="item-price">$350 / mo +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Reputation Engine (HIPAA-Safe)</div>
+        <div class="item-desc">Automated post-visit review requests by SMS/email. No PHI in messaging, opt-in only.</div>
+      </div>
+      <div class="item-price">$1,000 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Provider Personal Brand</div>
+        <div class="item-desc">Strategy, scripts, posting workflow for short-form video. Patient-education focused.</div>
+      </div>
+      <div class="item-price">$1,000 +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Patient Email &amp; SMS Marketing</div>
+        <div class="item-desc">Newsletters, recall campaigns, condition-specific content. HIPAA-safe segmentation.</div>
+      </div>
+      <div class="item-price">$1,000 +</div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-head">
+      <span class="group-num">x.</span>
+      <h2 class="group-name">Coverage &amp; Retainers</h2>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">After-Hours HIPAA Receptionist</div>
+        <div class="item-desc">Nights, weekends, holidays. Triage, scheduling, escalation. US-based, HIPAA-trained, BAA in place.</div>
+      </div>
+      <div class="item-price">$650 + $200 / mo</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Full-Time HIPAA Receptionist</div>
+        <div class="item-desc">24/7 coverage. Trained on your intake, billing, formulary, and policies.</div>
+      </div>
+      <div class="item-price">$3,000 + $400 / mo</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Strata Care · Health</div>
+        <div class="item-desc">Hosting, monitoring, patches, small updates &amp; fixes. Quarterly access-review and audit-log review.</div>
+      </div>
+      <div class="item-price">$500 / mo +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Full-Stack Health Partner</div>
+        <div class="item-desc">Embedded engineering, design, and compliance retainer. Priority queue, monthly roadmap review.</div>
+      </div>
+      <div class="item-price">$1,650 / mo +</div>
+    </div>
+
+    <div class="item">
+      <div>
+        <div class="item-name">Credentialing &amp; Insurance Enrollment</div>
+        <div class="item-desc">Provider enrollment, CAQH, payer revalidation. Done-for-you, per-provider engagements.</div>
+      </div>
+      <div class="item-price">$350 / provider</div>
+    </div>
+  </div>
+
+  <div class="fineprint">All prices in USD. One-time builds quoted in scope; retainers month-to-month, cancel any time. EHR integration pricing varies by vendor &amp; access tier.</div>
+
+  <div class="cta">
+    <div class="left">
+      <div class="eyebrow">Ready to start</div>
+      <div class="headline">Let's <span class="accent">build something.</span></div>
+    </div>
+    <div class="right">
+      <div class="name">James Walton</div>
+      <div>jamesburge.mcm@gmail.com</div>
+      <div>stratasoftwaregroup.com</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left">Strata Software Group · Health</div>
+    <div class="right">PAGE 12 · OPERATE</div>
+  </div>
+</div>
+
+</body>
+</html>
