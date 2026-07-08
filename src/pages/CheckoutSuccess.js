@@ -10,7 +10,7 @@ function CheckoutSuccess() {
     const templateId = searchParams.get('template');
     const sessionId = searchParams.get('session_id');
     const template = templateId ? getTemplateById(templateId) : null;
-    const [verified, setVerified] = useState(null); // null = loading, true/false = result
+    const [, setVerified] = useState(null); // null = loading, true/false = result
 
     useEffect(() => {
         if (!sessionId) {
