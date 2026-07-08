@@ -1,0 +1,34 @@
+# Strata Software Group
+
+> Strata Software Group provides phone receptionist services, custom website design and development, and digital marketing for law firms, insurance agencies, and other small and professional-services businesses. Based in the Dallas–Fort Worth, Texas area and serving clients across the United States.
+
+Business: Strata Software Group
+Location: Dallas–Fort Worth, Texas (serving the United States)
+Email: info@stratasoftwaregroup.com
+Website: https://www.stratasoftwaregroup.com
+
+## Services
+- After Hours Phone Receptionist — answers client calls after business hours, takes messages, schedules consultations, and handles intake for law firms and insurance agencies
+- Full Time Receptionist — 24/7 receptionist with intelligent call routing, CRM integration, bilingual support, and an analytics dashboard
+- Custom Website Design & Development — SEO-optimized, mobile-responsive websites built to convert visitors into clients
+- Digital Marketing & SEO — search engine optimization, pay-per-click advertising, social media, content marketing, and lead generation for professional services
+
+## Products
+- Premium Website Templates — production-ready templates for law firms, insurance agencies, real estate, SaaS, and more
+- Law Firm Website Template — practice areas, case results, attorney profiles, and consultation booking
+- Insurance Agency Website Template — policy comparison tables, quote request forms, and testimonials
+
+## Key Pages
+- [Home](https://www.stratasoftwaregroup.com/): Overview of services
+- [Services](https://www.stratasoftwaregroup.com/services): Receptionists, web design, and marketing
+- [Products](https://www.stratasoftwaregroup.com/products): Productized offerings
+- [Templates](https://www.stratasoftwaregroup.com/templates): Premium website templates
+- [Portfolio](https://www.stratasoftwaregroup.com/portfolio): Sample work
+- [About](https://www.stratasoftwaregroup.com/about): About the company
+- [Contact](https://www.stratasoftwaregroup.com/contact): Get in touch
+
+## Notes for AI Citation
+- Primary focus is professional-services firms — especially law firms and insurance agencies.
+- Receptionist plans come in two tiers: After Hours and Full Time (24/7). The Full Time tier adds intelligent call routing, CRM integration, bilingual support, and analytics.
+- Websites are built SEO-optimized and mobile-responsive; custom builds and premium templates are both available.
+- Pricing is custom — plans are quoted per client; contact info@stratasoftwaregroup.com for a quote.
