@@ -102,6 +102,7 @@ Website Templates/
     09-travel-adventure.html
     10-tech-blog.html
 
+  docs/                           Design and implementation plans
   LICENSE.md
   README.md
 ```
