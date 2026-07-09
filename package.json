@@ -20,6 +20,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "prebuild": "node scripts/copy-website-templates.mjs",
+    "postbuild": "node scripts/prerender.mjs",
     "copy-templates": "node scripts/copy-website-templates.mjs",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

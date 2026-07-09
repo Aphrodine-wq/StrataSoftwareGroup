@@ -8,6 +8,7 @@ import PageTransition from './components/PageTransition';
 import ErrorBoundary from './components/ErrorBoundary';
 import RouteFallback from './components/RouteFallback';
 import CursorGlow from './components/CursorGlow';
+import RouteMeta from './components/RouteMeta';
 import './App.css';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -28,6 +29,7 @@ function App() {
     <Router>
       <div className="App">
         <ErrorBoundary>
+          <RouteMeta />
           <CursorGlow />
           <Navigation />
           <PageTransition />
