@@ -45,3 +45,7 @@ The contact form ([src/pages/Contact.js](src/pages/Contact.js)) submits via POST
 ## Other env vars
 
 - `PUBLIC_URL` — Set by Create React App for deployment (e.g. GitHub Pages subpath). Used for assets and template preview URLs.
+
+---
+
+Built by [Walt Builds](https://waltbuilds.com) — Oxford, Mississippi.
